@@ -88,12 +88,12 @@
     <form class="nayra-ticket__form" method="post" action="{{ routes.cart_add_url }}" data-ticket-form>
       <input type="hidden" name="id" value="{{ variant.id }}" data-ticket-variant>
       <input type="hidden" name="quantity" value="1">
-      <button class="nayra-btn nayra-btn--gold" type="submit" data-ticket-add{% unless variant.available %} disabled{% endunless %}>
+      <button class="nayra-btn nayra-btn--pink" type="submit" data-ticket-add{% unless variant.available %} disabled{% endunless %}>
         {%- if variant.available -%}{{ 'content.nayra.add_to_cart' | t }}{%- else -%}{{ 'content.nayra.sold_out' | t }}{%- endif -%}
       </button>
     </form>
   {%- else -%}
-    <a class="nayra-btn nayra-btn--gold" href="{{ routes.all_products_collection_url }}">{{ 'content.nayra.add_to_cart' | t }}</a>
+    <a class="nayra-btn nayra-btn--pink" href="{{ routes.all_products_collection_url }}">{{ 'content.nayra.add_to_cart' | t }}</a>
   {%- endif -%}
   {%- if whatsapp_href != blank -%}
     <a class="nayra-btn nayra-btn--ghost" href="{{ whatsapp_href }}" target="_blank" rel="noopener" data-ticket-whatsapp>

@@ -1,6 +1,6 @@
 {% doc %}
-  Loads the Nayra heading face and outputs the brand tokens used by the Nayra sections.
-  Background and text colors come from the theme's color palette; the accents come from the "Nayra style" settings.
+  Loads the Nayra heading face, the brand tokens, and the Nayra stylesheet and script.
+  The page background and ink come from the theme's color palette; the accents come from the "Nayra style" settings.
 
   @example
   {% render 'nayra-theme' %}
@@ -25,12 +25,17 @@
   {%- endif %}
 
   :root {
-    --nayra-gold: {{ settings.nayra_gold }};
-    --nayra-gold-ink: {{ settings.nayra_gold_ink }};
+    --nayra-ink: var(--color-foreground);
+    --nayra-ground: var(--color-background);
     --nayra-pink: {{ settings.nayra_pink }};
     --nayra-pink-ink: {{ settings.nayra_pink_ink }};
+    --nayra-sun: {{ settings.nayra_sun }};
+    --nayra-sun-ink: {{ settings.nayra_sun_ink }};
     --nayra-field: {{ settings.nayra_field }};
     --nayra-field-ink: {{ settings.nayra_field_ink }};
+    --nayra-stage: {{ settings.nayra_stage }};
+    --nayra-stage-ink: {{ settings.nayra_stage_ink }};
+    --nayra-gold: {{ settings.nayra_gold }};
     --nayra-display: "El Messiri", Georgia, serif;
     --nayra-mono: {{ settings.nayra_mono_font.family }}, {{ settings.nayra_mono_font.fallback_families }};
     --nayra-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -40,16 +45,19 @@
   }
 
   ::selection {
-    background: var(--nayra-gold);
-    color: var(--nayra-gold-ink);
+    background: var(--nayra-sun);
+    color: var(--nayra-sun-ink);
   }
 
   html {
-    accent-color: var(--nayra-gold);
-    caret-color: var(--nayra-gold);
-    scrollbar-color: rgb(var(--color-foreground-rgb) / 0.35) var(--color-background);
+    accent-color: var(--nayra-pink);
+    caret-color: var(--nayra-pink);
+    scrollbar-color: var(--nayra-pink) var(--color-background);
   }
 {% endstyle %}
 
+<script>
+  document.documentElement.classList.add('nayra-js');
+</script>
 {{ 'nayra.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'nayra.js' | asset_url }}" defer></script>

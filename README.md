@@ -31,21 +31,23 @@ The theme then appears in the Theme library, unpublished. Open its menu and choo
 
 ## Homepage sections
 
-The homepage is built from seven Nayra sections. Their look stays the same from drop to drop. What they show (products, photos, prices, sizes, stock and texts) comes from the Shopify admin. Until you add something, Shopify shows its placeholder illustrations.
+The homepage is built from eight Nayra sections. Their look stays the same from drop to drop. What they show (products, photos, prices, sizes, stock and texts) comes from the Shopify admin. Until you add a photo, its spot shows a colored fabric swatch.
 
 | Section | What it shows | Where to fill it |
 |---|---|---|
-| Nayra hero | Headline, arch photo, two stickers, shop and WhatsApp buttons | Theme editor: upload the photo, edit the texts |
+| Nayra ticker | A moving band of short messages, with a pause button | Theme editor: edit or add messages, pick the color and speed |
+| Nayra hero | Big headline, a live satin arch that moves under the finger, an optional photo arch, two stickers, shop and WhatsApp buttons | Theme editor: edit the texts, upload a photo (optional) |
 | Nayra categories | Category buttons | Theme editor: pick a collection for each button |
-| Nayra tbdila | Outfits to swipe through. The order ticket beside them follows with sizes, price, add to cart and a WhatsApp order | Theme editor: pick the collection of the latest drop |
+| Nayra tbdila | The outfit stage: outfits turn in 3D as you swipe, and the order ticket beside them follows with sizes, price, add to cart and a WhatsApp order | Theme editor: pick the collection of the latest drop |
 | Nayra product grid | Product cards with stickers, price, color dots and quick add | Theme editor: pick a collection |
-| Nayra steps | How ordering works | Theme editor |
-| Nayra banner | An announcement on a colored background, such as the modest collection | Theme editor |
+| Nayra steps | How ordering works, along a henna path | Theme editor |
+| Nayra banner | An announcement on a colored card, such as the modest collection | Theme editor |
 | Nayra gallery | Instagram photos | Theme editor: upload the photos, set the account |
 
-- Accent colors and the ticket font: **Theme settings → Nayra style**.
+- Colors: page background and text in **Theme settings → Colors**; pink, yellow, banner, stage and gold in **Theme settings → Nayra style**.
 - Words inside the ticket and the cards, such as "Ajouter au panier": **Online Store → Themes → ⋯ → Edit default theme content**.
 - Size buttons read the product option named *Taille* or *Size*. Color dots appear when the product's color option has swatches.
+- Motion respects the phone's "reduce motion" setting: the satin, ticker and 3D swiper then stay still.
 
 ## Base theme
 

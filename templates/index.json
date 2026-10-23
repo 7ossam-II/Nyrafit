@@ -128,12 +128,101 @@
         "photo_4"
       ],
       "settings": {}
+    },
+    "nayra_ticker_top": {
+      "type": "nayra-ticker",
+      "blocks": {
+        "message_1": {
+          "type": "message",
+          "settings": {
+            "text": "Nouvelle drop"
+          }
+        },
+        "message_2": {
+          "type": "message",
+          "settings": {
+            "text": "Paiement à la livraison"
+          }
+        },
+        "message_3": {
+          "type": "message",
+          "settings": {
+            "text": "Confirmation sur WhatsApp"
+          }
+        },
+        "message_4": {
+          "type": "message",
+          "settings": {
+            "text": "Lebsa l'salle"
+          }
+        }
+      },
+      "block_order": [
+        "message_1",
+        "message_2",
+        "message_3",
+        "message_4"
+      ],
+      "settings": {
+        "color": "pink",
+        "reverse": false,
+        "speed": 26
+      }
+    },
+    "nayra_ticker_mid": {
+      "type": "nayra-ticker",
+      "blocks": {
+        "message_1": {
+          "type": "message",
+          "settings": {
+            "text": "Sets"
+          }
+        },
+        "message_2": {
+          "type": "message",
+          "settings": {
+            "text": "Leggings"
+          }
+        },
+        "message_3": {
+          "type": "message",
+          "settings": {
+            "text": "Combis"
+          }
+        },
+        "message_4": {
+          "type": "message",
+          "settings": {
+            "text": "Tops"
+          }
+        },
+        "message_5": {
+          "type": "message",
+          "settings": {
+            "text": "Modeste bientôt"
+          }
+        }
+      },
+      "block_order": [
+        "message_1",
+        "message_2",
+        "message_3",
+        "message_4",
+        "message_5"
+      ],
+      "settings": {
+        "color": "sun",
+        "reverse": true,
+        "speed": 26
+      }
     }
   },
   "order": [
+    "nayra_ticker_top",
     "nayra_hero",
     "nayra_categories",
     "nayra_tbdila",
+    "nayra_ticker_mid",
     "nayra_favorites",
     "nayra_steps",
     "nayra_banner",

@@ -1,0 +1,84 @@
+<div class="nayra nayra-ticker nayra-ticker--{{ section.settings.color }}{% if section.settings.reverse %} nayra-ticker--reverse{% endif %}" style="--ticker-duration: {{ section.settings.speed }}s;">
+  <nayra-ticker class="nayra-ticker__band">
+    <div class="nayra-ticker__viewport">
+      {%- for copy in (1..2) -%}
+        <ul class="nayra-ticker__track"{% if forloop.last %} aria-hidden="true"{% endif %}>
+          {%- for block in section.blocks -%}
+            <li class="nayra-ticker__item" {% if forloop.parentloop.first %}{{ block.shopify_attributes }}{% endif %}>
+              {{- block.settings.text -}}
+              {%- render 'nayra-icon', icon: 'star' -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endfor -%}
+    </div>
+    <button class="nayra-ticker__toggle" type="button" aria-pressed="false" aria-label="{{ 'content.nayra.pause_ticker' | t }}">
+      {%- render 'nayra-icon', icon: 'pause' -%}
+      {%- render 'nayra-icon', icon: 'play' -%}
+    </button>
+  </nayra-ticker>
+</div>
+
+{% schema %}
+{
+  "name": "Nayra ticker",
+  "tag": "section",
+  "class": "nayra-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Color",
+      "options": [
+        { "value": "pink", "label": "Pink" },
+        { "value": "sun", "label": "Yellow" },
+        { "value": "ink", "label": "Plum" },
+        { "value": "field", "label": "Banner background" }
+      ],
+      "default": "pink"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Seconds per loop",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "default": 26,
+      "info": "Lower is faster."
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse",
+      "label": "Scroll the other way",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Nouvelle drop"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Nayra ticker",
+      "blocks": [
+        { "type": "message", "settings": { "text": "Nouvelle drop" } },
+        { "type": "message", "settings": { "text": "Paiement à la livraison" } },
+        { "type": "message", "settings": { "text": "Confirmation sur WhatsApp" } },
+        { "type": "message", "settings": { "text": "Lebsa l'salle" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

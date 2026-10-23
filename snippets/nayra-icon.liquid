@@ -1,7 +1,7 @@
 {% doc %}
-  Renders one of the small Nayra line icons.
+  Renders one of the small Nayra icons.
 
-  @param {string} icon - One of: check, plus, prev, next, arrow
+  @param {string} icon - One of: check, plus, prev, next, arrow, star, pause, play, hanger
 
   @example
   {% render 'nayra-icon', icon: 'check' %}
@@ -13,9 +13,17 @@
   {%- when 'plus' -%}
     <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>
   {%- when 'prev' -%}
-    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
   {%- when 'next' -%}
-    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
   {%- when 'arrow' -%}
-    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  {%- when 'star' -%}
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 1.5l3.08 3.08h4.34v4.34L22.5 12l-3.08 3.08v4.34h-4.34L12 22.5l-3.08-3.08H4.58v-4.34L1.5 12l3.08-3.08V4.58h4.34z"/></svg>
+  {%- when 'pause' -%}
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  {%- when 'play' -%}
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+  {%- when 'hanger' -%}
+    <svg class="nayra-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 12.5a3.5 3.5 0 1 1 4.6 3.3c-.7.3-1.1.9-1.1 1.6V20"/><path d="M24 20L6.8 32.6c-1.2.9-.6 2.9.9 2.9h32.6c1.5 0 2.1-2 .9-2.9L24 20z"/></svg>
 {%- endcase -%}

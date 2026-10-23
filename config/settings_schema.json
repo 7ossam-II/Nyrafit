@@ -74,24 +74,12 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Background and text colors come from Colors. These accents are used by the Nayra sections."
-      },
-      {
-        "type": "color",
-        "id": "nayra_gold",
-        "label": "Gold: buttons, links and the selected outfit",
-        "default": "#d9a441"
-      },
-      {
-        "type": "color",
-        "id": "nayra_gold_ink",
-        "label": "Text on gold",
-        "default": "#2a0f24"
+        "content": "Page background and text colors come from Colors. These accents are used by the Nayra sections."
       },
       {
         "type": "color",
         "id": "nayra_pink",
-        "label": "Pink: stickers and badges",
+        "label": "Pink: main buttons and stickers",
         "default": "#d1186a"
       },
       {
@@ -99,6 +87,18 @@
         "id": "nayra_pink_ink",
         "label": "Text on pink",
         "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "nayra_sun",
+        "label": "Yellow: stickers and highlights",
+        "default": "#ffd23f"
+      },
+      {
+        "type": "color",
+        "id": "nayra_sun_ink",
+        "label": "Text on yellow",
+        "default": "#2a0f24"
       },
       {
         "type": "color",
@@ -110,12 +110,30 @@
         "type": "color",
         "id": "nayra_field_ink",
         "label": "Text on banner",
+        "default": "#fff6f9"
+      },
+      {
+        "type": "color",
+        "id": "nayra_stage",
+        "label": "Outfit stage background",
+        "default": "#2a0f24"
+      },
+      {
+        "type": "color",
+        "id": "nayra_stage_ink",
+        "label": "Text on outfit stage",
         "default": "#f7e8ee"
+      },
+      {
+        "type": "color",
+        "id": "nayra_gold",
+        "label": "Gold: the thread around the selected outfit",
+        "default": "#d9a441"
       },
       {
         "type": "font_picker",
         "id": "nayra_mono_font",
-        "label": "Ticket and price font",
+        "label": "Label, ticker and price font",
         "default": "ibm_plex_mono_n5"
       },
       {

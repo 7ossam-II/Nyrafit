@@ -10,17 +10,17 @@
 {% enddoc %}
 
 {%- liquid
-  assign placeholder_index = index | minus: 1 | modulo: 4 | plus: 1
-  assign placeholder_name = 'product-apparel-' | append: placeholder_index
-
   if product != blank
     assign media_alt = product.featured_media.alt | default: product.title | escape
     assign price = product.price | money | strip_html
     assign tag = ''
+    assign tag_tone = 'sun'
     if product.available == false
       assign tag = 'content.nayra.sold_out' | t
+      assign tag_tone = 'ink'
     elsif product.compare_at_price > product.price
       assign tag = 'content.nayra.sale' | t
+      assign tag_tone = 'pink'
     elsif show_tag
       assign tag = product.type
     endif
@@ -48,13 +48,13 @@
         {%- if product.featured_media -%}
           {{ product.featured_media | image_url: width: 720 | image_tag: widths: '240, 360, 480, 600, 720', sizes: '(min-width: 750px) 22vw, 46vw', loading: 'lazy', class: 'nayra-arch__img', alt: media_alt }}
         {%- else -%}
-          {% render 'nayra-placeholder', name: placeholder_name %}
+          {% render 'nayra-placeholder', tone: index %}
         {%- endif -%}
       </span>
       <span class="nayra-card__title">{{ product.title }}</span>
     </a>
     {%- if tag != blank -%}
-      <span class="nayra-sticker nayra-sticker--pink nayra-card__tag">{{ tag }}</span>
+      <span class="nayra-sticker nayra-sticker--{{ tag_tone }} nayra-card__tag">{{ tag }}</span>
     {%- endif -%}
     <div class="nayra-card__meta">
       <p class="nayra-card__price nayra-mono">
@@ -85,7 +85,7 @@
   {%- else -%}
     <a class="nayra-card__link" href="{{ routes.all_products_collection_url }}">
       <span class="nayra-arch nayra-card__arch">
-        {% render 'nayra-placeholder', name: placeholder_name %}
+        {% render 'nayra-placeholder', tone: index %}
       </span>
       <span class="nayra-card__title">{{ 'content.nayra.placeholder_product' | t }}</span>
     </a>

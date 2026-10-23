@@ -15,42 +15,55 @@
   endif
 -%}
 
-<div class="nayra nayra-banner nayra-banner--{{ section.settings.color }}">
-  <div class="nayra-wrap nayra-banner__grid{% if section.settings.show_image %} nayra-banner__grid--image{% endif %}">
-    <div class="nayra-banner__copy">
-      <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
-      {%- if section.settings.text != blank -%}
-        <p class="nayra-lede">{{ section.settings.text }}</p>
-      {%- endif -%}
-      {%- if section.settings.button_label != blank and button_url != blank -%}
-        <div class="nayra-actions">
-          <a
-            class="nayra-btn nayra-btn--ghost"
-            href="{{ button_url }}"
-            {% if opens_whatsapp %}
-              target="_blank" rel="noopener"
-            {% endif %}
-          >
-            {%- if opens_whatsapp -%}{{ 'icon-whatsapp.svg' | inline_asset_content }}{%- endif -%}
-            {{- section.settings.button_label -}}
-          </a>
+<div class="nayra nayra-banner">
+  <div class="nayra-wrap">
+    <div class="nayra-banner__card nayra-banner--{{ section.settings.color }}{% if section.settings.show_image %} nayra-banner__card--image{% endif %}">
+      <svg class="nayra-banner__zellige" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="NayraZellige-{{ section.id }}" width="56" height="56" patternUnits="userSpaceOnUse">
+            <path d="M28 6l6.4 15.6L50 28l-15.6 6.4L28 50l-6.4-15.6L6 28l15.6-6.4z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12.4 12.4h31.2v31.2H12.4z" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(45 28 28)"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#NayraZellige-{{ section.id }})"/>
+      </svg>
+
+      <div class="nayra-banner__copy">
+        <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p class="nayra-lede">{{ section.settings.text }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank and button_url != blank -%}
+          <div class="nayra-actions">
+            <a
+              class="nayra-btn nayra-btn--light"
+              href="{{ button_url }}"
+              {% if opens_whatsapp %}
+                target="_blank" rel="noopener"
+              {% endif %}
+            >
+              {%- if opens_whatsapp -%}{{ 'icon-whatsapp.svg' | inline_asset_content }}{%- endif -%}
+              {{- section.settings.button_label -}}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_image -%}
+        <div class="nayra-banner__media">
+          <div class="nayra-arch nayra-banner__arch">
+            {%- if image != blank -%}
+              {{ image | image_url: width: 1000 | image_tag: widths: '360, 540, 720, 1000', sizes: '(min-width: 990px) 26rem, 70vw', loading: 'lazy', class: 'nayra-arch__img', alt: image_alt }}
+            {%- else -%}
+              {% render 'nayra-placeholder', tone: 2 %}
+            {%- endif -%}
+          </div>
+          {%- if section.settings.sticker != blank -%}
+            <p class="nayra-sticker nayra-sticker--pink nayra-banner__sticker">{{ section.settings.sticker }}</p>
+          {%- endif -%}
         </div>
       {%- endif -%}
     </div>
-    {%- if section.settings.show_image -%}
-      <div class="nayra-banner__media">
-        <div class="nayra-arch nayra-banner__arch">
-          {%- if image != blank -%}
-            {{ image | image_url: width: 1000 | image_tag: widths: '360, 540, 720, 1000', sizes: '(min-width: 990px) 26rem, 78vw', loading: 'lazy', class: 'nayra-arch__img', alt: image_alt }}
-          {%- else -%}
-            {% render 'nayra-placeholder', name: 'collection-apparel-1' %}
-          {%- endif -%}
-        </div>
-        {%- if section.settings.sticker != blank -%}
-          <p class="nayra-sticker nayra-sticker--pink nayra-banner__sticker">{{ section.settings.sticker }}</p>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
   </div>
 </div>
 
@@ -67,8 +80,8 @@
       "options": [
         { "value": "field", "label": "Banner background" },
         { "value": "pink", "label": "Pink" },
-        { "value": "gold", "label": "Gold" },
-        { "value": "page", "label": "Page background" }
+        { "value": "sun", "label": "Yellow" },
+        { "value": "stage", "label": "Plum" }
       ],
       "default": "field",
       "info": "Colors come from Theme settings > Nayra style."

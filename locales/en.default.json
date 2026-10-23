@@ -184,7 +184,9 @@
       "quick_add": "Add {{ title }} to cart",
       "choose_options": "Choose options for {{ title }}",
       "whatsapp_order": "Hello! I'd like to order: [product], size [size] ([price]).",
-      "whatsapp_order_simple": "Hello! I'd like to order: [product] ([price])."
+      "whatsapp_order_simple": "Hello! I'd like to order: [product] ([price]).",
+      "pause_ticker": "Pause the moving text",
+      "add_photo": "Add a photo"
     },
     "cash_on_delivery": {
       "heading": "Cash on delivery",

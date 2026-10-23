@@ -144,7 +144,9 @@
       "quick_add": "Ajouter {{ title }} au panier",
       "choose_options": "Choisir la taille de {{ title }}",
       "whatsapp_order": "Salam ! Je veux commander : [product], taille [size] ([price]).",
-      "whatsapp_order_simple": "Salam ! Je veux commander : [product] ([price])."
+      "whatsapp_order_simple": "Salam ! Je veux commander : [product] ([price]).",
+      "pause_ticker": "Mettre le texte défilant en pause",
+      "add_photo": "Ajoute une photo"
     },
     "cash_on_delivery": {
       "heading": "Paiement à la livraison",

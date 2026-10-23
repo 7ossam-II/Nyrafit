@@ -1,10 +1,22 @@
 {% doc %}
-  Renders a Shopify placeholder illustration that fills its Nayra arch frame, shown until an image is added in the admin.
+  Renders a branded fabric swatch that fills a Nayra frame until a photo is added in the Shopify admin.
+  In the theme editor it also says where the photo goes.
 
-  @param {string} name - Placeholder name, such as product-apparel-1 or collection-apparel-2
+  @param {number} tone - Position in a list, used to rotate the swatch colors
 
   @example
-  {% render 'nayra-placeholder', name: 'product-apparel-1' %}
+  {% render 'nayra-placeholder', tone: forloop.index %}
 {% enddoc %}
 
-{{- name | placeholder_svg_tag: 'nayra-arch__img nayra-placeholder' | replace_first: '<svg ', '<svg preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" ' -}}
+{%- liquid
+  assign tone_index = tone | default: 1 | minus: 1 | modulo: 5
+  assign tones = 'pink,sun,field,stage,blush' | split: ','
+  assign tone_name = tones[tone_index]
+-%}
+
+<span class="nayra-swatch nayra-swatch--{{ tone_name }}" aria-hidden="true">
+  {%- render 'nayra-icon', icon: 'hanger' -%}
+  {%- if request.design_mode -%}
+    <span class="nayra-swatch__label">{{ 'content.nayra.add_photo' | t }}</span>
+  {%- endif -%}
+</span>

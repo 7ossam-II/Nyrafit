@@ -1,11 +1,11 @@
 {%- liquid
   assign heading_tag = 'h2'
-  if section.index == 1
+  if template.name == 'index'
     assign heading_tag = 'h1'
   endif
 
   assign image = section.settings.image
-  assign image_alt = image.alt | default: section.settings.heading | escape
+  assign image_alt = image.alt | default: section.settings.heading | strip_html | escape
 
   assign whatsapp_url = ''
   if section.settings.whatsapp_label != blank
@@ -22,19 +22,22 @@
   <div class="nayra-wrap nayra-hero__grid">
     <{{ heading_tag }} class="nayra-display nayra-hero__title">{{ section.settings.heading }}</{{ heading_tag }}>
 
-    <div class="nayra-hero__media">
-      <div class="nayra-arch nayra-hero__arch">
-        {%- if image != blank -%}
-          {{ image | image_url: width: 1400 | image_tag: widths: '400, 600, 800, 1000, 1200, 1400', sizes: '(min-width: 750px) 44vw, 100vw', loading: 'eager', fetchpriority: 'high', class: 'nayra-arch__img', alt: image_alt }}
-        {%- else -%}
-          {% render 'nayra-placeholder', name: 'hero-apparel-1' %}
-        {%- endif -%}
-      </div>
+    <div class="nayra-hero__media{% if image != blank or request.design_mode %} nayra-hero__media--photo{% endif %}">
+      <nayra-satin class="nayra-arch nayra-hero__satin"{% if section.settings.animate == false %} data-still{% endif %}>
+        <canvas class="nayra-satin__canvas" aria-hidden="true"></canvas>
+      </nayra-satin>
+      {%- if image != blank -%}
+        <div class="nayra-arch nayra-hero__photo">
+          {{ image | image_url: width: 1000 | image_tag: widths: '300, 400, 600, 800, 1000', sizes: '(min-width: 990px) 24vw, 52vw', loading: 'eager', fetchpriority: 'high', class: 'nayra-arch__img', alt: image_alt }}
+        </div>
+      {%- elsif request.design_mode -%}
+        <div class="nayra-arch nayra-hero__photo">{% render 'nayra-placeholder', tone: 5 %}</div>
+      {%- endif -%}
       {%- if section.settings.sticker_top != blank -%}
         <p class="nayra-sticker nayra-sticker--pink nayra-hero__sticker-top">{{ section.settings.sticker_top }}</p>
       {%- endif -%}
       {%- if section.settings.sticker_bottom != blank -%}
-        <p class="nayra-sticker nayra-hero__sticker-bottom">{% render 'nayra-icon', icon: 'check' %}{{ section.settings.sticker_bottom }}</p>
+        <p class="nayra-sticker nayra-sticker--sun nayra-hero__sticker-bottom">{% render 'nayra-icon', icon: 'check' %}{{ section.settings.sticker_bottom }}</p>
       {%- endif -%}
     </div>
 
@@ -44,7 +47,10 @@
       {%- endif -%}
       <div class="nayra-actions">
         {%- if section.settings.button_label != blank -%}
-          <a class="nayra-btn nayra-btn--gold" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
+          <a class="nayra-btn nayra-btn--pink" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+            {{- section.settings.button_label -}}
+            {%- render 'nayra-icon', icon: 'arrow' -%}
+          </a>
         {%- endif -%}
         {%- if whatsapp_url != blank -%}
           <a class="nayra-btn nayra-btn--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">
@@ -64,16 +70,11 @@
   "class": "nayra-section",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image",
-      "info": "Shown inside the arch. Portrait photos work best."
-    },
-    {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Lebsa jdida l'salle."
+      "default": "Lebsa <em>jdida</em> l'salle.",
+      "info": "Put a word in italics to highlight it in yellow."
     },
     {
       "type": "inline_richtext",
@@ -108,18 +109,35 @@
     },
     {
       "type": "header",
+      "content": "Satin and photo"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate",
+      "label": "Animate the satin",
+      "default": true,
+      "info": "The satin always stays still for visitors who turn motion off on their phone."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Photo",
+      "info": "Shown in an arch over the satin. Portrait photos work best."
+    },
+    {
+      "type": "header",
       "content": "Stickers"
     },
     {
       "type": "text",
       "id": "sticker_top",
-      "label": "Top sticker",
+      "label": "Pink sticker",
       "default": "Nouvelle drop"
     },
     {
       "type": "text",
       "id": "sticker_bottom",
-      "label": "Bottom sticker",
+      "label": "Yellow sticker",
       "default": "Paiement à la livraison"
     }
   ],

@@ -9,6 +9,7 @@
     <ol class="nayra-path">
       {%- for block in section.blocks -%}
         <li class="nayra-path__step" {{ block.shopify_attributes }}>
+          <span class="nayra-path__num" aria-hidden="true">{{ forloop.index }}</span>
           <h3 class="nayra-display nayra-path__title">{{ block.settings.title }}</h3>
           {%- if block.settings.text != blank -%}
             <p class="nayra-path__text">{{ block.settings.text }}</p>
