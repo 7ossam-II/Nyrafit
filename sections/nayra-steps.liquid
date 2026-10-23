@@ -1,0 +1,89 @@
+<div class="nayra nayra-steps">
+  <div class="nayra-wrap nayra-steps__grid">
+    <div class="nayra-steps__head">
+      <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}
+        <p class="nayra-lede">{{ section.settings.text }}</p>
+      {%- endif -%}
+    </div>
+    <ol class="nayra-path">
+      {%- for block in section.blocks -%}
+        <li class="nayra-path__step" {{ block.shopify_attributes }}>
+          <h3 class="nayra-display nayra-path__title">{{ block.settings.title }}</h3>
+          {%- if block.settings.text != blank -%}
+            <p class="nayra-path__text">{{ block.settings.text }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Nayra steps",
+  "tag": "section",
+  "class": "nayra-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Kifach tcommandi"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Une étape"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Nayra steps",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Tu choisis ta lebsa",
+            "text": "Ta tenue, ta couleur et ta taille, depuis ton téléphone."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "On confirme sur WhatsApp",
+            "text": "On vérifie la taille et l'adresse avant d'envoyer."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Tu paies à la porte",
+            "text": "En espèces, quand le colis arrive chez toi."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

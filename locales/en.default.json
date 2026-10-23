@@ -163,6 +163,29 @@
     }
   },
   "content": {
+    "nayra": {
+      "ticket": "Your order",
+      "item": "Item",
+      "size": "Size",
+      "payment": "Payment",
+      "cash_on_delivery": "Cash on delivery",
+      "total": "Total",
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "order_whatsapp": "Order on WhatsApp",
+      "previous": "Previous outfit",
+      "next": "Next outfit",
+      "look_count": "{{ current }} of {{ total }}",
+      "placeholder_product": "Product name",
+      "placeholder_price": "—",
+      "swipe_hint": "Swipe to change outfit",
+      "sale": "Sale",
+      "from_price": "From {{ price }}",
+      "quick_add": "Add {{ title }} to cart",
+      "choose_options": "Choose options for {{ title }}",
+      "whatsapp_order": "Hello! I'd like to order: [product], size [size] ([price]).",
+      "whatsapp_order_simple": "Hello! I'd like to order: [product] ([price])."
+    },
     "cash_on_delivery": {
       "heading": "Cash on delivery",
       "text": "Pay in cash when you receive your order.",

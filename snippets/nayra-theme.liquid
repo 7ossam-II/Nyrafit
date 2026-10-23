@@ -1,0 +1,55 @@
+{% doc %}
+  Loads the Nayra heading face and outputs the brand tokens used by the Nayra sections.
+  Background and text colors come from the theme's color palette; the accents come from the "Nayra style" settings.
+
+  @example
+  {% render 'nayra-theme' %}
+{% enddoc %}
+
+{{ 'el-messiri-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+
+{% style %}
+  @font-face {
+    font-family: "El Messiri";
+    src: url("{{ 'el-messiri-latin.woff2' | asset_url }}") format("woff2");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  {{ settings.nayra_mono_font | font_face: font_display: 'swap' }}
+  {%- assign nayra_mono_bold = settings.nayra_mono_font | font_modify: 'weight', 'bold' -%}
+  {%- if nayra_mono_bold %}
+    {{ nayra_mono_bold | font_face: font_display: 'swap' }}
+  {%- endif %}
+
+  :root {
+    --nayra-gold: {{ settings.nayra_gold }};
+    --nayra-gold-ink: {{ settings.nayra_gold_ink }};
+    --nayra-pink: {{ settings.nayra_pink }};
+    --nayra-pink-ink: {{ settings.nayra_pink_ink }};
+    --nayra-field: {{ settings.nayra_field }};
+    --nayra-field-ink: {{ settings.nayra_field_ink }};
+    --nayra-display: "El Messiri", Georgia, serif;
+    --nayra-mono: {{ settings.nayra_mono_font.family }}, {{ settings.nayra_mono_font.fallback_families }};
+    --nayra-out: cubic-bezier(0.16, 1, 0.3, 1);
+    {%- if settings.nayra_heading_font %}
+      --font-heading--family: "El Messiri", Georgia, serif;
+    {%- endif %}
+  }
+
+  ::selection {
+    background: var(--nayra-gold);
+    color: var(--nayra-gold-ink);
+  }
+
+  html {
+    accent-color: var(--nayra-gold);
+    caret-color: var(--nayra-gold);
+    scrollbar-color: rgb(var(--color-foreground-rgb) / 0.35) var(--color-background);
+  }
+{% endstyle %}
+
+{{ 'nayra.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nayra.js' | asset_url }}" defer></script>

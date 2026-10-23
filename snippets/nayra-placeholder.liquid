@@ -1,0 +1,10 @@
+{% doc %}
+  Renders a Shopify placeholder illustration that fills its Nayra arch frame, shown until an image is added in the admin.
+
+  @param {string} name - Placeholder name, such as product-apparel-1 or collection-apparel-2
+
+  @example
+  {% render 'nayra-placeholder', name: 'product-apparel-1' %}
+{% enddoc %}
+
+{{- name | placeholder_svg_tag: 'nayra-arch__img nayra-placeholder' | replace_first: '<svg ', '<svg preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" ' -}}

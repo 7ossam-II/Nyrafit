@@ -1,0 +1,74 @@
+<nav class="nayra nayra-chips" aria-label="{{ section.settings.label | escape }}">
+  <div class="nayra-wrap nayra-chips__row">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign chip_collection = block.settings.collection
+        assign chip_label = block.settings.label | default: chip_collection.title
+        assign chip_url = chip_collection.url | default: routes.collections_url
+        assign chip_current = false
+        if collection != blank and chip_collection != blank and collection.handle == chip_collection.handle
+          assign chip_current = true
+        endif
+      -%}
+      <a class="nayra-chip" href="{{ chip_url }}"{% if chip_current %} aria-current="page"{% endif %} {{ block.shopify_attributes }}>
+        {{- chip_label -}}
+        {%- if block.settings.badge != blank -%}
+          <span class="nayra-chip__badge">{{ block.settings.badge }}</span>
+        {%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Nayra categories",
+  "tag": "section",
+  "class": "nayra-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Name for screen readers",
+      "default": "Catégories"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "info": "Leave empty to use the collection's name."
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "info": "Small label such as \"bientôt\" or \"nouveau\"."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nayra categories",
+      "blocks": [
+        { "type": "chip", "settings": { "label": "Sets" } },
+        { "type": "chip", "settings": { "label": "Leggings" } },
+        { "type": "chip", "settings": { "label": "Combis" } },
+        { "type": "chip", "settings": { "label": "Tops" } },
+        { "type": "chip", "settings": { "label": "Modeste", "badge": "bientôt" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

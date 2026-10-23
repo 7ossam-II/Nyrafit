@@ -11,11 +11,11 @@
   "current": {
     "logo_height": 36,
     "logo_height_mobile": 28,
-    "type_body_font": "inter_n4",
-    "type_subheading_font": "inter_n5",
-    "type_heading_font": "inter_n7",
-    "type_accent_font": "inter_n7",
-    "type_size_paragraph": "14",
+    "type_body_font": "almarai_n4",
+    "type_subheading_font": "almarai_n7",
+    "type_heading_font": "almarai_n7",
+    "type_accent_font": "almarai_n7",
+    "type_size_paragraph": "16",
     "type_line_height_paragraph": "body-loose",
     "type_font_h1": "heading",
     "type_size_h1": "56",
@@ -49,9 +49,9 @@
     "badge_corner_radius": 100,
     "badge_text_transform": "none",
     "primary_button_border_width": 0,
-    "button_border_radius_primary": 14,
+    "button_border_radius_primary": 100,
     "secondary_button_border_width": 1,
-    "button_border_radius_secondary": 14,
+    "button_border_radius_secondary": 100,
     "cart_type": "drawer",
     "cart_price_font": "subheading",
     "show_cart_note": false,
@@ -77,12 +77,20 @@
     "palette_input_border": "{{ settings.color_palette.color3 }}",
     "palette_variant_border": "{{ settings.color_palette.color3 }}",
     "color_palette": {
-      "background": "#ffffff",
-      "foreground": "#000000",
-      "color1": "#333333",
-      "color2": "#EEF1EA",
-      "color3": "#DFDFDF"
-    }
+      "background": "#2a0f24",
+      "foreground": "#f7e8ee",
+      "color1": "#3a1832",
+      "color2": "#d9bccb",
+      "color3": "#1d0a19"
+    },
+    "palette_primary_button_background": "#d9a441",
+    "palette_primary_button_text": "#2a0f24",
+    "palette_primary_button_border": "#d9a441",
+    "palette_secondary_button_background": "#2a0f24",
+    "palette_secondary_button_text": "#f7e8ee",
+    "palette_secondary_button_border": "#d9bccb",
+    "badge_sale_background_color": "#d1186a",
+    "badge_sale_text_color": "#ffffff"
   },
   "presets": {
     "Default": {

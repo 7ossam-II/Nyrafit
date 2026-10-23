@@ -70,6 +70,63 @@
     ]
   },
   {
+    "name": "Nayra style",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Background and text colors come from Colors. These accents are used by the Nayra sections."
+      },
+      {
+        "type": "color",
+        "id": "nayra_gold",
+        "label": "Gold: buttons, links and the selected outfit",
+        "default": "#d9a441"
+      },
+      {
+        "type": "color",
+        "id": "nayra_gold_ink",
+        "label": "Text on gold",
+        "default": "#2a0f24"
+      },
+      {
+        "type": "color",
+        "id": "nayra_pink",
+        "label": "Pink: stickers and badges",
+        "default": "#d1186a"
+      },
+      {
+        "type": "color",
+        "id": "nayra_pink_ink",
+        "label": "Text on pink",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "nayra_field",
+        "label": "Banner background",
+        "default": "#0f4d3a"
+      },
+      {
+        "type": "color",
+        "id": "nayra_field_ink",
+        "label": "Text on banner",
+        "default": "#f7e8ee"
+      },
+      {
+        "type": "font_picker",
+        "id": "nayra_mono_font",
+        "label": "Ticket and price font",
+        "default": "ibm_plex_mono_n5"
+      },
+      {
+        "type": "checkbox",
+        "id": "nayra_heading_font",
+        "label": "Use El Messiri for all headings",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "t:names.typography",
     "settings": [
       {

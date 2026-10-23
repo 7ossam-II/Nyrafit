@@ -1,0 +1,97 @@
+{% doc %}
+  Renders a Nayra product card: arch photo, sticker, name, price, color dots and a quick add button.
+
+  @param {product} [product] - The product to show; leave empty to show a placeholder card
+  @param {number} index - Position in the grid, used to vary the placeholder image
+  @param {boolean} [show_tag] - Whether to show the product type as a sticker
+
+  @example
+  {% render 'nayra-card', product: product, index: forloop.index, show_tag: true %}
+{% enddoc %}
+
+{%- liquid
+  assign placeholder_index = index | minus: 1 | modulo: 4 | plus: 1
+  assign placeholder_name = 'product-apparel-' | append: placeholder_index
+
+  if product != blank
+    assign media_alt = product.featured_media.alt | default: product.title | escape
+    assign price = product.price | money | strip_html
+    assign tag = ''
+    if product.available == false
+      assign tag = 'content.nayra.sold_out' | t
+    elsif product.compare_at_price > product.price
+      assign tag = 'content.nayra.sale' | t
+    elsif show_tag
+      assign tag = product.type
+    endif
+
+    capture dots
+      for option in product.options_with_values
+        assign option_name = option.name | downcase
+        if option_name == 'couleur' or option_name == 'color' or option_name == 'colour'
+          for value in option.values limit: 5
+            if value.swatch.color != blank
+              assign swatch_name = value.name | escape
+              echo '<span class="nayra-dot" style="--dot: ' | append: value.swatch.color | append: '" title="' | append: swatch_name | append: '"></span>'
+            endif
+          endfor
+        endif
+      endfor
+    endcapture
+  endif
+-%}
+
+<article class="nayra-card">
+  {%- if product != blank -%}
+    <a class="nayra-card__link" href="{{ product.url }}">
+      <span class="nayra-arch nayra-card__arch">
+        {%- if product.featured_media -%}
+          {{ product.featured_media | image_url: width: 720 | image_tag: widths: '240, 360, 480, 600, 720', sizes: '(min-width: 750px) 22vw, 46vw', loading: 'lazy', class: 'nayra-arch__img', alt: media_alt }}
+        {%- else -%}
+          {% render 'nayra-placeholder', name: placeholder_name %}
+        {%- endif -%}
+      </span>
+      <span class="nayra-card__title">{{ product.title }}</span>
+    </a>
+    {%- if tag != blank -%}
+      <span class="nayra-sticker nayra-sticker--pink nayra-card__tag">{{ tag }}</span>
+    {%- endif -%}
+    <div class="nayra-card__meta">
+      <p class="nayra-card__price nayra-mono">
+        <span>
+          {%- if product.price_varies -%}
+            {{ 'content.nayra.from_price' | t: price: price }}
+          {%- else -%}
+            {{ price }}
+          {%- endif -%}
+        </span>
+        {%- if product.compare_at_price > product.price -%}
+          <s>{{ product.compare_at_price | money | strip_html }}</s>
+        {%- endif -%}
+      </p>
+      {%- if product.variants.size == 1 and product.available -%}
+        <form class="nayra-card__quick" method="post" action="{{ routes.cart_add_url }}">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button class="nayra-plus" type="submit" aria-label="{{ 'content.nayra.quick_add' | t: title: product.title | escape }}">{% render 'nayra-icon', icon: 'plus' %}</button>
+        </form>
+      {%- else -%}
+        <a class="nayra-plus" href="{{ product.url }}" aria-label="{{ 'content.nayra.choose_options' | t: title: product.title | escape }}">{% render 'nayra-icon', icon: 'plus' %}</a>
+      {%- endif -%}
+    </div>
+    {%- if dots != blank -%}
+      <div class="nayra-card__dots">{{ dots }}</div>
+    {%- endif -%}
+  {%- else -%}
+    <a class="nayra-card__link" href="{{ routes.all_products_collection_url }}">
+      <span class="nayra-arch nayra-card__arch">
+        {% render 'nayra-placeholder', name: placeholder_name %}
+      </span>
+      <span class="nayra-card__title">{{ 'content.nayra.placeholder_product' | t }}</span>
+    </a>
+    <div class="nayra-card__meta">
+      <p class="nayra-card__price nayra-mono">{{ 'content.nayra.placeholder_price' | t }}</p>
+      <a class="nayra-plus" href="{{ routes.all_products_collection_url }}" aria-label="{{ 'content.nayra.placeholder_product' | t }}">{% render 'nayra-icon', icon: 'plus' %}</a>
+    </div>
+  {%- endif -%}
+</article>

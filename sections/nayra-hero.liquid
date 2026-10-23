@@ -1,0 +1,132 @@
+{%- liquid
+  assign heading_tag = 'h2'
+  if section.index == 1
+    assign heading_tag = 'h1'
+  endif
+
+  assign image = section.settings.image
+  assign image_alt = image.alt | default: section.settings.heading | escape
+
+  assign whatsapp_url = ''
+  if section.settings.whatsapp_label != blank
+    capture whatsapp_url
+      render 'whatsapp-url', message: section.settings.whatsapp_message
+    endcapture
+    if whatsapp_url == blank and request.design_mode
+      assign whatsapp_url = '#'
+    endif
+  endif
+-%}
+
+<div class="nayra nayra-hero">
+  <div class="nayra-wrap nayra-hero__grid">
+    <{{ heading_tag }} class="nayra-display nayra-hero__title">{{ section.settings.heading }}</{{ heading_tag }}>
+
+    <div class="nayra-hero__media">
+      <div class="nayra-arch nayra-hero__arch">
+        {%- if image != blank -%}
+          {{ image | image_url: width: 1400 | image_tag: widths: '400, 600, 800, 1000, 1200, 1400', sizes: '(min-width: 750px) 44vw, 100vw', loading: 'eager', fetchpriority: 'high', class: 'nayra-arch__img', alt: image_alt }}
+        {%- else -%}
+          {% render 'nayra-placeholder', name: 'hero-apparel-1' %}
+        {%- endif -%}
+      </div>
+      {%- if section.settings.sticker_top != blank -%}
+        <p class="nayra-sticker nayra-sticker--pink nayra-hero__sticker-top">{{ section.settings.sticker_top }}</p>
+      {%- endif -%}
+      {%- if section.settings.sticker_bottom != blank -%}
+        <p class="nayra-sticker nayra-hero__sticker-bottom">{% render 'nayra-icon', icon: 'check' %}{{ section.settings.sticker_bottom }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="nayra-hero__copy">
+      {%- if section.settings.text != blank -%}
+        <p class="nayra-lede">{{ section.settings.text }}</p>
+      {%- endif -%}
+      <div class="nayra-actions">
+        {%- if section.settings.button_label != blank -%}
+          <a class="nayra-btn nayra-btn--gold" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if whatsapp_url != blank -%}
+          <a class="nayra-btn nayra-btn--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">
+            {{- 'icon-whatsapp.svg' | inline_asset_content -}}
+            {{- section.settings.whatsapp_label -}}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Nayra hero",
+  "tag": "section",
+  "class": "nayra-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Shown inside the arch. Portrait photos work best."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Lebsa jdida l'salle."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Sets, leggings et combis pour t'entraîner à l'aise."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Voir la collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_label",
+      "label": "WhatsApp button label",
+      "default": "Commander sur WhatsApp",
+      "info": "Shown when a WhatsApp number is set in Theme settings."
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_message",
+      "label": "WhatsApp message",
+      "default": "Salam, je veux commander."
+    },
+    {
+      "type": "header",
+      "content": "Stickers"
+    },
+    {
+      "type": "text",
+      "id": "sticker_top",
+      "label": "Top sticker",
+      "default": "Nouvelle drop"
+    },
+    {
+      "type": "text",
+      "id": "sticker_bottom",
+      "label": "Bottom sticker",
+      "default": "Paiement à la livraison"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nayra hero"
+    }
+  ]
+}
+{% endschema %}

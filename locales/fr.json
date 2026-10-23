@@ -123,6 +123,29 @@
     "zoom_media": "Zoom du support multimédia {{ index }}"
   },
   "content": {
+    "nayra": {
+      "ticket": "Ta commande",
+      "item": "Pièce",
+      "size": "Taille",
+      "payment": "Paiement",
+      "cash_on_delivery": "À la livraison",
+      "total": "Total",
+      "add_to_cart": "Ajouter au panier",
+      "sold_out": "Épuisé",
+      "order_whatsapp": "Commander sur WhatsApp",
+      "previous": "Tenue précédente",
+      "next": "Tenue suivante",
+      "look_count": "{{ current }} sur {{ total }}",
+      "placeholder_product": "Nom du produit",
+      "placeholder_price": "—",
+      "swipe_hint": "Glisse pour changer de tenue",
+      "sale": "Promo",
+      "from_price": "Dès {{ price }}",
+      "quick_add": "Ajouter {{ title }} au panier",
+      "choose_options": "Choisir la taille de {{ title }}",
+      "whatsapp_order": "Salam ! Je veux commander : [product], taille [size] ([price]).",
+      "whatsapp_order_simple": "Salam ! Je veux commander : [product] ([price])."
+    },
     "cash_on_delivery": {
       "heading": "Paiement à la livraison",
       "text": "Payez en espèces à la réception de votre commande.",

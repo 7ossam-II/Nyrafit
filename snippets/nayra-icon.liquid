@@ -1,0 +1,21 @@
+{% doc %}
+  Renders one of the small Nayra line icons.
+
+  @param {string} icon - One of: check, plus, prev, next, arrow
+
+  @example
+  {% render 'nayra-icon', icon: 'check' %}
+{% enddoc %}
+
+{%- case icon -%}
+  {%- when 'check' -%}
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+  {%- when 'plus' -%}
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>
+  {%- when 'prev' -%}
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+  {%- when 'next' -%}
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+  {%- when 'arrow' -%}
+    <svg class="nayra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+{%- endcase -%}

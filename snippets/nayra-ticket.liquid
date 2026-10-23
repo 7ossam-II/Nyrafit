@@ -1,0 +1,105 @@
+{% doc %}
+  Renders the order ticket beside the tbdila rail for the first outfit. The tbdila script updates it as the shopper swipes.
+
+  @param {product} [product] - The first outfit's product; leave empty to show a placeholder ticket
+  @param {string} [size_name] - Lowercase name of the option shown as size buttons
+  @param {number} total - Number of outfits in the rail
+  @param {string} [whatsapp_base] - WhatsApp link without a message, or empty when no number is set
+
+  @example
+  {% render 'nayra-ticket', product: product, size_name: 'taille', total: 6, whatsapp_base: whatsapp_base %}
+{% enddoc %}
+
+{%- liquid
+  assign size_index = 0
+  assign has_sizes = false
+  assign whatsapp_href = whatsapp_base
+  if product != blank
+    for option in product.options_with_values
+      assign option_name = option.name | downcase
+      if option_name == size_name or option_name == 'taille' or option_name == 'size'
+        assign size_index = forloop.index0
+        assign has_sizes = true
+      endif
+    endfor
+    assign variant = product.selected_or_first_available_variant
+    assign price = variant.price | money | strip_html
+    if has_sizes
+      assign message = 'content.nayra.whatsapp_order' | t | replace: '[product]', product.title | replace: '[size]', variant.options[size_index] | replace: '[price]', price
+    else
+      assign message = 'content.nayra.whatsapp_order_simple' | t | replace: '[product]', product.title | replace: '[price]', price
+    endif
+    if whatsapp_base != blank
+      capture whatsapp_href
+        render 'whatsapp-url', message: message
+      endcapture
+    endif
+  endif
+-%}
+
+<div
+  class="nayra-ticket"
+  data-ticket
+  data-count-label="{{ 'content.nayra.look_count' | t: current: '[current]', total: '[total]' }}"
+  data-add-label="{{ 'content.nayra.add_to_cart' | t }}"
+  data-sold-out-label="{{ 'content.nayra.sold_out' | t }}"
+  data-whatsapp-base="{{ whatsapp_base }}"
+  data-whatsapp-message="{{ 'content.nayra.whatsapp_order' | t | escape }}"
+  data-whatsapp-message-simple="{{ 'content.nayra.whatsapp_order_simple' | t | escape }}"
+>
+  <p class="nayra-ticket__top">
+    <span>{{ 'content.nayra.ticket' | t }}</span>
+    <span class="nayra-mono" data-ticket-count>{{ 'content.nayra.look_count' | t: current: 1, total: total }}</span>
+  </p>
+  <p class="nayra-ticket__row" aria-live="polite" aria-atomic="true">
+    <span>{{ 'content.nayra.item' | t }}</span>
+    <strong data-ticket-title>
+      {%- if product != blank -%}{{ product.title }}{%- else -%}{{ 'content.nayra.placeholder_product' | t }}{%- endif -%}
+    </strong>
+  </p>
+  <div class="nayra-ticket__row nayra-ticket__row--sizes" data-ticket-sizes-row{% if product != blank and has_sizes == false %} hidden{% endif %}>
+    <span>{{ 'content.nayra.size' | t }}</span>
+    <div class="nayra-sizes" role="radiogroup" aria-label="{{ 'content.nayra.size' | t }}" data-ticket-sizes>
+      {%- if product != blank -%}
+        {%- if has_sizes -%}
+          {%- for value in product.options_with_values[size_index].values -%}
+            <button class="nayra-size" type="button" role="radio" aria-checked="{% if value.selected %}true{% else %}false{% endif %}" tabindex="{% if value.selected %}0{% else %}-1{% endif %}" data-size="{{ value.name | escape }}"{% unless value.available %} data-unavailable{% endunless %}>{{ value.name }}</button>
+          {%- endfor -%}
+        {%- endif -%}
+      {%- else -%}
+        {%- assign placeholder_sizes = 'S,M,L,XL' | split: ',' -%}
+        {%- for placeholder_size in placeholder_sizes -%}
+          <button class="nayra-size" type="button" role="radio" aria-checked="{% if forloop.index == 2 %}true{% else %}false{% endif %}" tabindex="{% if forloop.index == 2 %}0{% else %}-1{% endif %}" data-size="{{ placeholder_size }}">{{ placeholder_size }}</button>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+  <p class="nayra-ticket__row">
+    <span>{{ 'content.nayra.payment' | t }}</span>
+    <strong>{{ 'content.nayra.cash_on_delivery' | t }}</strong>
+  </p>
+  <p class="nayra-ticket__total" aria-live="polite" aria-atomic="true">
+    <span>{{ 'content.nayra.total' | t }}</span>
+    <span class="nayra-mono" data-ticket-price>
+      {%- if product != blank -%}{{ price }}{%- else -%}{{ 'content.nayra.placeholder_price' | t }}{%- endif -%}
+    </span>
+  </p>
+  {%- if product != blank -%}
+    <form class="nayra-ticket__form" method="post" action="{{ routes.cart_add_url }}" data-ticket-form>
+      <input type="hidden" name="id" value="{{ variant.id }}" data-ticket-variant>
+      <input type="hidden" name="quantity" value="1">
+      <button class="nayra-btn nayra-btn--gold" type="submit" data-ticket-add{% unless variant.available %} disabled{% endunless %}>
+        {%- if variant.available -%}{{ 'content.nayra.add_to_cart' | t }}{%- else -%}{{ 'content.nayra.sold_out' | t }}{%- endif -%}
+      </button>
+    </form>
+  {%- else -%}
+    <a class="nayra-btn nayra-btn--gold" href="{{ routes.all_products_collection_url }}">{{ 'content.nayra.add_to_cart' | t }}</a>
+  {%- endif -%}
+  {%- if whatsapp_href != blank -%}
+    <a class="nayra-btn nayra-btn--ghost" href="{{ whatsapp_href }}" target="_blank" rel="noopener" data-ticket-whatsapp>
+      {{- 'icon-whatsapp.svg' | inline_asset_content -}}
+      {{ 'content.nayra.order_whatsapp' | t }}
+    </a>
+  {%- endif -%}
+  <p class="nayra-ticket__note">{{ 'content.nayra.swipe_hint' | t }}</p>
+</div>

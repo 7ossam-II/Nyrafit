@@ -29,6 +29,24 @@ The theme then appears in the Theme library, unpublished. Open its menu and choo
 | `.impeccable/` | Design-checker settings | No |
 | `README.md`, `CLAUDE.md`, `LICENSE.md` | Docs, agent rules, theme license | No |
 
+## Homepage sections
+
+The homepage is built from seven Nayra sections. Their look stays the same from drop to drop. What they show (products, photos, prices, sizes, stock and texts) comes from the Shopify admin. Until you add something, Shopify shows its placeholder illustrations.
+
+| Section | What it shows | Where to fill it |
+|---|---|---|
+| Nayra hero | Headline, arch photo, two stickers, shop and WhatsApp buttons | Theme editor: upload the photo, edit the texts |
+| Nayra categories | Category buttons | Theme editor: pick a collection for each button |
+| Nayra tbdila | Outfits to swipe through. The order ticket beside them follows with sizes, price, add to cart and a WhatsApp order | Theme editor: pick the collection of the latest drop |
+| Nayra product grid | Product cards with stickers, price, color dots and quick add | Theme editor: pick a collection |
+| Nayra steps | How ordering works | Theme editor |
+| Nayra banner | An announcement on a colored background, such as the modest collection | Theme editor |
+| Nayra gallery | Instagram photos | Theme editor: upload the photos, set the account |
+
+- Accent colors and the ticket font: **Theme settings → Nayra style**.
+- Words inside the ticket and the cards, such as "Ajouter au panier": **Online Store → Themes → ⋯ → Edit default theme content**.
+- Size buttons read the product option named *Taille* or *Size*. Color dots appear when the product's color option has swatches.
+
 ## Base theme
 
 Built on [Horizon](https://github.com/Shopify/horizon) 4.3.0 by Shopify (upstream commit `dfad90d`). Its license (`LICENSE.md`) allows using it for this store only: a theme derived from it can't be sold, listed or redistributed.
