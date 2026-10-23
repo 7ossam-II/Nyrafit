@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nayra, tenues de gym pour femmes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Readex+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --velvet: #2a0f24;
+  --velvet-deep: #1d0a19;
+  --velvet-raised: #3a1832;
+  --rose: #f7e8ee;
+  --rose-soft: #d9bccb;
+  --gold: #d9a441;
+  --gold-soft: #8a6a32;
+  --emerald: #0f4d3a;
+  --display: "El Messiri", "Georgia", serif;
+  --text: "Readex Pro", system-ui, sans-serif;
+  --pad: 20px;
+  --out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scrollbar-color: var(--gold-soft) var(--velvet-deep); }
+body { margin: 0; background: var(--velvet); color: var(--rose); font-family: var(--text); font-weight: 300; font-size: 1rem; line-height: 1.6; caret-color: var(--gold); accent-color: var(--gold); }
+::selection { background: var(--gold); color: var(--velvet); }
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, p { margin: 0; }
+a { color: inherit; text-underline-offset: 0.25em; text-decoration-color: var(--gold-soft); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 4px; }
+.num { font-variant-numeric: tabular-nums lining-nums; }
+
+.bar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px var(--pad); background: rgb(29 10 25 / 0.92); }
+.word { font-family: var(--display); font-weight: 600; font-size: 1.375rem; letter-spacing: 0.32em; text-decoration: none; padding-left: 0.32em; min-height: 44px; display: inline-flex; align-items: center; }
+.bar-links { display: none; gap: 28px; font-weight: 400; }
+.bar-links a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.bar-links a:hover { color: var(--gold); }
+.bar-cart { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 400; }
+.bar-cart svg { width: 20px; height: 20px; }
+
+.intro { padding: 28px var(--pad) 8px; }
+.intro h1 { font-family: var(--display); font-weight: 700; font-size: clamp(2.5rem, 8vw + 1rem, 5.5rem); line-height: 1.02; letter-spacing: -0.01em; text-wrap: balance; }
+.intro p { margin-top: 14px; max-width: 36ch; color: var(--rose-soft); font-size: 1.0625rem; }
+.intro strong { color: var(--rose); font-weight: 600; }
+
+.tbdila { padding: 24px 0 8px; }
+.rail { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 18px var(--pad) 18px; scrollbar-width: none; }
+.rail::-webkit-scrollbar { display: none; }
+.look { flex: 0 0 76%; scroll-snap-align: center; position: relative; padding: 10px; border-radius: 999px 999px 18px 18px; transition: opacity 400ms var(--out), transform 400ms var(--out); opacity: 0.55; transform: scale(0.94); }
+.look.is-on { opacity: 1; transform: none; }
+.look img { width: 100%; aspect-ratio: 3 / 4.3; object-fit: cover; object-position: 50% 14%; border-radius: 999px 999px 10px 10px; background: var(--velvet-raised); }
+.look svg.thread { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.thread path { fill: none; stroke: var(--gold); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 900ms var(--out); }
+.look.is-on .thread path { stroke-dashoffset: 0; }
+.thread circle { fill: var(--gold); opacity: 0; transition: opacity 500ms var(--out) 500ms; }
+.look.is-on .thread circle { opacity: 1; }
+
+.stage { padding: 6px var(--pad) 0; display: grid; gap: 18px; }
+.stage-head { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 4px 16px; }
+.count { grid-column: 1 / -1; color: var(--rose-soft); font-size: 0.875rem; letter-spacing: 0.04em; }
+.stage-name { font-family: var(--display); font-weight: 600; font-size: 1.75rem; line-height: 1.1; }
+.stage-price { font-family: var(--display); font-weight: 600; font-size: 1.75rem; color: var(--rose); }
+.sizes { display: flex; gap: 10px; }
+.size { min-width: 52px; min-height: 48px; border: 0; border-radius: 999px; background: var(--velvet-raised); color: var(--rose); font: 400 1rem var(--text); cursor: pointer; transition: background-color 200ms var(--out), color 200ms var(--out); }
+.size:hover { background: #4a2141; }
+.size[aria-checked="true"] { background: var(--rose); color: var(--velvet); font-weight: 600; }
+.order { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 999px; background: var(--gold); color: var(--velvet); font: 600 1.0625rem var(--text); text-decoration: none; transition: transform 160ms var(--out), filter 160ms var(--out); }
+.order:hover { filter: brightness(1.08); }
+.order:active { transform: scale(0.98); }
+.order svg { width: 20px; height: 20px; }
+.stage-note { color: var(--rose-soft); font-size: 0.875rem; text-align: center; }
+.steer { display: flex; justify-content: space-between; padding: 0 var(--pad); margin-top: -2px; }
+.steer button { min-width: 48px; min-height: 48px; border: 0; border-radius: 999px; background: transparent; color: var(--rose); cursor: pointer; display: inline-grid; place-items: center; transition: color 200ms var(--out); }
+.steer button:hover { color: var(--gold); }
+.steer svg { width: 26px; height: 26px; }
+
+.how { padding: 88px var(--pad) 40px; }
+.section-title { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 5vw + 1rem, 3.5rem); line-height: 1.05; }
+.path { position: relative; list-style: none; margin: 32px 0 0; padding: 0 0 0 44px; display: grid; gap: 34px; }
+.path::before { content: ""; position: absolute; left: 13px; top: 8px; bottom: 8px; border-left: 2px dotted var(--gold-soft); }
+.path li { position: relative; }
+.path li::before { content: ""; position: absolute; left: -38px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--velvet); box-shadow: 0 0 0 2px var(--gold-soft); }
+.path h3 { font-family: var(--display); font-weight: 600; font-size: 1.375rem; line-height: 1.2; }
+.path p { color: var(--rose-soft); margin-top: 4px; max-width: 40ch; }
+
+.program { padding: 64px var(--pad) 72px; }
+.program ul { list-style: none; margin: 28px 0 0; padding: 0; }
+.program li a { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 16px; padding: 14px 0; text-decoration: none; }
+.program .item { font-family: var(--display); font-weight: 600; font-size: clamp(1.75rem, 4vw + 1rem, 3rem); line-height: 1.1; transition: color 200ms var(--out); }
+.program li a:hover .item { color: var(--gold); }
+.program .from { color: var(--rose-soft); font-size: 0.9375rem; white-space: nowrap; }
+
+.modest { background: var(--emerald); padding: 72px var(--pad); display: grid; gap: 16px; }
+.modest p { max-width: 38ch; color: #d6ece3; }
+.ghost { justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; color: var(--rose); text-decoration: none; font-weight: 400; box-shadow: inset 0 0 0 1.5px var(--rose-soft); transition: box-shadow 200ms var(--out), color 200ms var(--out); }
+.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--rose); }
+
+.circle { padding: 80px var(--pad); display: grid; gap: 24px; }
+.circle p { color: var(--rose-soft); max-width: 40ch; }
+.prints { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.prints img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 0; border-radius: 999px 999px 10px 10px; }
+
+.foot { background: var(--velvet-deep); padding: 56px var(--pad) 40px; display: grid; gap: 22px; }
+.foot .word { font-size: 2rem; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+.foot nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.foot small { color: var(--rose-soft); font-size: 0.8125rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .look, .thread path, .thread circle, .order, .size, .ghost { transition: none; }
+  .rail { scroll-behavior: auto; }
+}
+
+@media (min-width: 900px) {
+  :root { --pad: 48px; }
+  .bar-links { display: flex; }
+  .intro { padding-top: 56px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: end; }
+  .tbdila { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; column-gap: 24px; padding-top: 24px; }
+  .rail { grid-row: 1 / 3; }
+  .look { flex-basis: 46%; }
+  .stage { padding-right: var(--pad); align-self: end; max-width: 460px; }
+  .steer { grid-column: 2; padding: 0 var(--pad) 0 var(--pad); justify-content: start; gap: 12px; align-self: start; }
+  .how { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; padding-top: 120px; }
+  .path { margin-top: 0; }
+  .program { padding-top: 96px; }
+  .program ul { columns: 2; column-gap: 64px; }
+  .program li { break-inside: avoid; }
+  .modest { grid-template-columns: 1fr 1fr; align-items: center; padding: 96px var(--pad); }
+  .circle { grid-template-columns: 1fr 1.3fr; align-items: center; }
+  .prints { grid-template-columns: repeat(3, 1fr); }
+  .foot { grid-template-columns: 1fr auto; align-items: center; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="word" href="#">NAYRA</a>
+  <nav class="bar-links" aria-label="Navigation principale">
+    <a href="#tbdila">Sets</a><a href="#tbdila">Leggings</a><a href="#tbdila">Combis</a><a href="#modeste">Modeste</a>
+  </nav>
+  <a class="bar-cart" href="#tbdila"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5.5 8.5h13l-1.2 11h-10.6z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>Panier</a>
+</header>
+
+<main>
+<section class="intro" aria-labelledby="title">
+  <h1 id="title">Lebsa jdida<br>l'salle.</h1>
+  <p>Sets, leggings et combis <strong>Nayra</strong>, dès <span class="num">179 DH</span>. Choisis ta tenue, on confirme sur WhatsApp, tu paies à la livraison.</p>
+</section>
+
+<section class="tbdila" id="tbdila" aria-label="Choisir une tenue">
+  <div class="rail" id="rail">
+    <figure class="look is-on" data-name="Set mauve manches longues" data-price="329 DH" style="margin:0">
+      <img src="img/mauve-model.jpg" width="428" height="900" alt="Set mauve manches longues porté, ceinture NAYRA">
+      <svg class="thread" viewBox="0 0 100 143" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 140 V50 A47 47 0 0 1 97 50 V140 Z"/><circle cx="50" cy="1.8" r="1.4"/></svg>
+    </figure>
+    <figure class="look" data-name="Combi-short noire" data-price="229 DH" style="margin:0">
+      <img src="img/black-model.jpg" width="720" height="1100" alt="Combi-short noire Nayra portée" loading="lazy">
+      <svg class="thread" viewBox="0 0 100 143" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 140 V50 A47 47 0 0 1 97 50 V140 Z"/><circle cx="50" cy="1.8" r="1.4"/></svg>
+    </figure>
+    <figure class="look" data-name="Set sans couture bleu glacier" data-price="299 DH" style="margin:0">
+      <img src="img/blue-top.jpg" width="640" height="500" alt="Haut sans couture bleu glacier Nayra posé à plat" loading="lazy">
+      <svg class="thread" viewBox="0 0 100 143" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 140 V50 A47 47 0 0 1 97 50 V140 Z"/><circle cx="50" cy="1.8" r="1.4"/></svg>
+    </figure>
+    <figure class="look" data-name="Legging tie-dye bleu" data-price="179 DH" style="margin:0">
+      <img src="img/tiedye-leggings.jpg" width="224" height="380" alt="Legging tie-dye bleu Nayra posé à plat" loading="lazy">
+      <svg class="thread" viewBox="0 0 100 143" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 140 V50 A47 47 0 0 1 97 50 V140 Z"/><circle cx="50" cy="1.8" r="1.4"/></svg>
+    </figure>
+  </div>
+  <div class="steer">
+    <button type="button" id="prev" aria-label="Tenue précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button type="button" id="next" aria-label="Tenue suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="stage" aria-live="polite">
+    <div class="stage-head">
+      <p class="count num" id="count">Lebsa 1 sur 4</p>
+      <h2 class="stage-name" id="stage-name">Set mauve manches longues</h2>
+      <p class="stage-price num" id="stage-price">329 DH</p>
+    </div>
+    <div class="sizes" role="radiogroup" aria-label="Taille">
+      <button class="size" type="button" role="radio" aria-checked="false">S</button>
+      <button class="size" type="button" role="radio" aria-checked="true">M</button>
+      <button class="size" type="button" role="radio" aria-checked="false">L</button>
+      <button class="size" type="button" role="radio" aria-checked="false">XL</button>
+    </div>
+    <a class="order" id="order" href="https://wa.me/?text=Salam"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A9.9 9.9 0 1 0 12.04 2Zm5.8 14.1c-.25.7-1.45 1.33-2 1.4-.52.08-1.17.11-1.88-.12-.43-.14-.99-.32-1.7-.63-3-1.29-4.95-4.3-5.1-4.5-.15-.2-1.22-1.62-1.22-3.08s.77-2.18 1.04-2.48c.27-.3.6-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.84 2.06.92 2.21.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.06 1.14 1.01 2.1 1.33 2.39 1.48.3.15.47.12.65-.07.17-.2.74-.87.94-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.07.12.07.72-.18 1.42Z"/></svg>Commander, paiement à la livraison</a>
+    <p class="stage-note">Glisse pour changer de tenue.</p>
+  </div>
+</section>
+
+<section class="how" aria-labelledby="how-title">
+  <h2 class="section-title" id="how-title">Kifach tcommandi</h2>
+  <ol class="path">
+    <li><h3>Tu choisis ta lebsa</h3><p>Ta tenue, ta couleur et ta taille, depuis ton téléphone.</p></li>
+    <li><h3>On confirme sur WhatsApp</h3><p>On vérifie la taille et l'adresse avant d'envoyer.</p></li>
+    <li><h3>Tu paies à la porte</h3><p>En espèces, quand le colis arrive chez toi. Rien à payer avant.</p></li>
+  </ol>
+</section>
+
+<section class="program" aria-labelledby="program-title">
+  <h2 class="section-title" id="program-title">Toute la garde-robe</h2>
+  <ul>
+    <li><a href="#tbdila"><span class="item">Sets</span><span class="from num">dès 299 DH</span></a></li>
+    <li><a href="#tbdila"><span class="item">Leggings</span><span class="from num">dès 179 DH</span></a></li>
+    <li><a href="#tbdila"><span class="item">Combis</span><span class="from num">dès 229 DH</span></a></li>
+    <li><a href="#tbdila"><span class="item">Tops</span><span class="from num">dès 129 DH</span></a></li>
+    <li><a href="#modeste"><span class="item">Modeste</span><span class="from">bientôt</span></a></li>
+  </ul>
+</section>
+
+<section class="modest" id="modeste" aria-labelledby="modest-title">
+  <h2 class="section-title" id="modest-title">La collection modeste arrive</h2>
+  <div>
+    <p>Burkinis et pièces couvrantes, pensés pour s'entraîner et nager à l'aise.</p>
+    <p style="margin-top:20px"><a class="ghost" href="https://wa.me/?text=Salam%2C%20pr%C3%A9viens-moi%20pour%20la%20collection%20modeste">Me prévenir sur WhatsApp</a></p>
+  </div>
+</section>
+
+<section class="circle" aria-labelledby="circle-title">
+  <div>
+    <h2 class="section-title" id="circle-title">4 300 gym girls</h2>
+    <p>Elles nous suivent sur Instagram pour les nouvelles tenues et les blagues de salle. <a href="https://www.instagram.com/nayra.fitwear/">@nayra.fitwear</a></p>
+  </div>
+  <div class="prints">
+    <img src="img/meme-ambulance.jpg" width="1080" height="1323" alt="Post Instagram Nayra : bande dessinée « Elle s'est évanouie ! »" loading="lazy">
+    <img src="img/meme-therapist.jpg" width="1080" height="1284" alt="Post Instagram Nayra : bande dessinée chez la psy" loading="lazy">
+    <img src="img/box-wide.jpg" width="1080" height="674" alt="Post Instagram Nayra : le carton piège avec quatre tenues" loading="lazy">
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <a class="word" href="#">NAYRA</a>
+  <nav aria-label="Liens du pied de page">
+    <a href="https://wa.me/?text=Salam">WhatsApp</a>
+    <a href="https://www.instagram.com/nayra.fitwear/">Instagram</a>
+    <a href="#tbdila">Guide des tailles</a>
+    <a href="#tbdila">Livraison et retours</a>
+  </nav>
+  <small>© 2026 Nayra · Paiement à la livraison au Maroc · Maquette : prix et textes d'exemple</small>
+</footer>
+
+<script>
+const rail = document.getElementById('rail');
+const looks = [...rail.querySelectorAll('.look')];
+const sizes = [...document.querySelectorAll('.size')];
+const order = document.getElementById('order');
+let active = 0;
+let size = 'M';
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const render = () => {
+  const look = looks[active];
+  looks.forEach((l, i) => l.classList.toggle('is-on', i === active));
+  document.getElementById('count').textContent = `Lebsa ${active + 1} sur ${looks.length}`;
+  document.getElementById('stage-name').textContent = look.dataset.name;
+  document.getElementById('stage-price').textContent = look.dataset.price;
+  const text = `Salam, je veux commander : ${look.dataset.name}, taille ${size} (${look.dataset.price}). Paiement à la livraison.`;
+  order.href = `https://wa.me/?text=${encodeURIComponent(text)}`;
+};
+
+let ticking = false;
+const pickCentered = () => {
+  ticking = false;
+  const mid = rail.getBoundingClientRect().left + rail.clientWidth / 2;
+  let best = 0;
+  let bestDistance = Infinity;
+  looks.forEach((l, i) => {
+    const r = l.getBoundingClientRect();
+    const distance = Math.abs(r.left + r.width / 2 - mid);
+    if (distance < bestDistance) { bestDistance = distance; best = i; }
+  });
+  if (best !== active) { active = best; render(); }
+};
+rail.addEventListener('scroll', () => {
+  if (!ticking) { ticking = true; requestAnimationFrame(pickCentered); }
+}, { passive: true });
+rail.scrollLeft = 0;
+
+const go = (step) => {
+  const target = Math.max(0, Math.min(looks.length - 1, active + step));
+  looks[target].scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+};
+document.getElementById('prev').addEventListener('click', () => go(-1));
+document.getElementById('next').addEventListener('click', () => go(1));
+looks.forEach((l, i) => l.addEventListener('click', () => { if (i !== active) go(i - active); }));
+
+sizes.forEach((button) => button.addEventListener('click', () => {
+  size = button.textContent.trim();
+  sizes.forEach((b) => b.setAttribute('aria-checked', String(b === button)));
+  render();
+}));
+render();
+</script>
+</body>
+</html>

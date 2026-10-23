@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nayra, tenues de gym pour femmes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #db2777;
+  --primary-strong: #be185d;
+  --primary-soft: #fce7f3;
+  --secondary: #2563eb;
+  --secondary-soft: #dbeafe;
+  --success: #16a34a;
+  --surface: #ffffff;
+  --text: #111827;
+  --text-muted: #4b5563;
+  --line: #111827;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
+  --fs-14: 0.875rem; --fs-16: 1rem; --fs-18: 1.125rem; --fs-24: 1.5rem; --fs-32: 2rem; --fs-40: 2.5rem;
+  --radius: 14px;
+  --pop: 4px 4px 0 var(--line);
+  --font: "IBM Plex Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; background: var(--surface); color: var(--text); font-family: var(--font); font-size: var(--fs-16); line-height: 1.55; }
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; }
+.wrap { width: min(100% - 2 * var(--space-4), 1180px); margin-inline: auto; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 48px; padding: 0 var(--space-5); border: 2px solid var(--line); border-radius: 999px; font: 700 var(--fs-16)/1 var(--font); text-decoration: none; cursor: pointer; box-shadow: var(--pop); transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease; }
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--line); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--line); }
+.btn-primary { background: var(--primary-strong); color: #fff; }
+.btn-ghost { background: var(--surface); color: var(--text); }
+.btn-wa { background: #15803d; color: #fff; }
+.btn-wa svg { width: 20px; height: 20px; }
+
+.notice { background: var(--text); color: #fff; font-size: var(--fs-14); text-align: center; padding: var(--space-2) var(--space-4); }
+.ticker { background: var(--primary-strong); color: #fff; overflow: hidden; white-space: nowrap; border-block: 2px solid var(--line); }
+.ticker-track { display: inline-flex; gap: var(--space-6); padding: var(--space-3) 0; font-weight: 700; font-size: var(--fs-14); animation: tick 22s linear infinite; }
+.ticker-track span::after { content: "✦"; margin-left: var(--space-6); }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+.header { position: sticky; top: 0; z-index: 10; background: var(--surface); border-bottom: 2px solid var(--line); }
+.header .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: var(--space-4); }
+.logo { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; font-size: var(--fs-24); letter-spacing: 0.08em; text-decoration: none; }
+.header nav { display: none; gap: var(--space-5); font-weight: 500; }
+.header nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.header nav a:hover { color: var(--primary-strong); text-decoration: underline; text-underline-offset: 6px; }
+.icon-btn { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--line); border-radius: 999px; background: var(--surface); cursor: pointer; position: relative; }
+.icon-btn svg { width: 20px; height: 20px; }
+.count { position: absolute; top: -6px; right: -6px; min-width: 22px; height: 22px; border-radius: 999px; background: var(--primary-strong); color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; border: 2px solid var(--line); }
+.header-actions { display: flex; gap: var(--space-2); }
+
+.hero { padding: var(--space-5) 0 var(--space-6); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+.hero-grid > * { min-width: 0; }
+.hero-photo { position: relative; border: 2px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--primary-soft); box-shadow: var(--pop); }
+.hero-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 15%; }
+.sticker { position: absolute; display: grid; place-items: center; text-align: center; border: 2px solid var(--line); border-radius: 999px; font-weight: 700; line-height: 1.1; box-shadow: var(--pop); }
+.sticker-price { top: var(--space-4); right: var(--space-4); width: 96px; height: 96px; background: var(--secondary); color: #fff; font-size: var(--fs-14); transform: rotate(10deg); }
+.sticker-price strong { display: block; font-size: var(--fs-24); }
+.sticker-cod { left: var(--space-4); bottom: var(--space-4); padding: var(--space-2) var(--space-4); background: var(--surface); font-size: var(--fs-14); transform: rotate(-4deg); }
+.hero h1 { font-size: var(--fs-40); line-height: 1.05; letter-spacing: -0.03em; }
+.hero h1 em { font-style: normal; background: var(--primary-soft); padding: 0 var(--space-1); }
+.hero-sub { margin-top: var(--space-3); font-size: var(--fs-18); color: var(--text-muted); max-width: 34ch; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+.chips { display: flex; gap: var(--space-2); overflow-x: auto; padding: var(--space-5) 0 var(--space-1); scrollbar-width: none; }
+.chip { flex: none; display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-4); border: 2px solid var(--line); border-radius: 999px; background: var(--surface); font-weight: 500; text-decoration: none; transition: background-color 120ms ease; }
+.chip:hover { background: var(--primary-soft); }
+.chip small { font-size: 12px; background: var(--secondary-soft); color: #1d4ed8; padding: 2px 6px; border-radius: 999px; font-weight: 700; }
+
+.section { padding: 56px 0; }
+.section-head { display: flex; align-items: end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+.section-head h2 { font-size: var(--fs-32); line-height: 1.1; letter-spacing: -0.02em; }
+.section-head a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; color: var(--primary-strong); white-space: nowrap; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4) var(--space-3); }
+.card { position: relative; display: flex; flex-direction: column; gap: var(--space-2); }
+.card-photo { position: relative; border: 2px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #f3f4f6; }
+.card-photo img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 15%; transition: transform 300ms ease; }
+.card:hover .card-photo img { transform: scale(1.04); }
+.card-tag { position: absolute; top: var(--space-2); left: var(--space-2); background: var(--surface); border: 2px solid var(--line); border-radius: 999px; padding: 2px var(--space-2); font-size: 12px; font-weight: 700; }
+.add { position: absolute; right: var(--space-2); bottom: var(--space-2); width: 44px; height: 44px; border-radius: 999px; border: 2px solid var(--line); background: var(--primary-strong); color: #fff; font: 700 var(--fs-24)/1 var(--font); cursor: pointer; box-shadow: 3px 3px 0 var(--line); transition: transform 120ms ease; }
+.add:hover { transform: rotate(90deg); }
+.add:active { transform: scale(0.92); }
+.add[aria-pressed="true"] { background: var(--secondary); }
+.card h3 { font-size: var(--fs-14); font-weight: 500; line-height: 1.35; }
+.card-price { font-weight: 700; }
+.swatches { display: flex; gap: 6px; }
+.swatch { width: 16px; height: 16px; border-radius: 999px; border: 2px solid var(--line); }
+
+.slip-wrap { background: var(--secondary-soft); border-block: 2px solid var(--line); }
+.slip-grid { display: grid; gap: var(--space-5); align-items: start; }
+.slip-intro h2 { font-size: var(--fs-32); line-height: 1.1; }
+.slip-intro p { margin-top: var(--space-3); color: var(--text-muted); max-width: 40ch; }
+.slip { background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); box-shadow: var(--pop); padding: var(--space-5); font-size: var(--fs-14); }
+.slip-title { display: flex; justify-content: space-between; font-weight: 700; padding-bottom: var(--space-3); border-bottom: 2px dashed var(--line); }
+.slip-row { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 2px dashed #d1d5db; }
+.slip-row strong { font-weight: 700; text-align: right; }
+.sizes { display: flex; gap: var(--space-2); }
+.size { min-width: 44px; min-height: 44px; border: 2px solid var(--line); border-radius: 10px; background: var(--surface); font: 700 var(--fs-14) var(--font); cursor: pointer; transition: background-color 120ms ease; }
+.size:hover { background: var(--primary-soft); }
+.size[aria-checked="true"] { background: var(--text); color: #fff; }
+.slip-total { display: flex; justify-content: space-between; padding-top: var(--space-4); font-size: var(--fs-18); font-weight: 700; }
+.slip .btn { width: 100%; margin-top: var(--space-4); }
+.slip-note { margin-top: var(--space-3); color: var(--text-muted); text-align: center; }
+
+.steps { display: grid; gap: var(--space-4); counter-reset: step; list-style: none; padding: 0; margin: 0; }
+.step { display: grid; grid-template-columns: 56px 1fr; gap: var(--space-4); align-items: start; padding: var(--space-4); border: 2px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.step-num { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 999px; border: 2px solid var(--line); font-weight: 700; font-size: var(--fs-24); background: var(--primary-soft); }
+.step:nth-child(2) .step-num { background: var(--secondary-soft); }
+.step:nth-child(3) .step-num { background: #dcfce7; }
+.step h3 { font-size: var(--fs-18); }
+.step p { color: var(--text-muted); margin-top: var(--space-1); }
+
+.ig { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+.ig a { display: block; border: 2px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform 160ms ease; }
+.ig a:nth-child(odd) { transform: rotate(-1.5deg); }
+.ig a:nth-child(even) { transform: rotate(1.5deg); }
+.ig a:hover { transform: rotate(0) scale(1.02); }
+.ig img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 0; }
+
+.modest { position: relative; overflow: hidden; background: var(--secondary); color: #fff; border: 2px solid var(--line); border-radius: var(--radius); padding: 72px var(--space-5) var(--space-6); box-shadow: var(--pop); }
+.modest h2 { font-size: var(--fs-32); line-height: 1.1; max-width: 16ch; }
+.modest p { margin-top: var(--space-3); max-width: 38ch; }
+.modest .btn { margin-top: var(--space-5); }
+.modest .sticker { top: var(--space-4); right: var(--space-4); padding: var(--space-2) var(--space-4); background: #fde047; color: var(--text); transform: rotate(8deg); }
+
+.footer { margin-top: 56px; background: var(--text); color: #fff; padding: 48px 0 var(--space-6); }
+.footer-logo { font-size: var(--fs-40); font-weight: 700; letter-spacing: 0.08em; }
+.footer-cols { display: grid; gap: var(--space-5); margin-top: var(--space-5); }
+.footer h3 { font-size: var(--fs-14); color: #f9a8d4; margin-bottom: var(--space-2); }
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.footer a { color: #fff; }
+.footer-legal { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 2px dashed #4b5563; font-size: var(--fs-14); color: #d1d5db; }
+
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity 500ms ease, transform 500ms ease; }
+.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .btn, .add, .ig a, .card-photo img { transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+@media (min-width: 900px) {
+  .header nav { display: flex; }
+  .menu-btn { display: none; }
+  .hero { padding: 48px 0 var(--space-6); }
+  .hero-grid { grid-template-columns: 1.05fr 1fr; align-items: center; gap: 48px; }
+  .hero h1 { font-size: 3.5rem; }
+  .hero-photo { order: 2; }
+  .hero-photo img { aspect-ratio: 5 / 6; }
+  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
+  .card h3 { font-size: var(--fs-16); }
+  .slip-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ig { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .modest { padding: 80px 48px 48px; }
+  .footer-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+<p class="notice">Maquette : prix et textes d'exemple</p>
+<div class="ticker" aria-hidden="true"><div class="ticker-track">
+  <span>Paiement à la livraison</span><span>Commande sur WhatsApp</span><span>Sets dès 299 DH</span><span>Leggings dès 179 DH</span><span>Collection modeste bientôt</span>
+  <span>Paiement à la livraison</span><span>Commande sur WhatsApp</span><span>Sets dès 299 DH</span><span>Leggings dès 179 DH</span><span>Collection modeste bientôt</span>
+</div></div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#">NAYRA</a>
+    <nav aria-label="Navigation principale">
+      <a href="#shop">Sets</a><a href="#shop">Leggings</a><a href="#shop">Combis</a><a href="#modeste">Modeste</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn menu-btn" type="button" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a class="icon-btn" href="#ticket" aria-label="Panier, 1 article"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span class="count">1</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-photo">
+      <img src="img/mauve-model.jpg" width="428" height="900" alt="Une cliente en set mauve manches longues, ceinture NAYRA">
+      <p class="sticker sticker-price">dès<strong>179 DH</strong></p>
+      <p class="sticker sticker-cod">✓ Paiement à la livraison</p>
+    </div>
+    <div>
+      <h1>Hadi hiya <em>l'outfit</em> li tstahli.</h1>
+      <p class="hero-sub">Sets, leggings et combis pour gym girls marocaines. Tu paies quand le colis arrive.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#shop">Voir la collection</a>
+        <a class="btn btn-ghost" href="#ticket">Commander sur WhatsApp</a>
+      </div>
+      <nav class="chips" aria-label="Catégories">
+        <a class="chip" href="#shop">Sets</a>
+        <a class="chip" href="#shop">Leggings</a>
+        <a class="chip" href="#shop">Combis</a>
+        <a class="chip" href="#shop">Tops</a>
+        <a class="chip" href="#modeste">Modeste <small>bientôt</small></a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="shop" aria-labelledby="shop-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="shop-title">Les favoris de la salle</h2>
+      <a href="#shop">Tout voir</a>
+    </div>
+    <div class="grid">
+      <article class="card reveal">
+        <div class="card-photo">
+          <img src="img/mauve-model.jpg" width="428" height="900" alt="Set mauve manches longues porté" loading="lazy">
+          <span class="card-tag">Set</span>
+          <button class="add" type="button" aria-pressed="true" data-product="mauve" aria-label="Ajouter le set mauve manches longues au ticket">+</button>
+        </div>
+        <h3>Set mauve manches longues</h3>
+        <p class="card-price">329 DH</p>
+        <div class="swatches" aria-label="Couleur : mauve"><span class="swatch" style="background:#9d6b8f"></span></div>
+      </article>
+      <article class="card reveal">
+        <div class="card-photo">
+          <img src="img/black-model.jpg" width="720" height="1100" alt="Combi-short noire portée" loading="lazy">
+          <span class="card-tag">Combi</span>
+          <button class="add" type="button" aria-pressed="false" data-product="noir" aria-label="Ajouter la combi-short noire au ticket">+</button>
+        </div>
+        <h3>Combi-short noire</h3>
+        <p class="card-price">229 DH</p>
+        <div class="swatches" aria-label="Couleurs : noir, rouge"><span class="swatch" style="background:#111827"></span><span class="swatch" style="background:#dc2626"></span></div>
+      </article>
+      <article class="card reveal">
+        <div class="card-photo">
+          <img src="img/blue-top.jpg" width="640" height="500" alt="Haut sans couture bleu glacier posé à plat" loading="lazy">
+          <span class="card-tag">Set</span>
+          <button class="add" type="button" aria-pressed="false" data-product="bleu" aria-label="Ajouter le set sans couture bleu glacier au ticket">+</button>
+        </div>
+        <h3>Set sans couture bleu glacier</h3>
+        <p class="card-price">299 DH</p>
+        <div class="swatches" aria-label="Couleur : bleu glacier"><span class="swatch" style="background:#a9bccf"></span></div>
+      </article>
+      <article class="card reveal">
+        <div class="card-photo">
+          <img src="img/tiedye-leggings.jpg" width="224" height="380" alt="Legging tie-dye bleu posé à plat" loading="lazy">
+          <span class="card-tag">Legging</span>
+          <button class="add" type="button" aria-pressed="false" data-product="tiedye" aria-label="Ajouter le legging tie-dye bleu au ticket">+</button>
+        </div>
+        <h3>Legging tie-dye bleu</h3>
+        <p class="card-price">179 DH</p>
+        <div class="swatches" aria-label="Couleur : bleu tie-dye"><span class="swatch" style="background:#1e3a5f"></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section slip-wrap" id="ticket" aria-labelledby="ticket-title">
+  <div class="wrap slip-grid">
+    <div class="slip-intro reveal">
+      <h2 id="ticket-title">Ton ticket, direct sur WhatsApp</h2>
+      <p>Touche le + d'une pièce, choisis ta taille. On reçoit ta commande sur WhatsApp et tu paies à la livraison.</p>
+    </div>
+    <div class="slip reveal" aria-live="polite">
+      <p class="slip-title"><span>TICKET NAYRA</span><span>#0001</span></p>
+      <p class="slip-row"><span>Pièce</span><strong id="slip-name">Set mauve manches longues</strong></p>
+      <div class="slip-row"><span>Taille</span>
+        <div class="sizes" role="radiogroup" aria-label="Taille">
+          <button class="size" type="button" role="radio" aria-checked="false">S</button>
+          <button class="size" type="button" role="radio" aria-checked="true">M</button>
+          <button class="size" type="button" role="radio" aria-checked="false">L</button>
+          <button class="size" type="button" role="radio" aria-checked="false">XL</button>
+        </div>
+      </div>
+      <p class="slip-row"><span>Paiement</span><strong>À la livraison</strong></p>
+      <p class="slip-total"><span>Total</span><span id="slip-price">329 DH</span></p>
+      <a class="btn btn-wa" id="slip-send" href="https://wa.me/?text=Salam"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A9.9 9.9 0 1 0 12.04 2Zm5.8 14.1c-.25.7-1.45 1.33-2 1.4-.52.08-1.17.11-1.88-.12-.43-.14-.99-.32-1.7-.63-3-1.29-4.95-4.3-5.1-4.5-.15-.2-1.22-1.62-1.22-3.08s.77-2.18 1.04-2.48c.27-.3.6-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.84 2.06.92 2.21.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.06 1.14 1.01 2.1 1.33 2.39 1.48.3.15.47.12.65-.07.17-.2.74-.87.94-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.07.12.07.72-.18 1.42Z"/></svg>Envoyer mon ticket</a>
+      <p class="slip-note">Aucun paiement en ligne.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="section-head reveal"><h2 id="how-title">Tkhalsi f lbab</h2></div>
+    <ol class="steps">
+      <li class="step reveal"><span class="step-num" aria-hidden="true">1</span><div><h3>Tu choisis</h3><p>Ta pièce, ta couleur et ta taille, depuis ton téléphone.</p></div></li>
+      <li class="step reveal"><span class="step-num" aria-hidden="true">2</span><div><h3>On confirme sur WhatsApp</h3><p>On vérifie la taille et l'adresse avant d'envoyer.</p></div></li>
+      <li class="step reveal"><span class="step-num" aria-hidden="true">3</span><div><h3>Tu paies à la porte</h3><p>En espèces, quand le colis arrive chez toi.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="ig-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="ig-title">4 300 gym girls sur Insta</h2>
+      <a href="https://www.instagram.com/nayra.fitwear/">@nayra.fitwear</a>
+    </div>
+    <div class="ig reveal">
+      <a href="https://www.instagram.com/nayra.fitwear/"><img src="img/meme-ambulance.jpg" width="1080" height="1323" alt="Post Instagram : bande dessinée « Elle s'est évanouie ! »" loading="lazy"></a>
+      <a href="https://www.instagram.com/nayra.fitwear/"><img src="img/box-wide.jpg" width="1080" height="674" alt="Post Instagram : le carton piège avec quatre tenues Nayra" loading="lazy"></a>
+      <a href="https://www.instagram.com/nayra.fitwear/"><img src="img/meme-therapist.jpg" width="1080" height="1284" alt="Post Instagram : bande dessinée chez la psy" loading="lazy"></a>
+      <a href="https://www.instagram.com/nayra.fitwear/"><img src="img/black-model.jpg" width="720" height="1100" alt="Post Instagram : combi-short noire" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal" id="modeste" aria-labelledby="modest-title">
+  <div class="modest">
+    <p class="sticker">Bientôt</p>
+    <h2 id="modest-title">La collection modeste arrive</h2>
+    <p>Burkinis et pièces couvrantes pour s'entraîner et nager à l'aise.</p>
+    <a class="btn btn-ghost" href="https://wa.me/?text=Salam%2C%20pr%C3%A9viens-moi%20pour%20la%20collection%20modeste">Me prévenir sur WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer-logo">NAYRA</p>
+    <div class="footer-cols">
+      <div><h3>Boutique</h3><ul><li><a href="#shop">Sets</a></li><li><a href="#shop">Leggings</a></li><li><a href="#shop">Combis</a></li><li><a href="#modeste">Modeste</a></li></ul></div>
+      <div><h3>Aide</h3><ul><li><a href="#ticket">Guide des tailles</a></li><li><a href="#ticket">Livraison et retours</a></li><li><a href="https://wa.me/?text=Salam">WhatsApp</a></li></ul></div>
+      <div><h3>Suis-nous</h3><ul><li><a href="https://www.instagram.com/nayra.fitwear/">Instagram</a></li></ul></div>
+    </div>
+    <p class="footer-legal">© 2026 Nayra · Paiement à la livraison au Maroc · Maquette : prix et textes d'exemple</p>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+const io = new IntersectionObserver((entries) => {
+  for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+const products = {
+  mauve: { name: 'Set mauve manches longues', price: '329 DH' },
+  noir: { name: 'Combi-short noire', price: '229 DH' },
+  bleu: { name: 'Set sans couture bleu glacier', price: '299 DH' },
+  tiedye: { name: 'Legging tie-dye bleu', price: '179 DH' },
+};
+let product = 'mauve';
+let size = 'M';
+const adds = [...document.querySelectorAll('.add')];
+const sizes = [...document.querySelectorAll('.size')];
+const refresh = () => {
+  const p = products[product];
+  document.getElementById('slip-name').textContent = p.name;
+  document.getElementById('slip-price').textContent = p.price;
+  const text = `Salam ! Mon ticket Nayra :\n- ${p.name}, taille ${size}\nTotal : ${p.price}\nPaiement à la livraison.`;
+  document.getElementById('slip-send').href = `https://wa.me/?text=${encodeURIComponent(text)}`;
+};
+adds.forEach((button) => button.addEventListener('click', () => {
+  product = button.dataset.product;
+  adds.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+  refresh();
+  document.getElementById('ticket').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+}));
+sizes.forEach((button) => button.addEventListener('click', () => {
+  size = button.textContent.trim();
+  sizes.forEach((b) => b.setAttribute('aria-checked', String(b === button)));
+  refresh();
+}));
+refresh();
+</script>
+</body>
+</html>

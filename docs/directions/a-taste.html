@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nayra, tenues de gym pour femmes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f2f2f2;
+  --ink: #0a0a0a;
+  --muted: #5c5c5c;
+  --accent: #d1186a;
+  --accent-ink: #ffffff;
+  --field-1: #000000;
+  --field-1-ink: #ffffff;
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-head: clamp(1.75rem, 1.3rem + 2.4vw, 2.75rem);
+  --size-list: 15vw;
+  --size-mon: 27vw;
+  --size-max: 34vw;
+  --margin: 16px;
+  --display: "Libre Franklin", "Arial Narrow", sans-serif;
+  --text: "Source Serif 4", Georgia, serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 900px) {
+  :root { --margin: 32px; --size-mon: clamp(150px, 17.5vw, 290px); --size-list: var(--size-mon); --size-max: 28vw; }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--text); font-size: var(--step-body); line-height: 1.55; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.display { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.85; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px;
+  font-family: var(--display); font-weight: 700; font-size: var(--step-small); letter-spacing: 0.01em;
+  text-decoration: none; border: 0; cursor: pointer; border-radius: 0;
+  background: var(--accent); color: var(--accent-ink);
+  transition: transform 160ms var(--ease), background-color 160ms var(--ease), color 160ms var(--ease);
+}
+.btn:hover { background: var(--ink); }
+.btn:active { transform: scale(0.97); }
+.btn--paper { background: var(--bg); color: var(--ink); }
+.btn--paper:hover { background: var(--accent); color: var(--accent-ink); }
+
+/* Hero: film title, bottom edge */
+.hero { position: relative; height: 100svh; min-height: 520px; overflow: hidden; background: #4a474d; color: #fff; }
+.hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.6s ease; }
+.hero-media img.on { opacity: 1; }
+.hero-media .mauve { object-position: 50% 30%; }
+.hero-media .black { object-position: 50% 26%; }
+.hero-scrim { position: absolute; inset: auto 0 0 0; height: 42%; background: linear-gradient(to top, rgb(0 0 0 / 0.62), rgb(0 0 0 / 0)); } /* taste-skill-ignore: neutral scrim under text on a photo */
+.hero::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 140px; z-index: 1; background: linear-gradient(to bottom, rgb(0 0 0 / 0.45), rgb(0 0 0 / 0)); } /* taste-skill-ignore: neutral scrim under text on a photo */
+.top { position: absolute; inset: 0 0 auto 0; z-index: 3; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px var(--margin); }
+.top-left, .top-right { display: flex; align-items: center; gap: 22px; }
+.emblem { font-family: var(--display); font-weight: 900; font-size: var(--step-head); line-height: 1; letter-spacing: -0.03em; text-decoration: none; color: #fff; }
+.menu-word { font-family: var(--display); font-weight: 700; font-size: var(--step-body); color: #fff; background: none; border: 0; padding: 12px 4px; cursor: pointer; }
+.top-links { display: none; gap: 26px; }
+.top-links a { font-family: var(--display); font-weight: 700; font-size: var(--step-body); color: #fff; text-decoration: none; }
+.top-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
+.hero-lede { position: absolute; left: var(--margin); bottom: calc(var(--size-mon) * 0.8 + 44px); z-index: 2; max-width: 27ch; font-size: var(--step-body); line-height: 1.4; }
+.monument { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 2; text-align: center; white-space: nowrap; font-size: var(--size-mon); line-height: 0.8; color: #fff; }
+
+/* Showcase: band of unequal panels with the live picker */
+.showcase { padding: 72px 0 0; }
+.section-head { font-family: var(--display); font-weight: 700; font-size: var(--step-head); letter-spacing: -0.03em; line-height: 1; }
+.showcase .section-head { padding: 0 var(--margin); margin-bottom: 28px; }
+.band { display: grid; grid-template-columns: 64fr 36fr; grid-template-rows: 1fr 1fr; height: 84svh; }
+.band .panel:nth-child(3) { order: 4; }
+.band .panel:nth-child(4) { order: 3; }
+.panel { position: relative; padding: 0; border: 0; margin: 0; cursor: pointer; overflow: hidden; background: #2b2b2b; }
+.panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms var(--ease); }
+.panel:hover img { transform: scale(1.03); }
+.panel[aria-pressed="true"]::after { content: ""; position: absolute; inset: 0; outline: 4px solid var(--accent); outline-offset: -4px; }
+.panel-title { position: absolute; top: 0; left: 0; padding: 18px 22px 30px 16px; color: #fff; font-family: var(--display); font-weight: 700; font-size: var(--step-head); line-height: 1; letter-spacing: -0.03em; text-align: left; background: radial-gradient(ellipse at top left, rgb(0 0 0 / 0.45), rgb(0 0 0 / 0) 72%); } /* taste-skill-ignore: neutral scrim under text on a photo */
+.pick { padding: 22px var(--margin) 0; display: grid; gap: 16px; }
+.pick-name strong { font-family: var(--display); font-weight: 700; }
+.sizes { display: flex; gap: 8px; flex-wrap: wrap; }
+.size { min-width: 52px; min-height: 48px; border: 0; background: var(--surface); color: var(--ink); font-family: var(--display); font-weight: 700; font-size: var(--step-body); cursor: pointer; transition: background-color 140ms var(--ease), color 140ms var(--ease), transform 140ms var(--ease); }
+.size:hover { background: #e2e2e2; }
+.size:active { transform: scale(0.95); }
+.size[aria-checked="true"] { background: var(--ink); color: var(--bg); }
+.pick .btn { justify-self: start; }
+.pick-note { font-size: var(--step-small); color: var(--muted); }
+
+/* List: one item per poster line */
+.list { padding: 96px var(--margin) 80px; }
+.list .section-head { margin-bottom: 36px; }
+.list ul { list-style: none; margin: 0; padding: 0; }
+.list li a { display: block; text-decoration: none; padding-bottom: 22px; }
+.list .word { display: block; font-size: var(--size-list); transition: color 160ms var(--ease); }
+.list .fact { display: block; margin-top: 6px; font-size: var(--step-small); font-variant-numeric: tabular-nums; color: var(--muted); }
+.list li a:hover .word, .list li a:focus-visible .word { color: var(--accent); }
+
+/* How it works: photographs down a diagonal */
+.how { padding: 40px var(--margin) 96px; }
+.how .section-head { margin-bottom: 32px; }
+.stage { display: grid; gap: 14px; margin-bottom: 56px; }
+.stage img { width: 100%; height: auto; object-fit: cover; }
+.stage-1 img { aspect-ratio: 3 / 4; object-position: 50% 18%; }
+.stage-2 { width: 62%; margin-left: auto; }
+.stage-2 img { aspect-ratio: 1; }
+.stage-3 { width: 78%; }
+.stage-3 img { aspect-ratio: 16 / 10; }
+.stage p { max-width: 36ch; }
+.stage strong { font-family: var(--display); font-weight: 700; }
+
+/* Gallery: prints beside the headline */
+.gallery { position: relative; overflow: hidden; background: var(--field-1); color: var(--field-1-ink); padding: 56px var(--margin) 28px; }
+.gallery h2 { position: relative; z-index: 2; text-align: center; font-size: var(--size-mon); }
+.prints { position: relative; height: 100vw; margin-top: 36px; }
+.print { position: absolute; width: 50vw; height: auto; aspect-ratio: 3 / 4; border: 8px solid #fff; background: #fff; object-fit: cover; object-position: 50% 0; transition: transform 200ms var(--ease); cursor: pointer; }
+.print-1 { left: 2vw; top: 0; transform: rotate(-6deg); }
+.print-2 { right: 2vw; top: 18vw; transform: rotate(5deg); }
+.print:hover { z-index: 3; transform: rotate(0deg); }
+.gallery-note { margin-top: 20px; }
+.gallery-note a { color: #fff; }
+
+/* CTA: one word is the button */
+.cta { display: block; position: relative; height: 46svh; min-height: 300px; background: var(--accent); color: var(--accent-ink); text-decoration: none; overflow: hidden; }
+.cta:hover, .cta:focus-visible { background: var(--ink); color: var(--bg); }
+.cta-sentence { position: absolute; top: 20px; left: var(--margin); max-width: 22ch; line-height: 1.35; }
+.cta-arrow { position: absolute; top: 18px; right: var(--margin); width: 32px; height: 32px; }
+.cta h2 { position: absolute; left: var(--margin); right: var(--margin); bottom: 24px; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--size-max); line-height: 0.8; letter-spacing: -0.05em; }
+
+/* Footer: invitation over a cropped name */
+.foot { position: relative; background: var(--field-1); color: var(--field-1-ink); overflow: hidden; padding: 64px var(--margin) 0; }
+.foot .section-head { margin-bottom: 24px; }
+.foot .btn { width: 100%; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 28px; }
+.foot-links a { color: #fff; }
+.foot-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 48px; font-size: var(--step-small); color: #cfcfcf; }
+.foot-name { font-family: var(--display); font-weight: 900; text-transform: uppercase; white-space: nowrap; font-size: var(--size-max); line-height: 0.8; letter-spacing: -0.05em; transform: translateY(30%); margin-top: 16px; margin-left: -0.04em; }
+
+/* Motion */
+.js [data-rise] { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); transition-delay: calc(var(--i, 0) * 80ms); }
+.js [data-rise].in { opacity: 1; transform: none; }
+.hero-media img.on { animation: drift 14s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: scale(1); } to { transform: scale(1.06); } }
+@media (prefers-reduced-motion: reduce) {
+  .js [data-rise] { opacity: 1; transform: none; transition: none; }
+  .hero-media img { transition: none; }
+  .hero-media img, .hero-media img.on { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+  .menu-word { display: none; }
+  .top { padding: 18px var(--margin); }
+  .top-links { display: flex; }
+  .hero-lede { max-width: 34ch; }
+  .hero-media { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-media img { position: relative; opacity: 1; transition: none; }
+  .hero-media .mauve { object-position: 50% 12%; }
+  .hero-media .black { object-position: 50% 10%; }
+  .hero-media img.on { animation: none; }
+  .hero-media img { animation: drift 16s ease-in-out infinite alternate; }
+  .monument { bottom: 34px; }
+
+  .showcase { padding-top: 160px; }
+  .showcase .section-head { padding-left: calc(var(--margin) + (100vw - 2 * var(--margin)) / 12 * 2); margin-bottom: 64px; }
+  .band { display: flex; height: 68svh; }
+  .band .panel { order: 0 !important; flex: var(--g) 1 0; transition: flex-grow 500ms var(--ease); }
+  .band .panel:hover { flex-grow: 6; }
+  .panel-title { padding: 24px 28px 34px 24px; }
+  .pick { grid-template-columns: auto auto 1fr; align-items: center; gap: 28px; padding-top: 28px; }
+  .pick .btn { justify-self: end; }
+  .pick-note { grid-column: 1 / -1; }
+
+  .list { padding: 200px var(--margin) 80px; }
+  .list .section-head { margin-bottom: 48px; }
+  .list li a { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding-bottom: 0; }
+  .list .fact { margin: 0; font-size: var(--step-body); }
+
+  .how { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; padding: 160px var(--margin) 200px; }
+  .how .section-head { grid-column: 7 / 13; grid-row: 1; align-self: start; margin: 0; }
+  .stage { margin: 0; display: contents; }
+  .stage-1 img { grid-column: 1 / 5; grid-row: 1 / 3; }
+  .stage-1 p { grid-column: 5 / 8; grid-row: 2; align-self: start; padding-top: 24px; }
+  .stage-2, .stage-3 { width: auto; margin: 0; }
+  .stage-2 img { grid-column: 6 / 9; grid-row: 3; margin-top: 60px; }
+  .stage-2 p { grid-column: 9 / 12; grid-row: 3; align-self: start; padding-top: 60px; }
+  .stage-3 img { grid-column: 8 / 13; grid-row: 4; margin-top: 140px; }
+  .stage-3 p { grid-column: 4 / 8; grid-row: 4; align-self: start; padding-top: 140px; }
+
+  .gallery { height: 100svh; display: grid; place-items: center; padding: var(--margin); }
+  .prints { position: absolute; inset: 0; height: auto; margin: 0; }
+  .print { width: 15vw; }
+  .print-1 { left: 3vw; top: 10vh; }
+  .print-2 { right: 3vw; top: auto; bottom: 14vh; }
+  .gallery-note { position: absolute; left: var(--margin); bottom: 24px; margin: 0; z-index: 2; }
+
+  .cta { height: 60svh; }
+  .cta-arrow { width: 48px; height: 48px; top: 20px; }
+
+  .foot { min-height: 100svh; padding-top: 120px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto auto 1fr auto auto; column-gap: 24px; }
+  .foot .section-head { grid-column: 1 / 8; }
+  .foot .btn { grid-column: 1 / 4; width: auto; justify-self: start; }
+  .foot-links { grid-column: 10 / 13; grid-row: 1 / 3; flex-direction: column; margin-top: 4px; }
+  .foot-legal { grid-column: 1 / -1; grid-row: 4; }
+  .foot-name { grid-column: 1 / -1; grid-row: 5; }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-media">
+    <img class="mauve on" src="img/mauve-model.jpg" width="428" height="900" alt="Une cliente en set mauve manches longues, ceinture NAYRA">
+    <img class="black" src="img/black-model.jpg" width="720" height="1100" alt="Une cliente en combi-short noire Nayra" loading="lazy">
+  </div>
+  <div class="hero-scrim"></div>
+  <nav class="top" aria-label="Navigation principale">
+    <div class="top-left">
+      <a class="emblem" href="#" aria-label="Nayra, accueil">N</a>
+      <button class="menu-word" type="button">Menu</button>
+    </div>
+    <div class="top-right">
+      <div class="top-links">
+        <a href="#collections">Sets</a>
+        <a href="#collections">Leggings</a>
+        <a href="#collections">Combis</a>
+        <a href="#collections">Modeste</a>
+      </div>
+      <a class="btn btn--paper" href="#choisir">Commander</a>
+    </div>
+  </nav>
+  <p class="hero-lede">Tenues de gym pour gym girls marocaines. Dès 179 DH, payées à la livraison.</p>
+  <h1 class="monument display">Nayra<span class="sr-only">, tenues de gym pour femmes</span></h1>
+</header>
+
+<main>
+<section class="showcase" id="choisir" aria-labelledby="choisir-title">
+  <h2 class="section-head" id="choisir-title" data-rise>Hadi hiya l'outfit</h2>
+  <div class="band" data-rise style="--i:1">
+    <button class="panel" style="--g:5" type="button" aria-pressed="true" data-product="mauve" aria-label="Set mauve manches longues, 329 DH">
+      <img src="img/mauve-model.jpg" width="428" height="900" alt="" loading="lazy">
+      <span class="panel-title">Set mauve</span>
+    </button>
+    <button class="panel" style="--g:2" type="button" aria-pressed="false" data-product="bleu" aria-label="Set sans couture bleu glacier, 299 DH">
+      <img src="img/blue-top.jpg" width="640" height="500" alt="" loading="lazy">
+    </button>
+    <button class="panel" style="--g:3" type="button" aria-pressed="false" data-product="noir" aria-label="Combi-short noire, 229 DH">
+      <img src="img/black-model.jpg" width="720" height="1100" alt="" loading="lazy">
+    </button>
+    <button class="panel" style="--g:2" type="button" aria-pressed="false" data-product="tiedye" aria-label="Legging tie-dye bleu, 179 DH">
+      <img src="img/tiedye-leggings.jpg" width="224" height="380" alt="" loading="lazy">
+    </button>
+  </div>
+  <div class="pick" aria-live="polite">
+    <p class="pick-name"><strong id="pick-title">Set mauve manches longues</strong>, <span id="pick-price">329 DH</span></p>
+    <div class="sizes" role="radiogroup" aria-label="Taille">
+      <button class="size" type="button" role="radio" aria-checked="false">S</button>
+      <button class="size" type="button" role="radio" aria-checked="true">M</button>
+      <button class="size" type="button" role="radio" aria-checked="false">L</button>
+      <button class="size" type="button" role="radio" aria-checked="false">XL</button>
+    </div>
+    <a class="btn" id="order" href="https://wa.me/?text=Salam">Commander, paiement à la livraison</a>
+    <p class="pick-note">Touche une photo pour changer de pièce.</p>
+  </div>
+</section>
+
+<section class="list" id="collections" aria-labelledby="list-title">
+  <h2 class="section-head" id="list-title" data-rise>Tout pour la salle</h2>
+  <ul>
+    <li data-rise><a href="#choisir"><span class="word display">Sets</span><span class="fact">dès 299 DH</span></a></li>
+    <li data-rise style="--i:1"><a href="#choisir"><span class="word display">Leggings</span><span class="fact">dès 179 DH</span></a></li>
+    <li data-rise style="--i:2"><a href="#choisir"><span class="word display">Combis</span><span class="fact">dès 229 DH</span></a></li>
+    <li data-rise style="--i:3"><a href="#choisir"><span class="word display">Tops</span><span class="fact">dès 129 DH</span></a></li>
+    <li data-rise style="--i:4"><a href="#modeste"><span class="word display">Modeste</span><span class="fact">bientôt</span></a></li>
+  </ul>
+</section>
+
+<section class="how" aria-labelledby="how-title">
+  <h2 class="section-head" id="how-title" data-rise>Tkhalsi f lbab</h2>
+  <div class="stage stage-1">
+    <img data-rise src="img/black-model.jpg" width="720" height="1100" alt="Combi-short noire Nayra portée en studio" loading="lazy">
+    <p data-rise style="--i:1"><strong>Tu choisis.</strong> Ta pièce, ta couleur et ta taille, en deux touches sur ton téléphone.</p>
+  </div>
+  <div class="stage stage-2">
+    <img data-rise src="img/blue-top.jpg" width="640" height="500" alt="Haut sans couture bleu glacier Nayra posé à plat" loading="lazy">
+    <p data-rise style="--i:1"><strong>On confirme sur WhatsApp.</strong> On t'écrit pour vérifier la taille et l'adresse avant d'envoyer.</p>
+  </div>
+  <div class="stage stage-3">
+    <img data-rise src="img/box-wide.jpg" width="1080" height="674" alt="Le carton piège de Nayra, avec quatre tenues dessous" loading="lazy">
+    <p data-rise style="--i:1"><strong>Tu paies à la porte.</strong> En espèces, quand le colis arrive chez toi. Rien à payer avant.</p>
+  </div>
+</section>
+
+<section class="gallery" aria-labelledby="gallery-title">
+  <h2 class="display" id="gallery-title">Gym<br>girls</h2>
+  <div class="prints">
+    <img class="print print-1" src="img/meme-ambulance.jpg" width="1080" height="1323" alt="Post Instagram Nayra : bande dessinée « Elle s'est évanouie ! »" loading="lazy">
+    <img class="print print-2" src="img/meme-therapist.jpg" width="1080" height="1284" alt="Post Instagram Nayra : bande dessinée chez la psy, « nouvelle tenue de sport »" loading="lazy">
+  </div>
+  <p class="gallery-note">4 300 gym girls nous suivent sur Instagram : <a href="https://www.instagram.com/nayra.fitwear/">@nayra.fitwear</a></p>
+</section>
+
+<a class="cta" href="#choisir" id="modeste">
+  <p class="cta-sentence">Choisis ton set et paie à la livraison.</p>
+  <svg class="cta-arrow" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M12 36 36 12M16 12h20v20"/></svg>
+  <h2>Chri</h2>
+</a>
+</main>
+
+<footer class="foot" aria-labelledby="foot-title">
+  <h2 class="section-head" id="foot-title">Une question ?<br>Écris-nous.</h2>
+  <a class="btn btn--paper" href="https://wa.me/?text=Salam%2C%20j%27ai%20une%20question">Écrire sur WhatsApp</a>
+  <nav class="foot-links" aria-label="Liens du pied de page">
+    <a href="https://www.instagram.com/nayra.fitwear/">Instagram</a>
+    <a href="#choisir">Guide des tailles</a>
+    <a href="#choisir">Livraison et retours</a>
+    <a href="#modeste">Collection modeste</a>
+  </nav>
+  <div class="foot-legal"><span>© 2026 Nayra · Maquette : prix et textes d'exemple</span><span>Paiement à la livraison au Maroc</span></div>
+  <p class="foot-name" aria-hidden="true">Nayra</p>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+const slides = [...document.querySelectorAll('.hero-media img')];
+let current = 0;
+let timer = null;
+const advance = () => {
+  slides[current].classList.remove('on');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('on');
+};
+const startSlides = () => {
+  clearInterval(timer);
+  if (!reduce.matches && slides.length > 1 && !document.hidden && !window.matchMedia('(min-width: 900px)').matches) timer = setInterval(advance, 7000);
+};
+document.addEventListener('visibilitychange', startSlides);
+startSlides();
+
+const rise = new IntersectionObserver((entries) => {
+  for (const entry of entries) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      rise.unobserve(entry.target);
+    }
+  }
+}, { threshold: 0.12 });
+document.querySelectorAll('[data-rise]').forEach((el) => rise.observe(el));
+
+const products = {
+  mauve: { name: 'Set mauve manches longues', price: '329 DH' },
+  bleu: { name: 'Set sans couture bleu glacier', price: '299 DH' },
+  noir: { name: 'Combi-short noire', price: '229 DH' },
+  tiedye: { name: 'Legging tie-dye bleu', price: '179 DH' },
+};
+const panels = [...document.querySelectorAll('.panel')];
+const sizes = [...document.querySelectorAll('.size')];
+const order = document.getElementById('order');
+let product = 'mauve';
+let size = 'M';
+const refresh = () => {
+  const p = products[product];
+  document.getElementById('pick-title').textContent = p.name;
+  document.getElementById('pick-price').textContent = p.price;
+  const text = `Salam, je veux commander : ${p.name}, taille ${size} (${p.price}). Paiement à la livraison.`;
+  order.href = `https://wa.me/?text=${encodeURIComponent(text)}`;
+};
+panels.forEach((panel) => panel.addEventListener('click', () => {
+  product = panel.dataset.product;
+  panels.forEach((p) => p.setAttribute('aria-pressed', String(p === panel)));
+  refresh();
+}));
+sizes.forEach((button) => button.addEventListener('click', () => {
+  size = button.textContent.trim();
+  sizes.forEach((b) => b.setAttribute('aria-checked', String(b === button)));
+  refresh();
+}));
+refresh();
+</script>
+</body>
+</html>
