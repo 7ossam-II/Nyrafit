@@ -1622,6 +1622,93 @@
     ]
   },
   {
+    "name": "WhatsApp & cash on delivery",
+    "settings": [
+      {
+        "type": "header",
+        "content": "WhatsApp"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp number",
+        "placeholder": "212612345678",
+        "info": "International format, e.g. 212612345678. A number starting with 0 is treated as Moroccan. Leave empty to hide the WhatsApp buttons."
+      },
+      {
+        "type": "checkbox",
+        "id": "whatsapp_show_button",
+        "label": "Show floating WhatsApp button",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "whatsapp_position",
+        "label": "Button corner",
+        "options": [
+          {
+            "value": "end",
+            "label": "Bottom right"
+          },
+          {
+            "value": "start",
+            "label": "Bottom left"
+          }
+        ],
+        "default": "end",
+        "info": "Flips automatically on Arabic pages."
+      },
+      {
+        "type": "textarea",
+        "id": "whatsapp_message",
+        "label": "Message on other pages",
+        "info": "Leave empty to use the default greeting in the shop's language."
+      },
+      {
+        "type": "textarea",
+        "id": "whatsapp_product_message",
+        "label": "Message on product pages",
+        "info": "[product] becomes the product name and chosen options, [link] the product link. Leave empty to use the default text."
+      },
+      {
+        "type": "header",
+        "content": "Cash on delivery"
+      },
+      {
+        "type": "checkbox",
+        "id": "cod_show_notice",
+        "label": "Show cash-on-delivery box in the cart",
+        "default": true,
+        "info": "Placeholder above the checkout button for the future cash-on-delivery order form."
+      },
+      {
+        "type": "text",
+        "id": "cod_heading",
+        "label": "Heading",
+        "info": "Leave empty to use the default text in the shop's language."
+      },
+      {
+        "type": "textarea",
+        "id": "cod_text",
+        "label": "Text",
+        "info": "Leave empty to use the default text in the shop's language."
+      },
+      {
+        "type": "checkbox",
+        "id": "cod_show_whatsapp_order",
+        "label": "Show \"Order on WhatsApp\" button",
+        "default": true,
+        "info": "Sends the cart contents and total to your WhatsApp number."
+      },
+      {
+        "type": "text",
+        "id": "cod_whatsapp_label",
+        "label": "Button text",
+        "info": "Leave empty to use the default text in the shop's language."
+      }
+    ]
+  },
+  {
     "name": "t:names.drawers",
     "settings": [
       {

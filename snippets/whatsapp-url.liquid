@@ -1,0 +1,29 @@
+{% doc %}
+  Outputs a WhatsApp click-to-chat link for the number in the theme settings, or nothing when no number is set.
+  A number starting with a single 0 is treated as a Moroccan local number.
+
+  @param {string} [message] - Text to pre-fill in the chat
+
+  @example
+  {% capture whatsapp_url %}{% render 'whatsapp-url', message: 'Hello' %}{% endcapture %}
+{% enddoc %}
+
+{%- liquid
+  assign number = settings.whatsapp_number | strip | remove: '+' | remove: ' ' | remove: '-' | remove: '.' | remove: '(' | remove: ')'
+  assign first_two = number | slice: 0, 2
+  assign first_one = number | slice: 0
+
+  if first_two == '00'
+    assign number = number | remove_first: '00'
+  elsif first_one == '0'
+    assign number = number | remove_first: '0' | prepend: '212'
+  endif
+
+  if number != blank
+    echo 'https://wa.me/' | append: number
+    if message != blank
+      assign encoded_message = message | url_encode | replace: '+', '%20'
+      echo '?text=' | append: encoded_message
+    endif
+  endif
+-%}

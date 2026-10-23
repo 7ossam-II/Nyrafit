@@ -153,6 +153,19 @@
     }
   },
   "content": {
+    "cash_on_delivery": {
+      "heading": "الدفع عند الاستلام",
+      "text": "ادفع نقداً عند استلام طلبك.",
+      "order_on_whatsapp": "اطلب عبر واتساب"
+    },
+    "whatsapp": {
+      "chat_label": "تواصل معنا عبر واتساب",
+      "default_message": "السلام عليكم، عندي سؤال حول منتجاتكم.",
+      "product_message": "السلام عليكم، أريد طلب: [product] [link]",
+      "cart_intro": "السلام عليكم، أريد طلب:",
+      "cart_total": "المجموع:",
+      "cart_details": "الاسم:\nالمدينة:\nالعنوان:"
+    },
     "cancel": "إلغاء",
     "discount": "الخصم",
     "account_title": "الحساب",

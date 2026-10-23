@@ -163,6 +163,19 @@
     }
   },
   "content": {
+    "cash_on_delivery": {
+      "heading": "Cash on delivery",
+      "text": "Pay in cash when you receive your order.",
+      "order_on_whatsapp": "Order on WhatsApp"
+    },
+    "whatsapp": {
+      "chat_label": "Chat with us on WhatsApp",
+      "default_message": "Hello! I have a question about your products.",
+      "product_message": "Hello! I'd like to order: [product] [link]",
+      "cart_intro": "Hello! I'd like to order:",
+      "cart_total": "Total:",
+      "cart_details": "Name:\nCity:\nAddress:"
+    },
     "cancel": "Cancel",
     "discount": "Discount",
     "account_title": "Account",

@@ -1,0 +1,106 @@
+{% doc %}
+  Renders the cash-on-delivery box above the checkout button in the cart drawer and on the cart page.
+  It holds the place for a future cash-on-delivery order form, and can show a button that sends the cart to WhatsApp.
+
+  @example
+  {% render 'cart-cod-notice' %}
+{% enddoc %}
+
+{%- if settings.cod_show_notice and cart.item_count > 0 -%}
+  {%- liquid
+    assign heading = settings.cod_heading
+    if heading == blank
+      assign heading = 'content.cash_on_delivery.heading' | t
+    endif
+
+    assign text = settings.cod_text
+    if text == blank
+      assign text = 'content.cash_on_delivery.text' | t
+    endif
+
+    assign button_label = settings.cod_whatsapp_label
+    if button_label == blank
+      assign button_label = 'content.cash_on_delivery.order_on_whatsapp' | t
+    endif
+  -%}
+
+  {%- if settings.cod_show_whatsapp_order -%}
+    {%- capture newline %}
+{% endcapture -%}
+    {%- capture order_message -%}
+      {{- 'content.whatsapp.cart_intro' | t -}}
+      {%- for item in cart.items -%}
+        {{- newline -}}
+        - {{ item.quantity }} × {{ item.product.title -}}
+        {%- unless item.product.has_only_default_variant %} ({{ item.variant.title }}){% endunless %} –
+        {{- ' ' -}}
+        {{- item.final_line_price | money | strip_html -}}
+      {%- endfor -%}
+      {{- newline -}}
+      {{- 'content.whatsapp.cart_total' | t }} {{ cart.total_price | money | strip_html -}}
+      {{- newline -}}
+      {{- newline -}}
+      {{- 'content.whatsapp.cart_details' | t -}}
+    {%- endcapture -%}
+    {%- capture whatsapp_url -%}
+      {%- render 'whatsapp-url', message: order_message -%}
+    {%- endcapture -%}
+    {%- if whatsapp_url == blank and request.design_mode -%}
+      {%- assign whatsapp_url = '#' -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  <div class="cart-cod">
+    <p class="cart-cod__heading">{{ heading }}</p>
+    <p class="cart-cod__text">{{ text | newline_to_br }}</p>
+    {%- if whatsapp_url != blank -%}
+      <a
+        class="cart-cod__whatsapp button button-secondary"
+        href="{{ whatsapp_url }}"
+        target="_blank"
+        rel="noopener"
+      >
+        {{- 'icon-whatsapp.svg' | inline_asset_content -}}
+        <span>{{ button_label }}</span>
+      </a>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .cart-cod {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    width: 100%;
+    padding: var(--padding-md);
+    border: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-15));
+    border-radius: var(--style-border-radius-md);
+  }
+
+  .cart-cod__heading {
+    margin: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .cart-cod__text {
+    margin: 0;
+    font-size: var(--font-paragraph-small--size);
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+  }
+
+  .cart-cod__whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-sm);
+    width: 100%;
+  }
+
+  .cart-cod__whatsapp svg {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #1a9e4c;
+  }
+{% endstylesheet %}

@@ -123,6 +123,19 @@
     "zoom_media": "Zoom du support multimédia {{ index }}"
   },
   "content": {
+    "cash_on_delivery": {
+      "heading": "Paiement à la livraison",
+      "text": "Payez en espèces à la réception de votre commande.",
+      "order_on_whatsapp": "Commander sur WhatsApp"
+    },
+    "whatsapp": {
+      "chat_label": "Discutez avec nous sur WhatsApp",
+      "default_message": "Bonjour ! J'ai une question sur vos produits.",
+      "product_message": "Bonjour ! Je souhaite commander : [product] [link]",
+      "cart_intro": "Bonjour ! Je souhaite commander :",
+      "cart_total": "Total :",
+      "cart_details": "Nom :\nVille :\nAdresse :"
+    },
     "reviews": "avis",
     "language": "Langue",
     "localization_region_and_language": "Région et langue",

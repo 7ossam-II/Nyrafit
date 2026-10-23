@@ -1,0 +1,162 @@
+{% doc %}
+  Renders the floating WhatsApp button configured in the theme settings.
+  On product pages the pre-filled message names the product and the options the shopper picked.
+
+  @example
+  {% render 'whatsapp-button' %}
+{% enddoc %}
+
+{%- liquid
+  assign message = settings.whatsapp_message
+  if message == blank
+    assign message = 'content.whatsapp.default_message' | t
+  endif
+
+  assign on_product_page = false
+  if request.page_type == 'product' and product
+    assign on_product_page = true
+    assign selected_variant = product.selected_or_first_available_variant
+    assign product_url = request.origin | append: product.url
+    assign product_name = product.title
+
+    assign product_template = settings.whatsapp_product_message
+    if product_template == blank
+      assign product_template = 'content.whatsapp.product_message' | t
+    endif
+
+    assign selected_url = product_url
+    unless product.has_only_default_variant
+      assign product_name = product_name | append: ' – ' | append: selected_variant.title
+      assign selected_url = product_url | append: '?variant=' | append: selected_variant.id
+    endunless
+
+    assign message = product_template | replace: '[product]', product_name | replace: '[link]', selected_url
+  endif
+
+  capture base_url
+    render 'whatsapp-url'
+  endcapture
+
+  capture href
+    render 'whatsapp-url', message: message
+  endcapture
+
+  if href == blank and request.design_mode
+    assign href = '#'
+  endif
+-%}
+
+{%- if settings.whatsapp_show_button and href != blank -%}
+  <whatsapp-button
+    class="whatsapp-float whatsapp-float--{{ settings.whatsapp_position }}"
+    data-base-url="{{ base_url }}"
+  >
+    <a
+      class="whatsapp-float__link"
+      href="{{ href }}"
+      target="_blank"
+      rel="noopener"
+      aria-label="{{ 'content.whatsapp.chat_label' | t }}"
+    >
+      {{- 'icon-whatsapp.svg' | inline_asset_content -}}
+    </a>
+    {%- if on_product_page and base_url != blank -%}
+      <script type="application/json" data-whatsapp-product>
+        {
+          "template": {{ product_template | json }},
+          "title": {{ product.title | json }},
+          "url": {{ product_url | json }},
+          "selected": "{{ selected_variant.id }}",
+          "variants": {
+            {%- unless product.has_only_default_variant -%}
+              {%- for variant in product.variants -%}
+                "{{ variant.id }}": {{ variant.title | json }}{% unless forloop.last %},{% endunless %}
+              {%- endfor -%}
+            {%- endunless -%}
+          }
+        }
+      </script>
+    {%- endif -%}
+  </whatsapp-button>
+{%- endif -%}
+
+{% javascript %}
+  class WhatsappButton extends HTMLElement {
+    connectedCallback() {
+      const data = this.querySelector('[data-whatsapp-product]');
+      const link = this.querySelector('a');
+      if (!data || !link || !this.dataset.baseUrl) return;
+
+      const product = JSON.parse(data.textContent);
+
+      link.addEventListener('click', () => {
+        const requested = new URL(window.location.href).searchParams.get('variant');
+        const variantId = requested && product.variants[requested] ? requested : product.selected;
+        const options = product.variants[variantId];
+        const name = options ? `${product.title} – ${options}` : product.title;
+        const url = options ? `${product.url}?variant=${variantId}` : product.url;
+        const message = product.template.replaceAll('[product]', name).replaceAll('[link]', url);
+
+        link.href = `${this.dataset.baseUrl}?text=${encodeURIComponent(message)}`;
+      });
+    }
+  }
+
+  if (!customElements.get('whatsapp-button')) {
+    customElements.define('whatsapp-button', WhatsappButton);
+  }
+{% endjavascript %}
+
+{% stylesheet %}
+  .whatsapp-float {
+    position: fixed;
+    inset-block-end: max(1rem, var(--safe-area-inset-bottom));
+    inset-inline-end: 1rem;
+    z-index: var(--layer-sticky);
+  }
+
+  .whatsapp-float--start {
+    inset-inline-start: 1rem;
+    inset-inline-end: auto;
+  }
+
+  .page-wrapper--drawer-open .whatsapp-float--end {
+    inset-inline-end: calc(var(--theme-drawer-width, var(--sidebar-width)) + 1rem);
+  }
+
+  .whatsapp-float__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: #1a9e4c;
+    color: #fff;
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 0.18);
+  }
+
+  .whatsapp-float__link svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  #MainContent:has(sticky-add-to-cart[data-variant-available='true'] .sticky-add-to-cart__bar[data-stuck='true'])
+    ~ .whatsapp-float {
+    translate: 0 calc(-1 * (var(--height-buy-buttons) + var(--padding-sm) * 2 + 1rem));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .whatsapp-float {
+      transition-property: translate, inset-inline-end;
+      transition-duration: 0.3s;
+      transition-timing-function: var(--ease-out-quad);
+    }
+  }
+
+  @media print {
+    .whatsapp-float {
+      display: none;
+    }
+  }
+{% endstylesheet %}
