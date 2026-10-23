@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "extensions": [
+      { "ext": ".liquid", "engine": "html" }
+    ],
+    "ignoreRules": [],
+    "ignoreFiles": [
+      ".claude/**",
+      "node_modules/**"
+    ],
+    "ignoreValues": []
+  },
+  "hook": {
+    "enabled": true,
+    "limits": {
+      "maxFindings": 5,
+      "maxChars": 8000
+    }
+  }
+}

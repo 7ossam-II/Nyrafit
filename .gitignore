@@ -1,0 +1,21 @@
+# Shopify validator dependencies (reinstall: npm install --prefix .claude/skills/shopify)
+node_modules/
+
+# Impeccable per-developer and runtime files
+.impeccable/config.local.json
+**/.impeccable/hook.cache.json
+.impeccable/live/server.json
+.impeccable/live/codex-worker.json
+.impeccable/live/codex-worker.log
+.impeccable/live/sessions/
+.impeccable/live/previews/
+.impeccable/live/annotations/
+.impeccable/live/artifacts/
+.impeccable/live/accept-receipts/
+
+# Personal Claude Code settings
+.claude/settings.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
