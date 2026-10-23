@@ -2,6 +2,7 @@
   Nayra sections:
   - nayra-satin: the hero's live satin, drawn with a small WebGL shader. It ripples under the finger,
     drifts with scroll, pauses off screen and stays still when motion is reduced.
+  - nayra-hero-media: the banner's phone or desktop video, started only when it can be seen and motion is allowed.
   - nayra-ticker: pause button and off-screen pause for the moving band.
   - nayra-tbdila: the outfit nearest the middle of the rail is the selected one; outfits turn in 3D by
     their distance from the middle, and the order ticket (name, sizes, price, add to cart, WhatsApp) follows.
@@ -303,6 +304,85 @@
     }
 
     customElements.define('nayra-satin', NayraSatin);
+  }
+
+  /* Hero banner video */
+
+  if (!customElements.get('nayra-hero-media')) {
+    class NayraHeroMedia extends HTMLElement {
+      connectedCallback() {
+        this.videos = {
+          phone: this.querySelector('[data-hero-video="mobile"]'),
+          desktop: this.querySelector('[data-hero-video="desktop"]'),
+        };
+        if (!this.videos.phone && !this.videos.desktop) return;
+
+        this.pauseButton = this.querySelector('.nayra-hero__pause');
+        this.phone = window.matchMedia('(max-width: 749px)');
+        this.visible = false;
+        this.userPaused = false;
+
+        this.events = new AbortController();
+        const { signal } = this.events;
+        for (const video of Object.values(this.videos)) {
+          video?.addEventListener('playing', () => video.classList.add('is-playing'), { signal });
+        }
+        this.phone.addEventListener('change', () => this.update(), { signal });
+        reduceMotion.addEventListener('change', () => this.update(), { signal });
+        document.addEventListener('visibilitychange', () => this.update(), { signal });
+        this.pauseButton?.addEventListener('click', () => {
+          this.userPaused = !this.userPaused;
+          this.pauseButton.setAttribute('aria-pressed', String(this.userPaused));
+          this.update();
+        }, { signal });
+
+        this.visibilityObserver = new IntersectionObserver(([entry]) => {
+          this.visible = entry.isIntersecting;
+          this.update();
+        });
+        this.visibilityObserver.observe(this);
+      }
+
+      disconnectedCallback() {
+        this.events?.abort();
+        this.visibilityObserver?.disconnect();
+        Object.values(this.videos || {}).forEach((video) => video?.pause());
+      }
+
+      /** No video when motion is reduced or the visitor saves data; the photo stays. */
+      get allowed() {
+        const connection = navigator.connection;
+        const saving = Boolean(connection && (connection.saveData || /(^|-)2g$/.test(connection.effectiveType || '')));
+        return !reduceMotion.matches && !saving;
+      }
+
+      get active() {
+        const { phone, desktop } = this.videos;
+        return this.phone.matches ? phone || desktop : desktop || phone;
+      }
+
+      update() {
+        const active = this.active;
+        for (const video of Object.values(this.videos)) {
+          if (video && video !== active) {
+            video.pause();
+            video.classList.remove('is-playing');
+          }
+        }
+        if (this.pauseButton) this.pauseButton.hidden = !this.allowed;
+        if (!active) return;
+
+        if (this.allowed && this.visible && !this.userPaused && !document.hidden) {
+          active.preload = 'auto';
+          active.muted = true;
+          active.play()?.catch(() => {});
+        } else {
+          active.pause();
+        }
+      }
+    }
+
+    customElements.define('nayra-hero-media', NayraHeroMedia);
   }
 
   /* Ticker */

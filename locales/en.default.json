@@ -186,6 +186,7 @@
       "whatsapp_order": "Hello! I'd like to order: [product], size [size] ([price]).",
       "whatsapp_order_simple": "Hello! I'd like to order: [product] ([price]).",
       "pause_ticker": "Pause the moving text",
+      "pause_video": "Pause the video",
       "add_photo": "Add a photo"
     },
     "cash_on_delivery": {

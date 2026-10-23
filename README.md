@@ -36,7 +36,7 @@ The homepage is built from eight Nayra sections. Their look stays the same from 
 | Section | What it shows | Where to fill it |
 |---|---|---|
 | Nayra ticker | A moving band of short messages, with a pause button | Theme editor: edit or add messages, pick the color and speed |
-| Nayra hero | Big headline, a live satin arch that moves under the finger, an optional photo arch, two stickers, shop and WhatsApp buttons | Theme editor: edit the texts, upload a photo (optional) |
+| Nayra hero | A full-width banner (your video or photo, or the live satin until you add one) with the headline, two stickers, shop and WhatsApp buttons; or the satin arch layout | Theme editor: upload the banner video and photo, edit the texts. How to make the banner in Higgsfield: [`docs/hero-banner-brief.md`](docs/hero-banner-brief.md) |
 | Nayra categories | Category buttons | Theme editor: pick a collection for each button |
 | Nayra tbdila | The outfit stage: outfits turn in 3D as you swipe, and the order ticket beside them follows with sizes, price, add to cart and a WhatsApp order | Theme editor: pick the collection of the latest drop |
 | Nayra product grid | Product cards with stickers, price, color dots and quick add | Theme editor: pick a collection |

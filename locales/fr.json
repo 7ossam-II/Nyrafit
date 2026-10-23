@@ -146,6 +146,7 @@
       "whatsapp_order": "Salam ! Je veux commander : [product], taille [size] ([price]).",
       "whatsapp_order_simple": "Salam ! Je veux commander : [product] ([price]).",
       "pause_ticker": "Mettre le texte défilant en pause",
+      "pause_video": "Mettre la vidéo en pause",
       "add_photo": "Ajoute une photo"
     },
     "cash_on_delivery": {

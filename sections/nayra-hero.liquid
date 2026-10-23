@@ -4,8 +4,16 @@
     assign heading_tag = 'h1'
   endif
 
+  assign layout = section.settings.layout
   assign image = section.settings.image
   assign image_alt = image.alt | default: section.settings.heading | strip_html | escape
+
+  assign video = section.settings.video
+  assign video_mobile = section.settings.video_mobile
+  assign still = image | default: video.preview_image
+  assign still_mobile = section.settings.image_mobile | default: video_mobile.preview_image
+  assign scrim_strong = section.settings.overlay | append: '%'
+  assign scrim_soft = section.settings.overlay | divided_by: 2 | append: '%'
 
   assign whatsapp_url = ''
   if section.settings.whatsapp_label != blank
@@ -18,50 +26,108 @@
   endif
 -%}
 
-<div class="nayra nayra-hero">
-  <div class="nayra-wrap nayra-hero__grid">
-    <{{ heading_tag }} class="nayra-display nayra-hero__title">{{ section.settings.heading }}</{{ heading_tag }}>
+{%- capture actions -%}
+  <div class="nayra-actions">
+    {%- if section.settings.button_label != blank -%}
+      <a class="nayra-btn nayra-btn--pink" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+        {{- section.settings.button_label -}}
+        {%- render 'nayra-icon', icon: 'arrow' -%}
+      </a>
+    {%- endif -%}
+    {%- if whatsapp_url != blank -%}
+      <a class="nayra-btn nayra-btn--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">
+        {{- 'icon-whatsapp.svg' | inline_asset_content -}}
+        {{- section.settings.whatsapp_label -}}
+      </a>
+    {%- endif -%}
+  </div>
+{%- endcapture -%}
 
-    <div class="nayra-hero__media{% if image != blank or request.design_mode %} nayra-hero__media--photo{% endif %}">
-      <nayra-satin class="nayra-arch nayra-hero__satin"{% if section.settings.animate == false %} data-still{% endif %}>
-        <canvas class="nayra-satin__canvas" aria-hidden="true"></canvas>
-      </nayra-satin>
-      {%- if image != blank -%}
-        <div class="nayra-arch nayra-hero__photo">
-          {{ image | image_url: width: 1000 | image_tag: widths: '300, 400, 600, 800, 1000', sizes: '(min-width: 990px) 24vw, 52vw', loading: 'eager', fetchpriority: 'high', class: 'nayra-arch__img', alt: image_alt }}
-        </div>
-      {%- elsif request.design_mode -%}
-        <div class="nayra-arch nayra-hero__photo">{% render 'nayra-placeholder', tone: 5 %}</div>
-      {%- endif -%}
-      {%- if section.settings.sticker_top != blank -%}
-        <p class="nayra-sticker nayra-sticker--pink nayra-hero__sticker-top">{{ section.settings.sticker_top }}</p>
-      {%- endif -%}
-      {%- if section.settings.sticker_bottom != blank -%}
-        <p class="nayra-sticker nayra-sticker--sun nayra-hero__sticker-bottom">{% render 'nayra-icon', icon: 'check' %}{{ section.settings.sticker_bottom }}</p>
-      {%- endif -%}
-    </div>
+{%- capture stickers -%}
+  {%- if section.settings.sticker_top != blank -%}
+    <p class="nayra-sticker nayra-sticker--pink nayra-hero__sticker-top">{{ section.settings.sticker_top }}</p>
+  {%- endif -%}
+  {%- if section.settings.sticker_bottom != blank -%}
+    <p class="nayra-sticker nayra-sticker--sun nayra-hero__sticker-bottom">{% render 'nayra-icon', icon: 'check' %}{{ section.settings.sticker_bottom }}</p>
+  {%- endif -%}
+{%- endcapture -%}
 
-    <div class="nayra-hero__copy">
-      {%- if section.settings.text != blank -%}
-        <p class="nayra-lede">{{ section.settings.text }}</p>
+{%- if layout == 'banner' -%}
+  <div class="nayra nayra-hero nayra-hero--banner">
+    <nayra-hero-media class="nayra-hero__banner" style="--scrim-strong: {{ scrim_strong }}; --scrim-soft: {{ scrim_soft }}; --media-y: {{ section.settings.media_position }};">
+      <div class="nayra-hero__fill">
+        {%- if still != blank -%}
+          <picture>
+            {%- if still_mobile != blank -%}
+              <source
+                media="(max-width: 749px)"
+                srcset="{{ still_mobile | image_url: width: 600 }} 600w, {{ still_mobile | image_url: width: 900 }} 900w, {{ still_mobile | image_url: width: 1200 }} 1200w"
+                sizes="100vw"
+              >
+            {%- endif -%}
+            {{ still | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', loading: 'eager', fetchpriority: 'high', class: 'nayra-hero__still', alt: image_alt }}
+          </picture>
+        {%- elsif still_mobile != blank -%}
+          {{ still_mobile | image_url: width: 1200 | image_tag: widths: '600, 900, 1200', sizes: '100vw', loading: 'eager', fetchpriority: 'high', class: 'nayra-hero__still', alt: image_alt }}
+        {%- else -%}
+          <nayra-satin class="nayra-hero__satin-fill"{% if section.settings.animate == false %} data-still{% endif %}>
+            <canvas class="nayra-satin__canvas" aria-hidden="true"></canvas>
+          </nayra-satin>
+        {%- endif -%}
+        {%- if video_mobile != blank -%}
+          {{ video_mobile | video_tag: poster: nil, loop: true, muted: true, controls: false, preload: 'none', class: 'nayra-hero__video', data-hero-video: 'mobile' }}
+        {%- endif -%}
+        {%- if video != blank -%}
+          {{ video | video_tag: poster: nil, loop: true, muted: true, controls: false, preload: 'none', class: 'nayra-hero__video', data-hero-video: 'desktop' }}
+        {%- endif -%}
+      </div>
+      <div class="nayra-hero__scrim"></div>
+
+      <div class="nayra-hero__stickers">{{ stickers }}</div>
+      {%- if video != blank or video_mobile != blank -%}
+        <button class="nayra-hero__pause" type="button" aria-pressed="false" aria-label="{{ 'content.nayra.pause_video' | t }}" hidden>
+          {%- render 'nayra-icon', icon: 'pause' -%}
+          {%- render 'nayra-icon', icon: 'play' -%}
+        </button>
       {%- endif -%}
-      <div class="nayra-actions">
-        {%- if section.settings.button_label != blank -%}
-          <a class="nayra-btn nayra-btn--pink" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
-            {{- section.settings.button_label -}}
-            {%- render 'nayra-icon', icon: 'arrow' -%}
-          </a>
+
+      <div class="nayra-wrap nayra-hero__overlay">
+        <{{ heading_tag }} class="nayra-display nayra-hero__title">{{ section.settings.heading }}</{{ heading_tag }}>
+        {%- if section.settings.text != blank -%}
+          <p class="nayra-lede">{{ section.settings.text }}</p>
         {%- endif -%}
-        {%- if whatsapp_url != blank -%}
-          <a class="nayra-btn nayra-btn--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">
-            {{- 'icon-whatsapp.svg' | inline_asset_content -}}
-            {{- section.settings.whatsapp_label -}}
-          </a>
+        {{ actions }}
+      </div>
+    </nayra-hero-media>
+  </div>
+{%- else -%}
+  <div class="nayra nayra-hero">
+    <div class="nayra-wrap nayra-hero__grid">
+      <{{ heading_tag }} class="nayra-display nayra-hero__title">{{ section.settings.heading }}</{{ heading_tag }}>
+
+      <div class="nayra-hero__media{% if image != blank or request.design_mode %} nayra-hero__media--photo{% endif %}">
+        <nayra-satin class="nayra-arch nayra-hero__satin"{% if section.settings.animate == false %} data-still{% endif %}>
+          <canvas class="nayra-satin__canvas" aria-hidden="true"></canvas>
+        </nayra-satin>
+        {%- if image != blank -%}
+          <div class="nayra-arch nayra-hero__photo">
+            {{ image | image_url: width: 1000 | image_tag: widths: '300, 400, 600, 800, 1000', sizes: '(min-width: 990px) 24vw, 52vw', loading: 'eager', fetchpriority: 'high', class: 'nayra-arch__img', alt: image_alt }}
+          </div>
+        {%- elsif request.design_mode -%}
+          <div class="nayra-arch nayra-hero__photo">{% render 'nayra-placeholder', tone: 5 %}</div>
         {%- endif -%}
+        {{ stickers }}
+      </div>
+
+      <div class="nayra-hero__copy">
+        {%- if section.settings.text != blank -%}
+          <p class="nayra-lede">{{ section.settings.text }}</p>
+        {%- endif -%}
+        {{ actions }}
       </div>
     </div>
   </div>
-</div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -69,6 +135,16 @@
   "tag": "section",
   "class": "nayra-section",
   "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "banner", "label": "Full-width banner (photo or video)" },
+        { "value": "arch", "label": "Satin arch" }
+      ],
+      "default": "banner"
+    },
     {
       "type": "inline_richtext",
       "id": "heading",
@@ -109,7 +185,60 @@
     },
     {
       "type": "header",
-      "content": "Satin and photo"
+      "content": "Photo and video"
+    },
+    {
+      "type": "paragraph",
+      "content": "Banner: use a landscape file (16:9) and a portrait file for phones (9:16). Keep the lower left calm, the text sits there. With no photo or video, the banner shows the live satin."
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "info": "Plays muted on a loop. 6 to 10 seconds works best.",
+      "visible_if": "{{ section.settings.layout == 'banner' }}"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video for phones",
+      "visible_if": "{{ section.settings.layout == 'banner' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Photo",
+      "info": "Banner: shown before the video starts, and when visitors turn motion off. Satin arch: shown in an arch over the satin."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Photo for phones",
+      "visible_if": "{{ section.settings.layout == 'banner' }}"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Video framing",
+      "options": [
+        { "value": "20%", "label": "Top" },
+        { "value": "50%", "label": "Center" },
+        { "value": "80%", "label": "Bottom" }
+      ],
+      "default": "50%",
+      "info": "Photos use the focal point set in Shopify Files.",
+      "visible_if": "{{ section.settings.layout == 'banner' }}"
+    },
+    {
+      "type": "range",
+      "id": "overlay",
+      "label": "Darken behind the text",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 50,
+      "visible_if": "{{ section.settings.layout == 'banner' }}"
     },
     {
       "type": "checkbox",
@@ -117,12 +246,6 @@
       "label": "Animate the satin",
       "default": true,
       "info": "The satin always stays still for visitors who turn motion off on their phone."
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Photo",
-      "info": "Shown in an arch over the satin. Portrait photos work best."
     },
     {
       "type": "header",

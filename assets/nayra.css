@@ -523,7 +523,7 @@
   transition: opacity 700ms var(--nayra-out);
 }
 
-.nayra-hero__satin.is-live .nayra-satin__canvas {
+.is-live > .nayra-satin__canvas {
   opacity: 1;
 }
 
@@ -572,6 +572,163 @@
 
 .nayra-hero__copy .nayra-lede {
   margin-top: 0;
+}
+
+/* Hero, full-width banner: the owner's photo or video (or the live satin), headline over a plum scrim */
+
+.nayra.nayra-hero--banner,
+main > .shopify-section:first-child .nayra.nayra-hero--banner {
+  padding-block: 0;
+}
+
+/* Under a transparent header the banner runs behind it; its stickers and pause button step down instead */
+main > .shopify-section:first-child .nayra-hero__banner {
+  --header-offset: calc(var(--header-height, 0px) * var(--transparent-header-offset-boolean, 0));
+}
+
+.nayra-hero__banner {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: end;
+  min-height: clamp(31rem, calc(100svh - 7.5rem), 52rem);
+  overflow: hidden;
+  border-bottom: var(--nayra-line);
+  background: var(--nayra-stage);
+  color: var(--nayra-ground);
+}
+
+.nayra-hero__fill {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+}
+
+.nayra-hero__fill picture,
+.nayra-hero__still,
+.nayra-hero__video,
+.nayra-hero__satin-fill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.nayra-hero__still,
+.nayra-hero__video {
+  object-fit: cover;
+  object-position: 50% var(--media-y, 50%);
+}
+
+.nayra-hero__video {
+  opacity: 0;
+  transition: opacity 700ms var(--nayra-out);
+}
+
+.nayra-hero__video.is-playing {
+  opacity: 1;
+}
+
+.nayra-hero__satin-fill {
+  background:
+    radial-gradient(90% 60% at 28% 22%, color-mix(in srgb, var(--nayra-pink) 45%, #fff) 0, transparent 62%),
+    radial-gradient(80% 70% at 82% 88%, var(--nayra-ink) 0, transparent 72%),
+    linear-gradient(140deg, var(--nayra-pink), color-mix(in srgb, var(--nayra-pink) 55%, var(--nayra-ink)));
+}
+
+.nayra-hero__scrim {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--nayra-ink) var(--scrim-strong, 50%), transparent) 0%,
+    color-mix(in srgb, var(--nayra-ink) var(--scrim-soft, 25%), transparent) 42%,
+    transparent 74%
+  );
+  pointer-events: none;
+}
+
+.nayra-hero__stickers {
+  position: absolute;
+  z-index: 1;
+  top: calc(18px + var(--header-offset, 0px));
+  left: max(var(--nayra-pad), calc((100% - 76rem) / 2));
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+}
+
+.nayra-hero__stickers .nayra-sticker {
+  position: static;
+}
+
+.nayra-hero__pause {
+  position: absolute;
+  z-index: 1;
+  top: calc(16px + var(--header-offset, 0px));
+  right: max(var(--nayra-pad), calc((100% - 76rem) / 2));
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: var(--nayra-line);
+  border-radius: 999px;
+  background: var(--nayra-ground);
+  color: var(--nayra-ink);
+  box-shadow: 3px 3px 0 var(--nayra-ink);
+  cursor: pointer;
+}
+
+.nayra-hero__pause .nayra-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.nayra-hero__pause .nayra-icon:last-child,
+.nayra-hero__pause[aria-pressed='true'] .nayra-icon:first-child {
+  display: none;
+}
+
+.nayra-hero__pause[aria-pressed='true'] .nayra-icon:last-child {
+  display: block;
+}
+
+.nayra-hero__overlay {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  padding-block: 150px 30px;
+}
+
+.nayra-hero--banner .nayra-hero__title {
+  grid-area: auto;
+  max-width: 12ch;
+  color: var(--nayra-ground);
+}
+
+.nayra-hero--banner .nayra-hero__title em {
+  display: inline-block;
+  padding: 0 0.14em 0.04em;
+  border: 2px solid var(--nayra-ink);
+  border-radius: 0.14em;
+  background: var(--nayra-sun);
+  color: var(--nayra-sun-ink);
+  box-shadow: 4px 4px 0 var(--nayra-ink);
+  rotate: -2deg;
+}
+
+.nayra-hero--banner .nayra-lede {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--nayra-ground);
+}
+
+.nayra-hero--banner .nayra-actions {
+  width: 100%;
+  margin-top: 6px;
 }
 
 /* Clear a transparent header when the hero is the first section */
@@ -1386,6 +1543,26 @@ main > .shopify-section:first-child .nayra-hero {
     --arch-h: 4.6;
   }
 
+  .nayra-hero__banner {
+    min-height: clamp(34rem, calc(100svh - 8rem), 56rem);
+  }
+
+  .nayra-hero__overlay {
+    padding-block: 200px 64px;
+  }
+
+  .nayra-hero--banner .nayra-actions {
+    width: auto;
+  }
+
+  .nayra-hero__stickers {
+    top: calc(28px + var(--header-offset, 0px));
+  }
+
+  .nayra-hero__pause {
+    top: calc(26px + var(--header-offset, 0px));
+  }
+
   .nayra-stage {
     padding-block: 88px 80px;
   }
@@ -1539,7 +1716,8 @@ main > .shopify-section:first-child .nayra-hero {
   .nayra-card__arch,
   .nayra-print,
   .nayra-link .nayra-icon,
-  .nayra-satin__canvas {
+  .nayra-satin__canvas,
+  .nayra-hero__video {
     transition: none;
   }
 
