@@ -1,0 +1,445 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T14:50:04+00:00",
+  "title": "Design System: Nayra",
+  "extensions": {
+    "colorMeta": {
+      "onyx-ground": {
+        "role": "neutral",
+        "displayName": "Onyx Ground",
+        "canonical": "settings.color_palette.background",
+        "tonalRamp": [
+          "#0c0b0c",
+          "#252425",
+          "#403f40",
+          "#5e5d5e",
+          "#7e7d7e",
+          "#9f9e9f",
+          "#c5c3c5",
+          "#efeeef"
+        ]
+      },
+      "pearl": {
+        "role": "neutral",
+        "displayName": "Pearl",
+        "canonical": "settings.color_palette.foreground",
+        "tonalRamp": [
+          "#0d0a0b",
+          "#262324",
+          "#423e40",
+          "#605c5e",
+          "#807c7e",
+          "#a19d9f",
+          "#c7c2c4",
+          "#f2edef"
+        ]
+      },
+      "deep-onyx": {
+        "role": "neutral",
+        "displayName": "Deep Onyx",
+        "canonical": "settings.nayra_deep (= palette color1)",
+        "tonalRamp": [
+          "#0c0b0c",
+          "#252425",
+          "#403f40",
+          "#5e5d5e",
+          "#7e7d7e",
+          "#9f9e9f",
+          "#c5c3c5",
+          "#efeeef"
+        ]
+      },
+      "raised-onyx": {
+        "role": "neutral",
+        "displayName": "Raised Onyx",
+        "canonical": "settings.nayra_raised",
+        "tonalRamp": [
+          "#0c0a0c",
+          "#252325",
+          "#413f41",
+          "#5f5d5f",
+          "#7f7c7f",
+          "#a09da0",
+          "#c6c3c6",
+          "#f0edf0"
+        ]
+      },
+      "smoke": {
+        "role": "neutral",
+        "displayName": "Smoke",
+        "canonical": "settings.color_palette.color2",
+        "tonalRamp": [
+          "#0d0a0d",
+          "#262326",
+          "#423e42",
+          "#605c60",
+          "#7f7c7f",
+          "#a19da1",
+          "#c6c3c6",
+          "#f1edf1"
+        ]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Ash",
+        "canonical": "settings.color_palette.color3",
+        "tonalRamp": [
+          "#0d0a0c",
+          "#272325",
+          "#433e41",
+          "#615c5f",
+          "#817b7f",
+          "#a29da0",
+          "#c8c2c5",
+          "#f2ecf0"
+        ]
+      },
+      "silver": {
+        "role": "neutral",
+        "displayName": "Silver",
+        "canonical": "settings.nayra_silver",
+        "tonalRamp": [
+          "#0c0b0b",
+          "#252324",
+          "#413f40",
+          "#5f5d5e",
+          "#7e7d7d",
+          "#a09e9f",
+          "#c5c3c4",
+          "#f0eeef"
+        ]
+      },
+      "blush": {
+        "role": "primary",
+        "displayName": "Blush",
+        "canonical": "settings.nayra_blush",
+        "tonalRamp": [
+          "#21000b",
+          "#400f23",
+          "#602c3f",
+          "#824a5d",
+          "#a4697c",
+          "#c88a9d",
+          "#f0afc3",
+          "#ffd9ed"
+        ]
+      },
+      "blush-ink": {
+        "role": "primary",
+        "displayName": "Blush Ink",
+        "canonical": "settings.nayra_blush_ink",
+        "tonalRamp": [
+          "#0c0b0c",
+          "#252425",
+          "#403f40",
+          "#5e5d5e",
+          "#7e7d7e",
+          "#9f9e9f",
+          "#c5c3c5",
+          "#efeeef"
+        ]
+      },
+      "rose": {
+        "role": "secondary",
+        "displayName": "Rose",
+        "canonical": "settings.nayra_rose",
+        "tonalRamp": [
+          "#2a000b",
+          "#4b0024",
+          "#6e1b3f",
+          "#913c5d",
+          "#b55c7d",
+          "#da7d9e",
+          "#ffa3c3",
+          "#ffcdee"
+        ]
+      },
+      "soft-pearl": {
+        "role": "neutral",
+        "displayName": "Soft Pearl",
+        "canonical": "color-mix(in srgb, var(--nayra-ink) 70%, var(--nayra-ground))",
+        "tonalRamp": [
+          "#0d0a0c",
+          "#262325",
+          "#423f40",
+          "#605c5e",
+          "#807c7e",
+          "#a19d9f",
+          "#c7c3c5",
+          "#f1edef"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "color-mix(in srgb, var(--nayra-ink) 14%, transparent) over the ground",
+        "tonalRamp": [
+          "#0c0b0b",
+          "#252324",
+          "#413f40",
+          "#5f5d5e",
+          "#7f7c7e",
+          "#a09d9f",
+          "#c6c3c4",
+          "#f0edef"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only; 44px on a 390px phone, max 11ch. The Darija word is blush italic with the twinkling sparkle."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles; closing band up to 4.25rem."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Step titles. Tile names (1.375 to 2.25rem) and the ticket total (1.75rem) use the same face."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Ledes (max 42ch, Soft Pearl) and story text (1.0625rem, 1.7, max 46ch)."
+      },
+      "body-small": {
+        "displayName": "Body small",
+        "purpose": "Card names, prices, ticket rows. Numbers use tabular lining figures."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons and text links, uppercase."
+      },
+      "label-small": {
+        "displayName": "Label small",
+        "purpose": "Badges, ticker items, ticket row names, uppercase, 0.14 to 0.18em."
+      }
+    },
+    "shadows": [],
+    "surfaces": [
+      {
+        "name": "chrome-ring",
+        "value": "conic-gradient(from 210deg, pearl, silver/deep 55% at 22%, pearl/silver 85% at 42%, silver/deep 70% at 64%, pearl 84%) on a ::before layer, 1px padding, masked to a hairline",
+        "purpose": "The logo ring around icons, step numbers, round buttons and the outfit floor."
+      },
+      {
+        "name": "blush-light",
+        "value": "radial-gradient(closest-side, color-mix(in srgb, blush 11-22%, transparent), transparent)",
+        "purpose": "Soft light pools that give depth instead of shadows: hero satin, outfit floor, feature photo, closing seal."
+      },
+      {
+        "name": "hero-scrim",
+        "value": "linear-gradient(to top, deep at 60%, deep at 33% by 38%, transparent 70%)",
+        "purpose": "Keeps hero text legible over video or photo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "nayra-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one easing curve for every transition."
+      },
+      {
+        "name": "press",
+        "value": "160ms",
+        "purpose": "Press scale: buttons 0.98, rings 0.94."
+      },
+      {
+        "name": "state",
+        "value": "200-240ms",
+        "purpose": "Color, border and underline changes."
+      },
+      {
+        "name": "image-zoom",
+        "value": "900ms",
+        "purpose": "Photo scales to 1.035 on hover-capable screens."
+      },
+      {
+        "name": "thread-trace",
+        "value": "1100ms",
+        "purpose": "Silver hairline traces around the selected outfit."
+      },
+      {
+        "name": "ticker-loop",
+        "value": "40s linear infinite",
+        "purpose": "Ticker marquee; pausable, pauses off screen and on hover."
+      },
+      {
+        "name": "twinkle",
+        "value": "5.2s infinite",
+        "purpose": "Hero sparkle and closing logo glint."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Stops satin, ticker, sparkles, 3D turn and hero video. Everything stays visible."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "max-width 749px"
+      },
+      {
+        "name": "tablet",
+        "value": "750px"
+      },
+      {
+        "name": "desktop",
+        "value": "990px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Blush pill, the one action color. Main buy or go action.",
+      "html": "<button class=\"ds-btn ds-btn-blush\">Voir la collection</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 28px;border:1px solid transparent;border-radius:999px;font:500 13px/1.15 Jost,sans-serif;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background-color 240ms cubic-bezier(0.16,1,0.3,1),border-color 240ms cubic-bezier(0.16,1,0.3,1),transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-btn:active{transform:scale(0.98)}.ds-btn:focus-visible{outline:2px solid #e3a3b7;outline-offset:3px}.ds-btn-blush{background:#e3a3b7;border-color:#e3a3b7;color:#121112}.ds-btn-blush:hover{background:color-mix(in srgb,#e3a3b7 76%,#f6f1f3);border-color:color-mix(in srgb,#e3a3b7 76%,#f6f1f3)}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Silver-outlined pill for the second action, usually WhatsApp.",
+      "html": "<button class=\"ds-btn ds-btn-ghost\">Commander sur WhatsApp</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 28px;border:1px solid transparent;border-radius:999px;font:500 13px/1.15 Jost,sans-serif;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background-color 240ms cubic-bezier(0.16,1,0.3,1),border-color 240ms cubic-bezier(0.16,1,0.3,1),transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-btn:active{transform:scale(0.98)}.ds-btn:focus-visible{outline:2px solid #e3a3b7;outline-offset:3px}.ds-btn-ghost{background:transparent;border-color:rgba(162,160,161,0.75);color:#f6f1f3}.ds-btn-ghost:hover{border-color:#f6f1f3;background:rgba(246,241,243,0.07)}"
+    },
+    {
+      "name": "Ring Button",
+      "kind": "custom",
+      "refersTo": "ring-button",
+      "description": "44px circle in the logo's silver chrome ring. Quick add, prev/next, pause.",
+      "html": "<button class=\"ds-ring\" aria-label=\"Ajouter\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"><path d=\"M12 5.5v13M5.5 12h13\"/></svg></button>",
+      "css": ".ds-ring{position:relative;display:inline-grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:#121112;color:#f6f1f3;cursor:pointer;transition:color 200ms cubic-bezier(0.16,1,0.3,1),transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-ring::before{content:'';position:absolute;inset:0;padding:1px;border-radius:inherit;background:conic-gradient(from 210deg,#f6f1f3,#5f5d5e 22%,#e3dfe1 42%,#747273 64%,#f6f1f3 84%,#f6f1f3);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none}.ds-ring:hover{color:#e3a3b7}.ds-ring:active{transform:scale(0.94)}.ds-ring:focus-visible{outline:2px solid #e3a3b7;outline-offset:3px}.ds-ring svg{width:20px;height:20px}"
+    },
+    {
+      "name": "Size Buttons",
+      "kind": "chip",
+      "refersTo": "size-button",
+      "description": "44px pills. Selected fills pearl; sold out is dashed with a rose strike.",
+      "html": "<div class=\"ds-sizes\"><button class=\"ds-size\">S</button><button class=\"ds-size\" aria-checked=\"true\">M</button><button class=\"ds-size ds-size-out\">L</button></div>",
+      "css": ".ds-sizes{display:flex;gap:8px}.ds-size{min-width:44px;height:44px;padding:0 12px;border:1px solid rgba(162,160,161,0.6);border-radius:999px;background:transparent;color:#f6f1f3;font:500 13px/1 Jost,sans-serif;letter-spacing:0.04em;cursor:pointer;transition:background-color 200ms,border-color 200ms}.ds-size:hover{border-color:#f6f1f3}.ds-size[aria-checked='true']{background:#f6f1f3;border-color:#f6f1f3;color:#121112}.ds-size-out{border-style:dashed;color:#b2aeb0;text-decoration:line-through;text-decoration-color:#e481a4}.ds-size:focus-visible{outline:2px solid #e3a3b7;outline-offset:3px}"
+    },
+    {
+      "name": "Badges",
+      "kind": "chip",
+      "refersTo": "badge-sale",
+      "description": "Pill badges: pearl with rose sparkle for new, rose for sale, smoke outline for sold out.",
+      "html": "<div class=\"ds-badges\"><span class=\"ds-badge ds-badge-pearl\"><svg viewBox=\"0 0 24 24\" fill=\"#e481a4\"><path d=\"M12 1c.5 6.2 4.8 10.5 11 11-6.2.5-10.5 4.8-11 11-.5-6.2-4.8-10.5-11-11 6.2-.5 10.5-4.8 11-11z\"/></svg>Nouveau</span><span class=\"ds-badge ds-badge-rose\">-20%</span><span class=\"ds-badge ds-badge-smoke\">Épuisé</span></div>",
+      "css": ".ds-badges{display:flex;gap:8px}.ds-badge{display:inline-flex;align-items:center;gap:6px;min-height:26px;padding:5px 11px;border-radius:999px;font:500 11px/1 Jost,sans-serif;letter-spacing:0.14em;text-transform:uppercase}.ds-badge svg{width:11px;height:11px}.ds-badge-pearl{background:#f6f1f3;color:#121112}.ds-badge-rose{background:#e481a4;color:#121112}.ds-badge-smoke{border:1px solid #323031;background:rgba(18,17,18,0.86);color:#f6f1f3}"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "photo-frame",
+      "description": "Square-cut 4:5 frame (satin placeholder until a photo), name, price, ring quick add.",
+      "html": "<article class=\"ds-card\"><span class=\"ds-frame\"></span><span class=\"ds-card-title\">Set manches longues</span><div class=\"ds-card-meta\"><span class=\"ds-price\">329,00 DH</span><button class=\"ds-ring\" aria-label=\"Ajouter\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"><path d=\"M12 5.5v13M5.5 12h13\"/></svg></button></div></article>",
+      "css": ".ds-ring{position:relative;display:inline-grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:#121112;color:#f6f1f3;cursor:pointer;transition:color 200ms cubic-bezier(0.16,1,0.3,1),transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-ring::before{content:'';position:absolute;inset:0;padding:1px;border-radius:inherit;background:conic-gradient(from 210deg,#f6f1f3,#5f5d5e 22%,#e3dfe1 42%,#747273 64%,#f6f1f3 84%,#f6f1f3);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none}.ds-ring:hover{color:#e3a3b7}.ds-ring:active{transform:scale(0.94)}.ds-ring:focus-visible{outline:2px solid #e3a3b7;outline-offset:3px}.ds-ring svg{width:20px;height:20px}.ds-card{display:grid;gap:12px;width:180px;color:#f6f1f3;font-family:Jost,sans-serif}.ds-frame{display:block;aspect-ratio:4/5;border-radius:2px;background:radial-gradient(130% 75% at 88% 0%,rgba(227,163,183,0.22),transparent 64%),linear-gradient(160deg,#1b191b,#0b0a0b)}.ds-card-title{font-size:15px;line-height:1.35;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:0.3em;transition:text-decoration-color 200ms}.ds-card:hover .ds-card-title{text-decoration-color:currentColor}.ds-card-meta{display:flex;align-items:center;justify-content:space-between}.ds-price{font:500 15px/1.2 Jost,sans-serif;font-variant-numeric:tabular-nums lining-nums}"
+    },
+    {
+      "name": "Order Ticket",
+      "kind": "card",
+      "refersTo": "order-ticket",
+      "description": "Raised onyx panel with hairline rows, Bodoni total and full-width pills.",
+      "html": "<div class=\"ds-ticket\"><p class=\"ds-row ds-top\"><span>Ta commande</span><span>1 / 4</span></p><p class=\"ds-row\"><span>Pièce</span><strong>Set manches longues</strong></p><p class=\"ds-row ds-total\"><span>Total</span><span class=\"ds-num\">329,00 DH</span></p><button class=\"ds-tbtn\">Ajouter au panier</button></div>",
+      "css": ".ds-ticket{display:grid;gap:14px;width:320px;padding:20px 20px 24px;border:1px solid #323031;border-radius:4px;background:#1b191b;color:#f6f1f3;font:400 15px/1.4 Jost,sans-serif}.ds-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin:0}.ds-row>span:first-child,.ds-top{color:#b2aeb0;font:500 11px/1.2 Jost,sans-serif;letter-spacing:0.16em;text-transform:uppercase}.ds-row strong{font-weight:500}.ds-top{padding-bottom:14px;border-bottom:1px solid #323031}.ds-total{padding-top:14px;border-top:1px solid #323031}.ds-num{font:500 28px/1 'Bodoni Moda',serif}.ds-tbtn{min-height:52px;border:0;border-radius:999px;background:#e3a3b7;color:#121112;font:500 13px/1.15 Jost,sans-serif;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer}.ds-tbtn:hover{background:color-mix(in srgb,#e3a3b7 76%,#f6f1f3)}.ds-tbtn:focus-visible{outline:2px solid #e3a3b7;outline-offset:3px}"
+    },
+    {
+      "name": "Ticker",
+      "kind": "nav",
+      "description": "44px band above the header with sparkle separators and a pause button. The only marquee.",
+      "html": "<div class=\"ds-ticker\"><div class=\"ds-tk-view\"><span>Paiement à la livraison</span><svg viewBox=\"0 0 24 24\" fill=\"#e3a3b7\"><path d=\"M12 1c.5 6.2 4.8 10.5 11 11-6.2.5-10.5 4.8-11 11-.5-6.2-4.8-10.5-11-11 6.2-.5 10.5-4.8 11-11z\"/></svg><span>Confirmation sur WhatsApp</span></div><button class=\"ds-tk-pause\" aria-label=\"Pause\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><rect x=\"7\" y=\"5.5\" width=\"3\" height=\"13\" rx=\"1\"/><rect x=\"14\" y=\"5.5\" width=\"3\" height=\"13\" rx=\"1\"/></svg></button></div>",
+      "css": ".ds-ticker{display:flex;align-items:center;min-height:44px;width:360px;border-bottom:1px solid #323031;background:#1b191b;color:#f6f1f3}.ds-tk-view{display:flex;flex:1;align-items:center;gap:28px;overflow:hidden;padding-left:16px;font:500 11px/1 Jost,sans-serif;letter-spacing:0.18em;text-transform:uppercase;white-space:nowrap}.ds-tk-view svg{flex:none;width:10px;height:10px}.ds-tk-pause{display:grid;place-items:center;width:44px;height:44px;border:0;background:transparent;color:inherit;cursor:pointer}.ds-tk-pause svg{width:14px;height:14px}.ds-tk-pause:focus-visible{outline:2px solid #e3a3b7;outline-offset:-3px}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "nav",
+      "description": "Tracked capitals with a silver underline that turns blush on hover.",
+      "html": "<a class=\"ds-link\" href=\"#\">Tout voir</a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;min-height:44px;color:#f6f1f3;font:500 13px/1 Jost,sans-serif;letter-spacing:0.14em;text-transform:uppercase;text-decoration:underline;text-decoration-color:rgba(162,160,161,0.6);text-decoration-thickness:1px;text-underline-offset:0.55em;transition:color 200ms,text-decoration-color 200ms}.ds-link:hover{color:#e3a3b7;text-decoration-color:currentColor}.ds-link:focus-visible{outline:2px solid #e3a3b7;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Boutique",
+    "overview": "**Creative North Star: \"The Night Boutique\"**\n\nThe site is the Nayra logo turned into a shop after dark. The ground is the logo's own black. Text is a warm pearl. The logo's silver ring and blush N come back as thin silver circles, blush buttons and a four-point sparkle. Black satin under blush light fills every empty frame until the owner adds photos. It is built for a phone at night, in dark mode, opened from Instagram or TikTok.\n\nThe page is calm and tall. Big Bodoni headlines, generous space between sections, square-cut photo frames at 4:5, and small tracked capital labels. Depth comes from layers of black (ground, raised, deep) and soft blush light, never from shadows. Motion is slow and quiet: the satin ripples, the ticker drifts, sparkles twinkle, outfits turn on a ring. All of it stops when the phone asks for reduced motion.\n\nThis world replaces an earlier light pink-and-yellow look. Nothing from that look remains. It rejects the cream editorial store (cream, burgundy, Playfair) and the neon gym (black with an acid accent and condensed capitals).\n\nAll colors and fonts are owner settings. Page background and text come from Horizon's color palette, fonts from Typography, and the accents from the \"Nayra style\" group in Theme settings. Every product, price, photo and text comes from the Shopify admin. Customize through Horizon's own settings and the Nayra sections. Never rewrite Horizon's core snippets.",
+    "keyCharacteristics": [
+      "Logo black ground (#121112) with pearl text, in dark color-scheme.",
+      "Blush pill buttons: the only action color.",
+      "Thin silver chrome rings around icons, step numbers and round buttons.",
+      "Square-cut 4:5 photo frames with a 2px radius.",
+      "Bodoni Moda headlines, Jost for everything else.",
+      "No shadows, no glass. Depth from stacked blacks and blush light.",
+      "Dark satin swatches as placeholders until real photos arrive."
+    ],
+    "rules": [
+      {
+        "name": "The One Action Color Rule",
+        "body": "Blush is the only color that means \"tap here to buy or go\". Secondary actions are silver-outlined ghost pills. If a new page needs a second action color, it is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Rose Is Sale Rule",
+        "body": "Rose appears only where money is saved or stock is gone: sale price, sale badge, unavailable size. It never decorates.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hero Italic Rule",
+        "body": "Blush italic appears only in the hero headline, on the Darija word, where the twinkling sparkle sits. Other headlines stay upright pearl, even though their fields accept italics.",
+        "section": "typography"
+      },
+      {
+        "name": "The Bodoni For Voice Rule",
+        "body": "Bodoni is for headlines, tile names, step numbers and the order total. Buttons, labels, prices and body text are always Jost.",
+        "section": "typography"
+      },
+      {
+        "name": "The 44px Rule",
+        "body": "Every tap target is at least 44x44px: buttons are 52px tall, ring buttons, size buttons, chips, links and the ticker pause button are 44px. Hover is a bonus only, behind a hover-capable media query.",
+        "section": "layout"
+      },
+      {
+        "name": "The No Shadow Rule",
+        "body": "Nothing casts a shadow. To lift a surface, move it one step lighter (Raised Onyx) and give it a hairline. Shadows in the review screenshots come from the preview harness, not the theme.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Logo Ring Rule",
+        "body": "Icons, step numbers and round buttons sit inside a thin 1px silver chrome ring. The ring is a conic silver gradient drawn on a ::before layer and masked to a hairline, so the button's own fill stays clean. The outfit floor uses the same ring, flattened into an ellipse.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Sparkle Rule",
+        "body": "The four-point sparkle is the logo's mark. It appears as ticker separators, on the \"Nouveau\" badge, as a glint on the feature photo and the selected outfit, and on the closing logo. It is a filled SVG, never a text glyph.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Still Night Rule",
+        "body": "Reduced motion stops the satin, the ticker, the sparkles and the 3D turn, and the hero video does not play. Everything stays put and fully visible.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do take every color and font from Theme settings (palette, Typography, \"Nayra style\"), never hard-coded hex in a section.",
+      "Do use Blush for the one main action per area and a silver ghost pill for the second.",
+      "Do keep photos in 4:5 square-cut frames with the 2px radius, and show the satin placeholder when a photo is missing.",
+      "Do put round icons and step numbers inside the 1px silver chrome ring.",
+      "Do make every tap target at least 44x44px and check each page at 390x844 first.",
+      "Do load the first large image eagerly and lazy-load the rest, with dimensions set.",
+      "Do build new pages from Horizon's settings, sections and blocks plus Nayra sections, not by rewriting core snippets.",
+      "Do stop all motion under reduced motion, and give any moving element a pause."
+    ],
+    "donts": [
+      "Don't add box shadows, hard offset shadows, glass or blur. Lift with Raised Onyx and a hairline.",
+      "Don't use Rose for anything but sale prices, the sale badge and unavailable sizes.",
+      "Don't use blush italic outside the hero headline's Darija word.",
+      "Don't add a second marquee. The ticker is the only one.",
+      "Don't round photo frames into soft cards, or square off buttons.",
+      "Don't put small tracked labels above headlines as kickers or eyebrows.",
+      "Don't bring back the old light pink-and-yellow look, cream and burgundy, or neon accents with condensed capitals.",
+      "Don't write product names, prices, reviews or photos into the theme. They come from the Shopify admin."
+    ]
+  }
+}
