@@ -1,0 +1,98 @@
+{%- liquid
+  assign logo_alt = shop.name | escape
+  assign whatsapp_url = ''
+  if section.settings.whatsapp_label != blank
+    capture whatsapp_url
+      render 'whatsapp-url', message: section.settings.whatsapp_message
+    endcapture
+    if whatsapp_url == blank and request.design_mode
+      assign whatsapp_url = '#'
+    endif
+  endif
+-%}
+
+<div class="nayra nayra-close">
+  <div class="nayra-wrap nayra-close__inner">
+    <div class="nayra-close__seal">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 600 | image_tag: widths: '240, 360, 480, 600', sizes: '(min-width: 990px) 15rem, 11rem', loading: 'lazy', class: 'nayra-close__logo', alt: logo_alt }}
+      {%- else -%}
+        <img class="nayra-close__logo" src="{{ 'nayra-logo.webp' | asset_url }}" width="440" height="440" loading="lazy" alt="{{ logo_alt }}">
+        <span class="nayra-close__glint" aria-hidden="true">{%- render 'nayra-icon', icon: 'sparkle' -%}</span>
+      {%- endif -%}
+    </div>
+    <h2 class="nayra-display nayra-close__title">{{ section.settings.heading }}</h2>
+    {%- if section.settings.text != blank -%}
+      <p class="nayra-lede nayra-close__lede">{{ section.settings.text }}</p>
+    {%- endif -%}
+    <div class="nayra-actions">
+      {%- if section.settings.button_label != blank -%}
+        <a class="nayra-btn nayra-btn--blush" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+      {%- if whatsapp_url != blank -%}
+        <a class="nayra-btn nayra-btn--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">
+          {{- 'icon-whatsapp.svg' | inline_asset_content -}}
+          {{- section.settings.whatsapp_label -}}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Nayra closing band",
+  "tag": "section",
+  "class": "nayra-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Leave empty to show the Nayra logo. Use a version on a transparent or black background."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Yallah, l'salle katsennak."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Choisis ta tenue, on confirme sur WhatsApp, tu paies à la livraison."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Voir la collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_label",
+      "label": "WhatsApp button label",
+      "default": "Une question\u00a0? WhatsApp",
+      "info": "Shown when a WhatsApp number is set in Theme settings."
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_message",
+      "label": "WhatsApp message",
+      "default": "Salam, j'ai une question."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nayra closing band"
+    }
+  ]
+}
+{% endschema %}

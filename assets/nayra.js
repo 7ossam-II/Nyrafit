@@ -1,12 +1,11 @@
 /*
   Nayra sections:
-  - nayra-satin: the hero's live satin, drawn with a small WebGL shader. It ripples under the finger,
+  - nayra-satin: the hero's live black satin, drawn with a small WebGL shader. It ripples under the finger,
     drifts with scroll, pauses off screen and stays still when motion is reduced.
   - nayra-hero-media: the banner's phone or desktop video, started only when it can be seen and motion is allowed.
   - nayra-ticker: pause button and off-screen pause for the moving band.
   - nayra-tbdila: the outfit nearest the middle of the rail is the selected one; outfits turn in 3D by
     their distance from the middle, and the order ticket (name, sizes, price, add to cart, WhatsApp) follows.
-  - Stickers slap on once when they come into view.
 */
 
 (() => {
@@ -201,16 +200,18 @@
         return this.hasAttribute('data-still') || reduceMotion.matches || (this.software && !window.nayraAllowSoftwareGL);
       }
 
+      /** Black satin under a blush light, from the theme's colors. */
       setColors() {
         const style = getComputedStyle(this);
-        const ink = parseColor(style.getPropertyValue('--nayra-ink'), [0.16, 0.06, 0.14]);
-        const pink = parseColor(style.getPropertyValue('--nayra-pink'), [0.82, 0.09, 0.42]);
-        const sun = parseColor(style.getPropertyValue('--nayra-sun'), [1, 0.82, 0.25]);
+        const deep = parseColor(style.getPropertyValue('--nayra-deep'), [0.04, 0.04, 0.04]);
+        const raised = parseColor(style.getPropertyValue('--nayra-raised'), [0.11, 0.1, 0.11]);
+        const blush = parseColor(style.getPropertyValue('--nayra-blush'), [0.89, 0.64, 0.72]);
+        const pearl = parseColor(style.getPropertyValue('--nayra-ink'), [0.96, 0.95, 0.95]);
         const { gl, uniforms } = this;
-        gl.uniform3fv(uniforms.uDeep, mixColor(ink, pink, 0.32));
-        gl.uniform3fv(uniforms.uMid, pink);
-        gl.uniform3fv(uniforms.uLight, mixColor(pink, [1, 1, 1], 0.55));
-        gl.uniform3fv(uniforms.uSheen, mixColor(sun, [1, 1, 1], 0.2));
+        gl.uniform3fv(uniforms.uDeep, deep);
+        gl.uniform3fv(uniforms.uMid, mixColor(raised, blush, 0.1));
+        gl.uniform3fv(uniforms.uLight, mixColor(blush, deep, 0.55));
+        gl.uniform3fv(uniforms.uSheen, mixColor(pearl, blush, 0.35));
       }
 
       follow(event, strength) {
@@ -713,30 +714,4 @@
 
     customElements.define('nayra-tbdila', NayraTbdila);
   }
-
-  /* Stickers */
-
-  const stickerObserver =
-    'IntersectionObserver' in window
-      ? new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (!entry.isIntersecting) continue;
-              entry.target.classList.add('is-in');
-              stickerObserver.unobserve(entry.target);
-            }
-          },
-          { rootMargin: '0px 0px -8% 0px' }
-        )
-      : null;
-
-  const watchStickers = (root) => {
-    root.querySelectorAll('.nayra-sticker:not(.is-in)').forEach((sticker) => {
-      if (stickerObserver) stickerObserver.observe(sticker);
-      else sticker.classList.add('is-in');
-    });
-  };
-
-  watchStickers(document);
-  document.addEventListener('shopify:section:load', (event) => watchStickers(event.target));
 })();

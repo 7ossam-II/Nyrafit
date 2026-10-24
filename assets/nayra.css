@@ -1,394 +1,418 @@
 /*
-  Nayra sections: B's outlines, pop shadows, stickers and ticker bands on a rose-white page,
-  with C's arches, gold thread and the velvet stage for the 3D outfit swiper.
-  Page background and ink come from the theme palette; accents from Theme settings > Nayra style.
+  Nayra · Onyx night
+  The logo's own black for the ground, pearl text, blush for actions, rose for sale,
+  silver hairlines and rings like the logo's ring, and its four-point sparkle.
+  Colors come from Theme settings (snippets/nayra-theme.liquid); fonts from Typography.
   Mobile first; layouts widen at 750px and 990px like the rest of Horizon.
 */
 
-/* Surfaces: each one derives its soft text, hairlines and raised fill from its own colors */
-
-.nayra,
-.nayra-stage,
-.nayra-ticket,
-.nayra-banner__card {
-  --nayra-soft: color-mix(in srgb, var(--nayra-fg) 74%, var(--nayra-bg));
-  --nayra-hair: color-mix(in srgb, var(--nayra-fg) 24%, var(--nayra-bg));
-  --nayra-raised: color-mix(in srgb, var(--nayra-fg) 7%, var(--nayra-bg));
-  --nayra-pop: 4px 4px 0 var(--nayra-pop-color);
+@property --nayra-sweep {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
 }
 
 .nayra {
-  --nayra-bg: var(--nayra-ground);
-  --nayra-fg: var(--nayra-ink);
-  --nayra-line: 2px solid var(--nayra-ink);
-  --nayra-pop-color: var(--nayra-ink);
-  --nayra-focus: var(--nayra-ink);
-  --nayra-pad: 20px;
-  --nayra-foot: 14px;
+  --nayra-gutter: clamp(1.25rem, 0.75rem + 2.4vw, 2.5rem);
+  --nayra-gap: clamp(4rem, 2.8rem + 5vw, 7.5rem);
+  --nayra-soft: color-mix(in srgb, var(--nayra-ink) 70%, var(--nayra-ground));
+  --nayra-line: color-mix(in srgb, var(--nayra-ink) 14%, transparent);
+  --nayra-radius: 2px;
+  --nayra-chrome: conic-gradient(
+    from 210deg,
+    var(--nayra-ink),
+    color-mix(in srgb, var(--nayra-silver) 55%, var(--nayra-deep)) 22%,
+    color-mix(in srgb, var(--nayra-ink) 85%, var(--nayra-silver)) 42%,
+    color-mix(in srgb, var(--nayra-silver) 70%, var(--nayra-deep)) 64%,
+    var(--nayra-ink) 84%,
+    var(--nayra-ink)
+  );
+  --nayra-sparkle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1c.5 6.2 4.8 10.5 11 11-6.2.5-10.5 4.8-11 11-.5-6.2-4.8-10.5-11-11 6.2-.5 10.5-4.8 11-11z'/%3E%3C/svg%3E");
 
-  display: block;
-  padding-block: 48px;
-  color: var(--nayra-fg);
-  font-family: var(--font-body--family);
-  font-size: 1rem;
-  line-height: 1.55;
+  color: var(--nayra-ink);
+  font-family: var(--nayra-text);
+}
+
+.nayra *,
+.nayra *::before,
+.nayra *::after {
+  box-sizing: border-box;
 }
 
 .nayra :focus-visible {
-  outline: 3px solid var(--nayra-focus);
+  outline: 2px solid var(--nayra-focus, var(--nayra-blush));
   outline-offset: 3px;
 }
 
 .nayra-wrap {
-  width: min(100% - 2 * var(--nayra-pad), 76rem);
+  width: min(100% - 2 * var(--nayra-gutter), 84rem);
   margin-inline: auto;
+}
+
+.nayra-block {
+  padding-block-start: var(--nayra-gap);
+}
+
+.nayra-icon {
+  display: block;
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 /* Type */
 
 .nayra-display {
   margin: 0;
-  color: inherit;
   font-family: var(--nayra-display);
+  font-weight: var(--font-heading--weight, 500);
   font-style: normal;
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.015em;
-  text-transform: none;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
   text-wrap: balance;
 }
 
 .nayra-display em {
-  padding-inline: 0.06em;
-  background: linear-gradient(transparent 56%, var(--nayra-sun) 56% 92%, transparent 92%);
-  font-style: normal;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  color: var(--nayra-blush);
+  font-style: italic;
 }
 
 .nayra-section-title {
-  font-size: clamp(2.25rem, 1.35rem + 3.8vw, 3.9rem);
+  font-size: clamp(2.25rem, 1.6rem + 2.8vw, 4rem);
 }
 
 .nayra-lede {
-  max-width: 40ch;
-  margin: 14px 0 0;
+  max-width: 42ch;
+  margin: 0;
   color: var(--nayra-soft);
-  font-size: 1.0625rem;
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.6;
   text-wrap: pretty;
 }
 
-.nayra-lede a {
-  color: var(--nayra-fg);
-  text-decoration-color: var(--nayra-pink);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.2em;
+.nayra-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-bottom: clamp(1.75rem, 1.25rem + 1.6vw, 3rem);
 }
 
-.nayra-mono {
-  font-family: var(--nayra-mono);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0;
-}
-
-.nayra-icon {
-  width: 20px;
-  height: 20px;
-  flex: none;
-}
-
-/* Arch frame: a full half-circle top on any width, with a small rounded foot */
-
-.nayra-arch {
-  --arch-w: 3;
-  --arch-h: 4;
-  --arch-top: calc(50% * var(--arch-w) / var(--arch-h));
-
-  position: relative;
-  display: block;
-  overflow: hidden;
-  isolation: isolate;
-  aspect-ratio: var(--arch-w) / var(--arch-h);
-  border-radius: 50% 50% var(--nayra-foot) var(--nayra-foot) / var(--arch-top) var(--arch-top) var(--nayra-foot) var(--nayra-foot);
-  background: var(--nayra-raised);
-}
-
-.nayra-arch__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
-}
-
-/* Fabric swatch shown until a photo is added */
-
-.nayra-swatch {
-  position: absolute;
-  inset: 0;
+.nayra-head__copy {
   display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 10px;
-  background-color: var(--swatch);
-  background-image:
-    radial-gradient(130% 90% at 24% 14%, rgb(255 255 255 / 0.34), transparent 56%),
-    linear-gradient(118deg, transparent 38%, rgb(0 0 0 / 0.12) 62%, transparent 80%);
-  color: var(--swatch-ink);
+  gap: 0.875rem;
+  max-width: 44rem;
 }
 
-.nayra-swatch .nayra-icon {
-  width: 30%;
-  max-width: 76px;
-  height: auto;
-  opacity: 0.6;
-}
-
-.nayra-swatch__label {
-  padding: 6px 10px;
-  border: 1.5px dashed currentColor;
-  border-radius: 999px;
-  font: 700 0.7rem/1 var(--nayra-mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.nayra-swatch--pink {
-  --swatch: var(--nayra-pink);
-  --swatch-ink: var(--nayra-pink-ink);
-}
-
-.nayra-swatch--sun {
-  --swatch: var(--nayra-sun);
-  --swatch-ink: var(--nayra-sun-ink);
-}
-
-.nayra-swatch--field {
-  --swatch: var(--nayra-field);
-  --swatch-ink: var(--nayra-field-ink);
-}
-
-.nayra-swatch--stage {
-  --swatch: var(--nayra-stage);
-  --swatch-ink: var(--nayra-stage-ink);
-}
-
-.nayra-swatch--blush {
-  --swatch: color-mix(in srgb, var(--nayra-pink) 30%, var(--nayra-ground));
-  --swatch-ink: var(--nayra-ink);
-}
-
-/* Stickers */
-
-.nayra-sticker {
+.nayra-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin: 0;
-  padding: 8px 13px;
-  border: var(--nayra-line);
-  border-radius: 999px;
-  background: var(--nayra-ground);
+  gap: 0.5rem;
+  min-height: 2.75rem;
   color: var(--nayra-ink);
-  box-shadow: 3px 3px 0 var(--nayra-ink);
-  font: 700 0.75rem/1.1 var(--nayra-mono);
-  letter-spacing: 0.05em;
+  font: 500 0.8125rem/1 var(--nayra-text);
+  letter-spacing: 0.14em;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--nayra-silver) 60%, transparent);
+  text-decoration-thickness: 1px;
   text-transform: uppercase;
-  white-space: nowrap;
-  rotate: -4deg;
+  text-underline-offset: 0.55em;
+  transition:
+    color 200ms var(--nayra-out),
+    text-decoration-color 200ms var(--nayra-out);
 }
 
-.nayra-sticker--pink {
-  background: var(--nayra-pink);
-  color: var(--nayra-pink-ink);
-  rotate: 6deg;
+.nayra-link .nayra-icon {
+  width: 1rem;
+  height: 1rem;
 }
 
-.nayra-sticker--sun {
-  background: var(--nayra-sun);
-  color: var(--nayra-sun-ink);
-  rotate: -5deg;
+.nayra-num,
+.nayra-price {
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
-.nayra-sticker--ink {
-  background: var(--nayra-ink);
-  color: var(--nayra-ground);
-}
-
-.nayra-sticker .nayra-icon {
-  width: 15px;
-  height: 15px;
-}
-
-/* Stickers slap on once when they come into view (the class is set before first paint) */
-
-.nayra-js .nayra-sticker:not(.is-in) {
-  opacity: 0;
-  animation: nayra-show 0s 2.5s forwards;
-}
-
-.nayra-sticker.is-in {
-  animation: nayra-slap 560ms var(--nayra-out) both;
-}
-
-/* Lands slightly small and settles, like a sticker pressed down by hand */
-@keyframes nayra-slap {
-  from {
-    opacity: 0;
-    scale: 1.5;
-  }
-
-  55% {
-    opacity: 1;
-    scale: 0.95;
-  }
-
-  to {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
-@keyframes nayra-show {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Buttons and links */
+/* Actions: pills; blush is the one action color */
 
 .nayra-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 22px;
-}
-
-.nayra-actions .nayra-btn {
-  flex: 1 1 auto;
+  gap: 0.75rem;
 }
 
 .nayra-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 54px;
-  padding: 0 24px;
-  border: var(--nayra-line);
+  gap: 0.625rem;
+  min-height: 3.25rem;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: var(--nayra-bg);
-  color: var(--nayra-fg);
-  box-shadow: var(--nayra-pop);
-  font-family: var(--nayra-mono);
-  font-size: 0.9375rem;
-  font-weight: 700;
-  line-height: 1.1;
+  font: 500 0.8125rem/1.15 var(--nayra-text);
+  letter-spacing: 0.14em;
   text-align: center;
   text-decoration: none;
+  text-transform: uppercase;
   cursor: pointer;
   transition:
-    translate 140ms var(--nayra-out),
-    box-shadow 140ms var(--nayra-out),
-    background-color 200ms var(--nayra-out);
+    background-color 240ms var(--nayra-out),
+    border-color 240ms var(--nayra-out),
+    color 240ms var(--nayra-out),
+    transform 160ms var(--nayra-out);
 }
 
 .nayra-btn svg {
-  width: 20px;
-  height: 20px;
   flex: none;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .nayra-btn:active {
-  translate: 3px 3px;
-  box-shadow: 1px 1px 0 var(--nayra-pop-color);
+  transform: scale(0.98);
 }
 
-.nayra-btn--pink {
-  background: var(--nayra-pink);
-  color: var(--nayra-pink-ink);
+.nayra-btn--blush {
+  border-color: var(--nayra-blush);
+  background: var(--nayra-blush);
+  color: var(--nayra-blush-ink);
 }
 
-.nayra-btn--ghost,
-.nayra-btn--light {
-  background: var(--nayra-ground);
+.nayra-btn--ghost {
+  border-color: color-mix(in srgb, var(--nayra-silver) 75%, transparent);
+  background: transparent;
   color: var(--nayra-ink);
 }
 
-.nayra-btn[disabled] {
-  border-style: dashed;
-  background: transparent;
-  color: var(--nayra-soft);
-  box-shadow: none;
-  cursor: not-allowed;
-  translate: none;
+.nayra-btn--onyx {
+  border-color: var(--nayra-blush-ink);
+  background: var(--nayra-blush-ink);
+  color: var(--nayra-blush);
 }
 
-.nayra-link {
+.nayra-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* The logo's ring: a thin chrome circle around icons, numbers and round buttons */
+
+.nayra-ring {
+  --ring-fill: var(--nayra-ground);
+
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ring-fill);
+  color: var(--nayra-ink);
+  text-decoration: none;
+}
+
+:where(.nayra-ring) {
+  position: relative;
+}
+
+.nayra-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--nayra-chrome);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+button.nayra-ring,
+a.nayra-ring {
+  cursor: pointer;
+  transition:
+    color 200ms var(--nayra-out),
+    opacity 200ms var(--nayra-out),
+    transform 160ms var(--nayra-out);
+}
+
+button.nayra-ring:active,
+a.nayra-ring:active {
+  transform: scale(0.94);
+}
+
+/* Badges */
+
+.nayra-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  color: var(--nayra-pink);
-  font: 700 0.9375rem/1 var(--nayra-mono);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.3em;
+  gap: 0.375rem;
+  min-height: 1.625rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font: 500 0.6875rem/1 var(--nayra-text);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
-.nayra-link .nayra-icon {
-  width: 18px;
-  height: 18px;
-  transition: translate 200ms var(--nayra-out);
+.nayra-badge .nayra-icon {
+  width: 0.6875rem;
+  height: 0.6875rem;
 }
 
-@media (hover: hover) {
-  .nayra-btn:not([disabled]):hover {
-    translate: -2px -2px;
-    box-shadow: 6px 6px 0 var(--nayra-pop-color);
-  }
-
-  .nayra-link:hover .nayra-icon {
-    translate: 4px 0;
-  }
+.nayra-badge--pearl {
+  background: var(--nayra-ink);
+  color: var(--nayra-ground);
 }
 
-/* Ticker band */
+.nayra-badge--pearl .nayra-icon {
+  color: var(--nayra-rose);
+}
+
+.nayra-badge--rose {
+  background: var(--nayra-rose);
+  color: var(--nayra-blush-ink);
+}
+
+.nayra-badge--smoke {
+  border: 1px solid var(--nayra-line);
+  background: color-mix(in srgb, var(--nayra-ground) 86%, transparent);
+  color: var(--nayra-ink);
+}
+
+.nayra-badge--onyx {
+  background: var(--nayra-blush-ink);
+  color: var(--nayra-blush);
+}
+
+/* Frames: square-cut photos */
+
+.nayra-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--nayra-radius);
+  background: var(--nayra-raised);
+}
+
+.nayra-frame__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--nayra-out);
+}
+
+/* Satin swatch shown until a photo is added */
+
+.nayra-swatch {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.75rem;
+  background: var(--swatch);
+  color: color-mix(in srgb, var(--nayra-silver) 85%, transparent);
+}
+
+.nayra-swatch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    118deg,
+    transparent 34%,
+    color-mix(in srgb, var(--nayra-ink) 7%, transparent) 44%,
+    transparent 54%,
+    transparent 66%,
+    color-mix(in srgb, var(--nayra-ink) 4%, transparent) 74%,
+    transparent 82%
+  );
+}
+
+.nayra-swatch .nayra-icon {
+  position: relative;
+  width: clamp(2.25rem, 22%, 3.5rem);
+  height: auto;
+  aspect-ratio: 1;
+  opacity: 0.7;
+}
+
+.nayra-swatch__label {
+  position: relative;
+  color: var(--nayra-ink);
+  font: 500 0.6875rem/1.2 var(--nayra-text);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nayra-swatch--satin {
+  --swatch:
+    radial-gradient(130% 75% at 88% 0%, color-mix(in srgb, var(--nayra-blush) 22%, transparent), transparent 64%),
+    linear-gradient(160deg, var(--nayra-raised), var(--nayra-deep));
+}
+
+.nayra-swatch--rose {
+  --swatch:
+    radial-gradient(110% 70% at 8% 100%, color-mix(in srgb, var(--nayra-rose) 28%, transparent), transparent 66%),
+    linear-gradient(200deg, var(--nayra-raised), var(--nayra-deep));
+}
+
+.nayra-swatch--smoke {
+  --swatch:
+    radial-gradient(100% 60% at 50% 0%, color-mix(in srgb, var(--nayra-ink) 14%, transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in srgb, var(--nayra-raised) 88%, var(--nayra-ink)), var(--nayra-deep));
+}
+
+.nayra-swatch--dusk {
+  --swatch:
+    radial-gradient(90% 65% at 92% 96%, color-mix(in srgb, var(--nayra-blush) 18%, transparent), transparent 70%),
+    linear-gradient(20deg, var(--nayra-deep), var(--nayra-raised));
+}
+
+.nayra-swatch--pearl {
+  --swatch:
+    radial-gradient(90% 60% at 28% 8%, color-mix(in srgb, var(--nayra-ink) 22%, transparent), transparent 70%),
+    linear-gradient(150deg, color-mix(in srgb, var(--nayra-silver) 30%, var(--nayra-raised)), var(--nayra-deep));
+}
+
+/* Ticker: thin band above the header, on every page */
 
 .nayra-ticker {
-  padding-block: 0;
+  --tk-bg: var(--nayra-raised);
+  --tk-fg: var(--nayra-ink);
+  --tk-mark: var(--nayra-blush);
+
+  border-bottom: 1px solid var(--nayra-line);
+  background: var(--tk-bg);
+  color: var(--tk-fg);
 }
 
-.nayra-ticker--pink {
-  --ticker-bg: var(--nayra-pink);
-  --ticker-ink: var(--nayra-pink-ink);
+.nayra-ticker--deep {
+  --tk-bg: var(--nayra-deep);
 }
 
-.nayra-ticker--sun {
-  --ticker-bg: var(--nayra-sun);
-  --ticker-ink: var(--nayra-sun-ink);
-}
+.nayra-ticker--blush {
+  --tk-bg: var(--nayra-blush);
+  --tk-fg: var(--nayra-blush-ink);
+  --tk-mark: var(--nayra-blush-ink);
+  --nayra-focus: var(--nayra-blush-ink);
 
-.nayra-ticker--ink {
-  --ticker-bg: var(--nayra-ink);
-  --ticker-ink: var(--nayra-ground);
-  --nayra-focus: var(--nayra-sun);
-}
-
-.nayra-ticker--field {
-  --ticker-bg: var(--nayra-field);
-  --ticker-ink: var(--nayra-field-ink);
-  --nayra-focus: var(--nayra-sun);
+  border-bottom-color: transparent;
 }
 
 .nayra-ticker__band {
   display: flex;
-  align-items: stretch;
-  border-block: var(--nayra-line);
-  background: var(--ticker-bg);
-  color: var(--ticker-ink);
+  align-items: center;
+  min-height: 2.75rem;
 }
 
 .nayra-ticker__viewport {
@@ -396,70 +420,77 @@
   flex: 1;
   min-width: 0;
   overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
 }
 
 .nayra-ticker__track {
   display: flex;
   flex: none;
-  align-items: center;
-  justify-content: space-around;
-  gap: 26px;
-  min-width: 100%;
   margin: 0;
-  padding: 0 26px 0 0;
+  padding: 0;
   list-style: none;
-  animation: nayra-marquee var(--ticker-duration, 26s) linear infinite;
+  animation: nayra-marquee var(--ticker-duration, 40s) linear infinite;
 }
 
 .nayra-ticker--reverse .nayra-ticker__track {
   animation-direction: reverse;
 }
 
+nayra-ticker.is-paused .nayra-ticker__track,
+nayra-ticker.is-offscreen .nayra-ticker__track {
+  animation-play-state: paused;
+}
+
 .nayra-ticker__item {
   display: inline-flex;
   align-items: center;
-  gap: 26px;
-  min-height: 46px;
-  font: 700 0.8125rem/1 var(--nayra-mono);
-  letter-spacing: 0.06em;
+  gap: 1.75rem;
+  padding-inline-end: 1.75rem;
+  font: 500 0.6875rem/1 var(--nayra-text);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-.nayra-ticker__item .nayra-icon {
-  width: 14px;
-  height: 14px;
+.nayra-ticker__item a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.nayra-ticker__band.is-paused .nayra-ticker__track,
-.nayra-ticker__band.is-offscreen .nayra-ticker__track {
-  animation-play-state: paused;
+.nayra-ticker__item .nayra-icon {
+  width: 0.625rem;
+  height: 0.625rem;
+  color: var(--tk-mark);
 }
 
 .nayra-ticker__toggle {
   display: grid;
   flex: none;
   place-items: center;
-  width: 48px;
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0;
   border: 0;
-  border-left: var(--nayra-line);
-  background: var(--ticker-bg);
+  background: transparent;
   color: inherit;
   cursor: pointer;
 }
 
-.nayra-ticker__toggle .nayra-icon {
-  width: 16px;
-  height: 16px;
+.nayra-ticker__toggle .nayra-icon,
+.nayra-hero__pause .nayra-icon {
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
-.nayra-ticker__toggle .nayra-icon:last-child,
-.nayra-ticker__band.is-paused .nayra-ticker__toggle .nayra-icon:first-child {
+.nayra-ticker__toggle .nayra-icon + .nayra-icon,
+.nayra-hero__pause .nayra-icon + .nayra-icon,
+.nayra-ticker__toggle[aria-pressed='true'] .nayra-icon:first-child,
+.nayra-hero__pause[aria-pressed='true'] .nayra-icon:first-child {
   display: none;
 }
 
-.nayra-ticker__band.is-paused .nayra-ticker__toggle .nayra-icon:last-child {
+.nayra-ticker__toggle[aria-pressed='true'] .nayra-icon + .nayra-icon,
+.nayra-hero__pause[aria-pressed='true'] .nayra-icon + .nayra-icon {
   display: block;
 }
 
@@ -469,159 +500,41 @@
   }
 }
 
-@media (hover: hover) {
-  .nayra-ticker__viewport:hover .nayra-ticker__track {
-    animation-play-state: paused;
-  }
-}
+/* Hero: full-bleed banner, the owner's video or photo, or live black satin */
 
-/* Hero: the satin arch, an optional photo arch and stickers */
-
-.nayra-hero {
-  padding-block: 18px 48px;
-}
-
-.nayra-hero__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: 'title' 'media' 'copy';
-  gap: 22px;
-}
-
-.nayra-hero__title {
-  grid-area: title;
-  font-size: clamp(3.1rem, 1.85rem + 6.4vw, 7.2rem);
-  line-height: 0.96;
-  letter-spacing: -0.025em;
-}
-
-.nayra-hero__media {
+.nayra-hero__frame {
   position: relative;
-  grid-area: media;
-  padding: 0 10px 10px 0;
-}
-
-.nayra-hero__satin {
-  --arch-w: 1.12;
-  --arch-h: 1;
-
-  border: var(--nayra-line);
-  box-shadow: 8px 8px 0 var(--nayra-ink);
-  background:
-    radial-gradient(90% 60% at 28% 22%, color-mix(in srgb, var(--nayra-pink) 45%, #fff) 0, transparent 62%),
-    radial-gradient(80% 70% at 82% 88%, var(--nayra-ink) 0, transparent 72%),
-    linear-gradient(140deg, var(--nayra-pink), color-mix(in srgb, var(--nayra-pink) 55%, var(--nayra-ink)));
-}
-
-.nayra-satin__canvas {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 700ms var(--nayra-out);
-}
-
-.is-live > .nayra-satin__canvas {
-  opacity: 1;
-}
-
-.nayra-hero__media--photo {
-  padding-bottom: 18%;
-}
-
-.nayra-hero__media--photo .nayra-hero__satin {
-  width: 86%;
-}
-
-.nayra-hero__photo {
-  --arch-w: 3;
-  --arch-h: 4;
-
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 46%;
-  border: var(--nayra-line);
-  box-shadow: var(--nayra-pop);
-}
-
-.nayra-hero__sticker-top {
-  position: absolute;
-  top: 10%;
-  left: -6px;
-}
-
-.nayra-hero__sticker-bottom {
-  position: absolute;
-  bottom: 8%;
-  left: 6%;
-}
-
-.nayra-hero__media--photo .nayra-hero__sticker-bottom {
-  bottom: 9%;
-  left: -4px;
-  max-width: 50%;
-  white-space: normal;
-}
-
-.nayra-hero__copy {
-  grid-area: copy;
-}
-
-.nayra-hero__copy .nayra-lede {
-  margin-top: 0;
-}
-
-/* Hero, full-width banner: the owner's photo or video (or the live satin), headline over a plum scrim */
-
-.nayra.nayra-hero--banner,
-main > .shopify-section:first-child .nayra.nayra-hero--banner {
-  padding-block: 0;
-}
-
-/* Under a transparent header the banner runs behind it; its stickers and pause button step down instead */
-main > .shopify-section:first-child .nayra-hero__banner {
-  --header-offset: calc(var(--header-height, 0px) * var(--transparent-header-offset-boolean, 0));
-}
-
-.nayra-hero__banner {
-  position: relative;
-  isolation: isolate;
   display: grid;
   align-items: end;
-  min-height: clamp(31rem, calc(100svh - 7.5rem), 52rem);
+  min-height: max(33rem, calc(94svh - var(--header-group-height, 7rem)));
   overflow: hidden;
-  border-bottom: var(--nayra-line);
-  background: var(--nayra-stage);
-  color: var(--nayra-ground);
+  isolation: isolate;
+  background: var(--nayra-deep);
 }
 
 .nayra-hero__fill {
   position: absolute;
-  z-index: -2;
   inset: 0;
+  z-index: -2;
 }
 
 .nayra-hero__fill picture,
 .nayra-hero__still,
 .nayra-hero__video,
-.nayra-hero__satin-fill {
+.nayra-hero__satin {
   position: absolute;
   inset: 0;
-  display: block;
   width: 100%;
   height: 100%;
 }
 
-.nayra-hero__still,
-.nayra-hero__video {
+.nayra-hero__still {
   object-fit: cover;
-  object-position: 50% var(--media-y, 50%);
 }
 
 .nayra-hero__video {
+  object-fit: cover;
+  object-position: center var(--media-y, 50%);
   opacity: 0;
   transition: opacity 700ms var(--nayra-out);
 }
@@ -630,221 +543,458 @@ main > .shopify-section:first-child .nayra-hero__banner {
   opacity: 1;
 }
 
-.nayra-hero__satin-fill {
-  background:
-    radial-gradient(90% 60% at 28% 22%, color-mix(in srgb, var(--nayra-pink) 45%, #fff) 0, transparent 62%),
-    radial-gradient(80% 70% at 82% 88%, var(--nayra-ink) 0, transparent 72%),
-    linear-gradient(140deg, var(--nayra-pink), color-mix(in srgb, var(--nayra-pink) 55%, var(--nayra-ink)));
-}
-
 .nayra-hero__scrim {
   position: absolute;
-  z-index: -1;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--nayra-ink) var(--scrim-strong, 50%), transparent) 0%,
-    color-mix(in srgb, var(--nayra-ink) var(--scrim-soft, 25%), transparent) 42%,
-    transparent 74%
-  );
-  pointer-events: none;
-}
-
-.nayra-hero__stickers {
-  position: absolute;
-  z-index: 1;
-  top: calc(18px + var(--header-offset, 0px));
-  left: max(var(--nayra-pad), calc((100% - 76rem) / 2));
-  display: grid;
-  justify-items: start;
-  gap: 10px;
-}
-
-.nayra-hero__stickers .nayra-sticker {
-  position: static;
+  z-index: -1;
+  background:
+    linear-gradient(
+      to top,
+      color-mix(in srgb, var(--nayra-deep) var(--scrim, 60%), transparent) 0%,
+      color-mix(in srgb, var(--nayra-deep) calc(var(--scrim, 60%) * 0.55), transparent) 38%,
+      transparent 70%
+    ),
+    linear-gradient(to bottom, color-mix(in srgb, var(--nayra-deep) 30%, transparent), transparent 20%);
 }
 
 .nayra-hero__pause {
+  --ring-fill: var(--nayra-deep);
+
   position: absolute;
+  top: 1rem;
+  right: var(--nayra-gutter);
   z-index: 1;
-  top: calc(16px + var(--header-offset, 0px));
-  right: max(var(--nayra-pad), calc((100% - 76rem) / 2));
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  padding: 0;
-  border: var(--nayra-line);
-  border-radius: 999px;
-  background: var(--nayra-ground);
-  color: var(--nayra-ink);
-  box-shadow: 3px 3px 0 var(--nayra-ink);
-  cursor: pointer;
 }
 
-.nayra-hero__pause .nayra-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.nayra-hero__pause .nayra-icon:last-child,
-.nayra-hero__pause[aria-pressed='true'] .nayra-icon:first-child {
-  display: none;
-}
-
-.nayra-hero__pause[aria-pressed='true'] .nayra-icon:last-child {
-  display: block;
-}
-
-.nayra-hero__overlay {
+.nayra-hero__copy {
   display: grid;
   justify-items: start;
-  gap: 14px;
-  padding-block: 150px 30px;
+  gap: 1rem;
+  padding-block: 7rem clamp(1.75rem, 1rem + 3vw, 4.5rem);
 }
 
-.nayra-hero--banner .nayra-hero__title {
-  grid-area: auto;
-  max-width: 12ch;
-  color: var(--nayra-ground);
+.nayra-hero__title {
+  max-width: 11ch;
+  font-size: clamp(2.875rem, 1.9rem + 4.6vw, 6rem);
+  line-height: 0.98;
 }
 
-.nayra-hero--banner .nayra-hero__title em {
-  display: inline-block;
-  padding: 0 0.14em 0.04em;
-  border: 2px solid var(--nayra-ink);
-  border-radius: 0.14em;
-  background: var(--nayra-sun);
-  color: var(--nayra-sun-ink);
-  box-shadow: 4px 4px 0 var(--nayra-ink);
-  rotate: -2deg;
+/* The highlighted word wears the logo's sparkle */
+.nayra-hero__title em {
+  position: relative;
 }
 
-.nayra-hero--banner .nayra-lede {
-  max-width: 34ch;
-  margin: 0;
-  color: var(--nayra-ground);
+.nayra-hero__title em::after {
+  content: '';
+  position: absolute;
+  top: 0.04em;
+  right: -0.32em;
+  width: 0.34em;
+  height: 0.34em;
+  background: var(--nayra-ink);
+  mask: var(--nayra-sparkle) center / contain no-repeat;
+  animation: nayra-twinkle 5.2s var(--nayra-out) infinite;
 }
 
-.nayra-hero--banner .nayra-actions {
+.nayra-hero__lede {
+  color: color-mix(in srgb, var(--nayra-ink) 84%, transparent);
+}
+
+.nayra-hero .nayra-actions {
+  margin-top: 0.75rem;
+}
+
+@keyframes nayra-twinkle {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.5) rotate(0deg);
+  }
+
+  45% {
+    opacity: 1;
+    transform: scale(1) rotate(18deg);
+  }
+}
+
+/* Black satin: the CSS cloth shows until (or unless) the WebGL one draws */
+
+nayra-satin {
+  display: block;
+  background:
+    radial-gradient(120% 60% at 76% 18%, color-mix(in srgb, var(--nayra-blush) 20%, transparent), transparent 62%),
+    linear-gradient(
+      118deg,
+      transparent 28%,
+      color-mix(in srgb, var(--nayra-ink) 9%, transparent) 40%,
+      transparent 50%,
+      transparent 60%,
+      color-mix(in srgb, var(--nayra-blush) 10%, transparent) 70%,
+      transparent 80%
+    ),
+    var(--nayra-deep);
+}
+
+.nayra-satin__canvas {
+  display: block;
   width: 100%;
-  margin-top: 6px;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 900ms var(--nayra-out);
 }
 
-/* Clear a transparent header when the hero is the first section */
-main > .shopify-section:first-child .nayra-hero {
-  padding-top: calc(18px + var(--header-height, 0px) * var(--transparent-header-offset-boolean, 0));
+nayra-satin.is-live .nayra-satin__canvas {
+  opacity: 1;
 }
 
-/* Category chips */
+/* Trust strip */
 
-.nayra-chips {
-  padding-block: 4px 12px;
+.nayra-trust {
+  padding-block: clamp(1.75rem, 1.25rem + 2vw, 3rem);
+  border-bottom: 1px solid var(--nayra-line);
 }
+
+.nayra-trust__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1rem;
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nayra-trust__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
+  gap: 0.25rem 0.75rem;
+}
+
+.nayra-trust__icon {
+  grid-row: span 2;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.nayra-trust__icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.nayra-trust__title {
+  padding-top: 0.2rem;
+  font: 500 0.875rem/1.3 var(--nayra-text);
+}
+
+.nayra-trust__text {
+  color: var(--nayra-soft);
+  text-wrap: pretty;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+/* Product cards */
+
+.nayra-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 0.875rem;
+}
+
+.nayra-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.nayra-card__link {
+  display: grid;
+  gap: 0.875rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.nayra-card__media {
+  aspect-ratio: 4 / 5;
+}
+
+.nayra-card__title {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--nayra-ink);
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  transition: text-decoration-color 200ms var(--nayra-out);
+}
+
+.nayra-card__badge {
+  position: absolute;
+  top: 0.625rem;
+  left: 0.625rem;
+  pointer-events: none;
+}
+
+.nayra-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.nayra-card__facts {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.nayra-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.5rem;
+  margin: 0;
+  font: 500 0.9375rem/1.2 var(--nayra-text);
+}
+
+.nayra-price span,
+.nayra-price s {
+  white-space: nowrap;
+}
+
+.nayra-price s {
+  color: var(--nayra-soft);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.nayra-price--sale span {
+  color: var(--nayra-rose);
+}
+
+.nayra-card__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.nayra-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  outline: 1px solid color-mix(in srgb, var(--nayra-silver) 55%, transparent);
+  outline-offset: 2px;
+  background: var(--dot);
+}
+
+.nayra-card__more {
+  color: var(--nayra-soft);
+  font-size: 0.75rem;
+}
+
+.nayra-card__quick {
+  margin: 0;
+}
+
+/* Collection tiles */
+
+.nayra-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nayra-tile {
+  position: relative;
+  min-width: 0;
+}
+
+.nayra-tile--wide {
+  grid-column: 1 / -1;
+}
+
+.nayra-tile__link {
+  position: relative;
+  display: block;
+  height: 100%;
+  color: var(--nayra-ink);
+  text-decoration: none;
+}
+
+.nayra-tile__media {
+  aspect-ratio: 4 / 5;
+}
+
+.nayra-tile--wide .nayra-tile__media {
+  aspect-ratio: 16 / 10;
+}
+
+.nayra-tile__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, color-mix(in srgb, var(--nayra-deep) 80%, transparent), transparent 58%);
+}
+
+.nayra-tile__label {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.nayra-tile__name {
+  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2.25rem);
+  line-height: 1.05;
+}
+
+.nayra-tile__go {
+  --ring-fill: var(--nayra-deep);
+
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: color 200ms var(--nayra-out);
+}
+
+.nayra-tile__go .nayra-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.nayra-tile__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Category chips (older homepage section, kept for other pages) */
 
 .nayra-chips__row {
   display: flex;
-  gap: 10px;
+  gap: 0.5rem;
   overflow-x: auto;
-  overscroll-behavior-x: contain;
-  padding-block: 6px 12px;
+  padding-block: 1rem;
   scrollbar-width: none;
-}
-
-.nayra-chips__row::-webkit-scrollbar {
-  display: none;
 }
 
 .nayra-chip {
   display: inline-flex;
   flex: none;
   align-items: center;
-  gap: 8px;
-  min-height: 46px;
-  padding: 0 18px;
-  border: var(--nayra-line);
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1.125rem;
+  border: 1px solid color-mix(in srgb, var(--nayra-silver) 55%, transparent);
   border-radius: 999px;
-  background: var(--nayra-ground);
   color: var(--nayra-ink);
-  box-shadow: 3px 3px 0 var(--nayra-ink);
-  font: 700 0.875rem/1 var(--nayra-mono);
+  font: 500 0.75rem/1 var(--nayra-text);
+  letter-spacing: 0.12em;
   text-decoration: none;
-  transition:
-    translate 140ms var(--nayra-out),
-    box-shadow 140ms var(--nayra-out);
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.nayra-chip:active {
-  translate: 2px 2px;
-  box-shadow: 1px 1px 0 var(--nayra-ink);
-}
-
-.nayra-chip[aria-current] {
-  background: var(--nayra-pink);
-  color: var(--nayra-pink-ink);
+.nayra-chip[aria-current='page'] {
+  border-color: var(--nayra-ink);
+  background: var(--nayra-ink);
+  color: var(--nayra-ground);
 }
 
 .nayra-chip__badge {
-  padding: 3px 7px;
-  border: 1.5px solid var(--nayra-ink);
-  border-radius: 999px;
-  background: var(--nayra-sun);
-  color: var(--nayra-sun-ink);
-  font-size: 0.6875rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  color: var(--nayra-blush);
+  font-size: 0.625rem;
 }
 
-@media (hover: hover) {
-  .nayra-chip:hover {
-    translate: -2px -2px;
-    box-shadow: 5px 5px 0 var(--nayra-ink);
-  }
-}
-
-@media (max-width: 749px) {
-  .nayra-chips__row {
-    width: auto;
-    padding-inline: var(--nayra-pad) calc(var(--nayra-pad) + 4px);
-    scroll-padding-inline: var(--nayra-pad);
-  }
-}
-
-/* The stage: the velvet block where outfits turn in 3D and the ticket follows */
+/* The stage: outfits turn on a silver ring floor, the order ticket follows */
 
 .nayra-stage {
-  --nayra-bg: var(--nayra-stage);
-  --nayra-fg: var(--nayra-stage-ink);
-  --nayra-pop-color: var(--nayra-gold);
-  --nayra-focus: var(--nayra-gold);
+  --ring-fill: var(--nayra-deep);
 
+  position: relative;
+  display: block;
   overflow: hidden;
-  padding-block: 56px 48px;
-  background:
-    radial-gradient(70% 46% at 50% 42%, color-mix(in srgb, var(--nayra-gold) 14%, transparent), transparent 72%),
-    var(--nayra-stage);
+  margin-top: var(--nayra-gap);
+  padding-block: var(--nayra-gap);
+  background: var(--nayra-deep);
 }
 
 .nayra-tbdila__stage {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
 }
 
+.nayra-tbdila__floor {
+  position: relative;
+  grid-area: 1 / 1;
+  align-self: end;
+  justify-self: center;
+  width: min(124vw, 60rem);
+  height: 7rem;
+  pointer-events: none;
+}
+
+/* A pool of blush light on the floor, and the ring the outfits stand on */
+.nayra-tbdila__floor::before,
+.nayra-tbdila__floor::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.nayra-tbdila__floor::before {
+  inset: -70% 4%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--nayra-blush) 20%, transparent), transparent);
+}
+
+.nayra-tbdila__floor::after {
+  inset: 0;
+  border: 1px solid transparent;
+  background: var(--nayra-chrome) border-box;
+  mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.7;
+}
+
 .nayra-rail {
-  --look-w: min(64vw, 300px);
+  --look-w: min(62vw, 18.75rem);
 
   position: relative;
+  z-index: 1;
   display: flex;
+  grid-area: 1 / 1;
   align-items: flex-start;
-  gap: 14px;
+  gap: 0.875rem;
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  padding: 26px calc(50% - var(--look-w) / 2) 30px;
+  padding: 1.5rem calc(50% - var(--look-w) / 2) 3.5rem;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
 
-.nayra-rail::-webkit-scrollbar {
+.nayra-rail::-webkit-scrollbar,
+.nayra-grid--rail::-webkit-scrollbar,
+.nayra-prints::-webkit-scrollbar,
+.nayra-chips__row::-webkit-scrollbar {
   display: none;
 }
 
@@ -853,7 +1003,7 @@ main > .shopify-section:first-child .nayra-hero {
   flex: 0 0 var(--look-w);
   margin: 0;
   scroll-snap-align: center;
-  opacity: 0.6;
+  opacity: 0.55;
   transition: opacity 300ms var(--nayra-out);
 }
 
@@ -863,7 +1013,6 @@ main > .shopify-section:first-child .nayra-hero {
 
 .nayra-look__turn {
   position: relative;
-  padding: 10px;
 }
 
 /*
@@ -872,7 +1021,7 @@ main > .shopify-section:first-child .nayra-hero {
 */
 .nayra-rail--3d .nayra-look {
   z-index: var(--z, 1);
-  opacity: calc(1 - min(var(--ad, 0), 1.6) * 0.34);
+  opacity: calc(1 - min(var(--ad, 0), 1.6) * 0.36);
   transition: none;
 }
 
@@ -881,103 +1030,82 @@ main > .shopify-section:first-child .nayra-hero {
   will-change: transform;
 }
 
-.nayra-look__arch {
-  --arch-w: 3;
-  --arch-h: 4.3;
+.nayra-look__frame {
+  aspect-ratio: 4 / 5;
 }
 
-.nayra-stage .nayra-swatch--stage {
-  --swatch: color-mix(in srgb, var(--nayra-stage-ink) 16%, var(--nayra-stage));
-}
-
+/* The silver hairline traces itself clockwise around the selected outfit */
 .nayra-thread {
   position: absolute;
-  inset: 0;
+  inset: -0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--nayra-radius) + 0.25rem);
+  background: var(--nayra-chrome) border-box;
+  mask:
+    conic-gradient(#000 var(--nayra-sweep), transparent 0),
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+  mask-composite: intersect, exclude;
+  pointer-events: none;
+  transition: --nayra-sweep 1100ms var(--nayra-out);
+}
+
+.nayra-look.is-on .nayra-thread {
+  --nayra-sweep: 360deg;
+}
+
+.nayra-thread__glint {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 1rem;
+  height: 1rem;
+  color: var(--nayra-ink);
+  opacity: 0;
+  pointer-events: none;
+  scale: 0.4;
+  transition:
+    opacity 400ms var(--nayra-out) 700ms,
+    scale 700ms var(--nayra-out) 700ms;
+}
+
+.nayra-thread__glint .nayra-icon {
   width: 100%;
   height: 100%;
-  overflow: visible;
-  pointer-events: none;
 }
 
-.nayra-thread path {
-  fill: none;
-  stroke: var(--nayra-gold);
-  stroke-width: 0.8;
-  stroke-dasharray: 1 2;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 900ms var(--nayra-out);
-}
-
-.nayra-thread circle {
-  fill: var(--nayra-gold);
-  opacity: 0;
-  transition: opacity 400ms var(--nayra-out) 600ms;
-}
-
-.nayra-look.is-on .nayra-thread path {
-  stroke-dashoffset: 0;
-}
-
-.nayra-look.is-on .nayra-thread circle {
+.nayra-look.is-on .nayra-thread__glint {
   opacity: 1;
+  scale: 1;
 }
 
 .nayra-steer {
   display: flex;
-  justify-content: space-between;
-  padding-inline: var(--nayra-pad);
+  justify-content: center;
+  gap: 1rem;
 }
 
 .nayra-steer__btn {
-  display: inline-grid;
-  place-items: center;
-  width: 50px;
-  height: 50px;
-  padding: 0;
-  border: var(--nayra-line);
-  border-radius: 999px;
-  background: var(--nayra-ground);
-  color: var(--nayra-ink);
-  box-shadow: 3px 3px 0 var(--nayra-gold);
-  cursor: pointer;
-  transition:
-    translate 140ms var(--nayra-out),
-    box-shadow 140ms var(--nayra-out),
-    opacity 200ms var(--nayra-out);
-}
-
-.nayra-steer__btn:active {
-  translate: 2px 2px;
-  box-shadow: 1px 1px 0 var(--nayra-gold);
-}
-
-.nayra-steer__btn .nayra-icon {
-  width: 22px;
-  height: 22px;
+  width: 3rem;
+  height: 3rem;
 }
 
 .nayra-steer__btn[aria-disabled='true'] {
-  opacity: 0.35;
-  box-shadow: none;
+  opacity: 0.32;
   cursor: default;
-  translate: none;
+  transform: none;
 }
 
-/* Order ticket: B's slip, lit by the stage */
+/* Order ticket */
 
 .nayra-ticket {
-  --nayra-bg: var(--nayra-ground);
-  --nayra-fg: var(--nayra-ink);
-  --nayra-pop-color: var(--nayra-ink);
-  --nayra-focus: var(--nayra-ink);
-
-  margin: 20px var(--nayra-pad) 0;
-  padding: 16px 18px 20px;
-  border: var(--nayra-line);
-  border-radius: 20px;
-  background: var(--nayra-bg);
-  color: var(--nayra-fg);
-  box-shadow: 8px 8px 0 var(--nayra-gold);
+  display: grid;
+  gap: 0.875rem;
+  margin: 1.5rem var(--nayra-gutter) 0;
+  padding: 1.25rem 1.25rem 1.5rem;
+  border: 1px solid var(--nayra-line);
+  border-radius: 4px;
+  background: var(--nayra-raised);
   font-size: 0.9375rem;
 }
 
@@ -987,33 +1115,30 @@ main > .shopify-section:first-child .nayra-hero {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1rem;
   margin: 0;
 }
 
 .nayra-ticket__top {
-  padding-bottom: 12px;
-  border-bottom: 2px dashed var(--nayra-ink);
-  font: 700 0.75rem/1.2 var(--nayra-mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid var(--nayra-line);
 }
 
-.nayra-ticket__row {
-  padding-block: 12px;
-  border-bottom: 2px dashed var(--nayra-hair);
+.nayra-ticket__top,
+.nayra-ticket__row > span:first-child,
+.nayra-ticket__total > span:first-child {
+  color: var(--nayra-soft);
+  font: 500 0.6875rem/1.2 var(--nayra-text);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .nayra-ticket__row > span:first-child {
   flex: none;
-  color: var(--nayra-soft);
-  font: 700 0.75rem/1.2 var(--nayra-mono);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
 .nayra-ticket__row strong {
-  font-weight: 700;
+  font-weight: 500;
   text-align: right;
 }
 
@@ -1029,56 +1154,55 @@ main > .shopify-section:first-child .nayra-hero {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 8px;
-  padding: 0 3px 3px 0;
+  gap: 0.5rem;
 }
 
 .nayra-size {
-  min-width: 48px;
-  min-height: 48px;
-  padding: 0 10px;
-  border: var(--nayra-line);
-  border-radius: 12px;
-  background: var(--nayra-ground);
+  min-width: 2.75rem;
+  height: 2.75rem;
+  padding: 0 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--nayra-silver) 60%, transparent);
+  border-radius: 999px;
+  background: transparent;
   color: var(--nayra-ink);
-  box-shadow: 3px 3px 0 var(--nayra-ink);
-  font: 700 0.875rem/1 var(--nayra-mono);
+  font: 500 0.8125rem/1 var(--nayra-text);
+  letter-spacing: 0.04em;
   cursor: pointer;
   transition:
-    translate 120ms var(--nayra-out),
-    box-shadow 120ms var(--nayra-out),
-    background-color 160ms var(--nayra-out);
+    background-color 200ms var(--nayra-out),
+    border-color 200ms var(--nayra-out),
+    color 200ms var(--nayra-out);
 }
 
 .nayra-size[aria-checked='true'] {
+  border-color: var(--nayra-ink);
   background: var(--nayra-ink);
   color: var(--nayra-ground);
-  box-shadow: 0 0 0 var(--nayra-ink);
-  translate: 3px 3px;
 }
 
 .nayra-size[data-unavailable] {
   border-style: dashed;
   color: var(--nayra-soft);
-  box-shadow: none;
   text-decoration: line-through;
-  text-decoration-thickness: 2px;
+  text-decoration-color: var(--nayra-rose);
 }
 
 .nayra-size[data-unavailable][aria-checked='true'] {
-  background: var(--nayra-soft);
-  color: var(--nayra-ground);
+  border-color: var(--nayra-soft);
+  background: color-mix(in srgb, var(--nayra-ink) 16%, var(--nayra-raised));
+  color: var(--nayra-ink);
 }
 
 .nayra-ticket__total {
-  align-items: center;
-  padding-top: 14px;
-  font-weight: 700;
+  margin-top: 0.25rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--nayra-line);
 }
 
-.nayra-ticket__total .nayra-mono {
-  font-size: 1.5rem;
-  font-weight: 700;
+.nayra-ticket__total .nayra-num {
+  font-family: var(--nayra-display);
+  font-size: 1.75rem;
+  line-height: 1;
 }
 
 .nayra-ticket__form {
@@ -1086,37 +1210,138 @@ main > .shopify-section:first-child .nayra-hero {
 }
 
 .nayra-ticket .nayra-btn {
-  display: flex;
   width: 100%;
-  margin-top: 12px;
-}
-
-.nayra-ticket__total + .nayra-btn,
-.nayra-ticket__total + .nayra-ticket__form {
-  margin-top: 16px;
-}
-
-.nayra-ticket__form .nayra-btn {
-  margin-top: 0;
+  padding-inline: 1rem;
+  letter-spacing: 0.1em;
 }
 
 .nayra-ticket__note {
-  margin: 14px 0 0;
+  margin: 0;
   color: var(--nayra-soft);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   text-align: center;
 }
 
-/* Henna path: how ordering works */
+/* Feature banner: the modest collection on a blush field with a tone-on-tone zellige */
+
+.nayra-banner {
+  --zellige: color-mix(in srgb, var(--nayra-silver) 14%, transparent);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: var(--nayra-gap);
+  padding-block: var(--nayra-gap);
+}
+
+.nayra-banner--raised {
+  background: var(--nayra-raised);
+}
+
+.nayra-banner--deep {
+  background: var(--nayra-deep);
+}
+
+.nayra-banner--blush {
+  --nayra-ink: var(--nayra-blush-ink);
+  --nayra-soft: color-mix(in srgb, var(--nayra-blush-ink) 80%, var(--nayra-blush));
+  --nayra-focus: var(--nayra-blush-ink);
+  --zellige: color-mix(in srgb, var(--nayra-blush-ink) 10%, transparent);
+
+  background: var(--nayra-blush);
+  color: var(--nayra-blush-ink);
+}
+
+.nayra-banner--blush .nayra-display em {
+  color: inherit;
+}
+
+.nayra-banner__zellige {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  color: var(--zellige);
+  mask-image: linear-gradient(100deg, transparent 25%, #000 80%);
+}
+
+.nayra-banner__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.nayra-banner__copy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 1.125rem;
+}
+
+.nayra-banner__copy .nayra-actions {
+  margin-top: 0.5rem;
+}
+
+.nayra-banner__media {
+  position: relative;
+}
+
+.nayra-banner__frame {
+  aspect-ratio: 4 / 5;
+}
+
+.nayra-banner__badge {
+  position: absolute;
+  top: 0.875rem;
+  left: 0.875rem;
+}
+
+.shopify-section:has(> :is(.nayra-stage, .nayra-banner, .nayra-close)) + .shopify-section > :is(.nayra-stage, .nayra-banner, .nayra-close) {
+  margin-top: 0;
+}
+
+/* Story */
+
+.nayra-story__grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.nayra-story__media {
+  aspect-ratio: 4 / 5;
+}
+
+.nayra-story__copy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 1.25rem;
+}
+
+.nayra-story__text {
+  max-width: 46ch;
+  text-wrap: pretty;
+  color: var(--nayra-soft);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.nayra-story__text > * {
+  margin: 0 0 1em;
+}
+
+.nayra-story__text > :last-child {
+  margin-bottom: 0;
+}
+
+/* Steps: how ordering works, numbers in the logo's ring */
 
 .nayra-steps__grid {
   display: grid;
-  gap: 32px;
 }
 
 .nayra-path {
   display: grid;
-  gap: 30px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1125,461 +1350,312 @@ main > .shopify-section:first-child .nayra-hero {
 .nayra-path__step {
   position: relative;
   display: grid;
-  grid-template-columns: 64px minmax(0, 1fr);
-  align-content: start;
-  column-gap: 18px;
-  view-timeline: --nayra-step block;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  column-gap: 1.25rem;
+  padding-bottom: 2rem;
+}
+
+.nayra-path__step:last-child {
+  padding-bottom: 0;
+}
+
+.nayra-path__step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 3.5rem;
+  bottom: 0.5rem;
+  left: 1.5rem;
+  border-left: 1px dashed color-mix(in srgb, var(--nayra-silver) 50%, transparent);
 }
 
 .nayra-path__num {
-  position: relative;
-  z-index: 1;
-  display: grid;
   grid-row: span 2;
-  place-items: center;
-  width: 64px;
-  height: 64px;
-  border: var(--nayra-line);
-  border-radius: 50%;
-  background: var(--nayra-pink);
-  color: var(--nayra-pink-ink);
-  box-shadow: 3px 3px 0 var(--nayra-ink);
-  font: 700 1.875rem/1 var(--nayra-display);
-  rotate: -6deg;
-}
-
-.nayra-path__step:nth-child(3n + 2) .nayra-path__num {
-  background: var(--nayra-sun);
-  color: var(--nayra-sun-ink);
-  rotate: 5deg;
-}
-
-.nayra-path__step:nth-child(3n + 3) .nayra-path__num {
-  background: var(--nayra-field);
-  color: var(--nayra-field-ink);
-  rotate: -3deg;
-}
-
-.nayra-path__step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 74px;
-  bottom: -26px;
-  left: 30px;
-  border-left: 3px dotted var(--nayra-pink);
-  transform-origin: top;
+  width: 3rem;
+  height: 3rem;
+  font-family: var(--nayra-display);
+  font-size: 1.25rem;
+  font-variant-numeric: lining-nums;
 }
 
 .nayra-path__title {
-  align-self: end;
-  padding-top: 8px;
-  font-size: 1.5rem;
+  margin: 0.55rem 0 0.375rem;
+  font-family: var(--nayra-display);
+  font-size: 1.375rem;
+  font-weight: var(--font-heading--weight, 500);
   line-height: 1.15;
 }
 
 .nayra-path__text {
-  max-width: 40ch;
-  margin: 6px 0 0;
+  margin: 0;
   color: var(--nayra-soft);
   text-wrap: pretty;
 }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .nayra-path__step:not(:last-child)::after {
-      animation: nayra-draw linear both;
-      animation-range: entry 60% cover 70%;
-      animation-timeline: --nayra-step;
-    }
-  }
-}
-
-@keyframes nayra-draw {
-  from {
-    scale: 1 0;
-  }
-
-  to {
-    scale: 1 1;
-  }
-}
-
-/* Product grid and cards */
-
-.nayra-head-row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.nayra-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px 16px;
-}
-
-.nayra-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-}
-
-.nayra-card__link {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  color: inherit;
-  text-decoration: none;
-}
-
-.nayra-card__arch {
-  --arch-w: 3;
-  --arch-h: 4;
-
-  border: var(--nayra-line);
-  box-shadow: var(--nayra-pop);
-  transition:
-    translate 160ms var(--nayra-out),
-    box-shadow 160ms var(--nayra-out);
-}
-
-.nayra-card__link:active .nayra-card__arch {
-  translate: 2px 2px;
-  box-shadow: 2px 2px 0 var(--nayra-ink);
-}
-
-.nayra-card__title {
-  display: -webkit-box;
-  overflow: hidden;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  line-height: 1.3;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.nayra-card__tag {
-  position: absolute;
-  z-index: 1;
-  top: 12px;
-  left: -6px;
-  max-width: calc(100% - 8px);
-  overflow: hidden;
-  font-size: 0.6875rem;
-  text-overflow: ellipsis;
-}
-
-.nayra-card__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.nayra-card__price {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 8px;
-  margin: 0;
-  font: 700 0.9375rem/1.3 var(--nayra-mono);
-}
-
-.nayra-card__price > * {
-  white-space: nowrap;
-}
-
-.nayra-card__price s {
-  color: var(--nayra-soft);
-  font-size: 0.8125rem;
-  font-weight: 500;
-}
-
-.nayra-card__quick {
-  margin: 0;
-}
-
-.nayra-plus {
-  display: inline-grid;
-  flex: none;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: var(--nayra-line);
-  border-radius: 999px;
-  background: var(--nayra-pink);
-  color: var(--nayra-pink-ink);
-  box-shadow: 3px 3px 0 var(--nayra-ink);
-  cursor: pointer;
-  transition:
-    rotate 240ms var(--nayra-out),
-    translate 140ms var(--nayra-out),
-    box-shadow 140ms var(--nayra-out);
-}
-
-.nayra-plus:active {
-  translate: 2px 2px;
-  box-shadow: 1px 1px 0 var(--nayra-ink);
-}
-
-.nayra-card__dots {
-  display: flex;
-  gap: 6px;
-}
-
-.nayra-dot {
-  width: 16px;
-  height: 16px;
-  border: var(--nayra-line);
-  border-radius: 50%;
-  background: var(--dot);
-}
-
-@media (hover: hover) {
-  .nayra-card__link:hover .nayra-card__arch {
-    translate: -3px -3px;
-    box-shadow: 7px 7px 0 var(--nayra-ink);
-  }
-
-  .nayra-plus:hover {
-    rotate: 90deg;
-  }
-}
-
-/* Banner card on a colored field with a zellige texture */
-
-.nayra-banner {
-  padding-block: 28px 56px;
-}
-
-.nayra-banner__card {
-  --nayra-bg: var(--nayra-field);
-  --nayra-fg: var(--nayra-field-ink);
-
-  position: relative;
-  display: grid;
-  gap: 40px;
-  overflow: hidden;
-  isolation: isolate;
-  padding: 42px 22px 34px;
-  border: var(--nayra-line);
-  border-radius: 28px;
-  background: var(--nayra-bg);
-  color: var(--nayra-fg);
-  box-shadow: 6px 6px 0 var(--nayra-ink);
-}
-
-.nayra-banner__card.nayra-banner--field,
-.nayra-banner__card.nayra-banner--pink,
-.nayra-banner__card.nayra-banner--stage {
-  --nayra-soft: var(--nayra-fg);
-}
-
-.nayra-banner--pink {
-  --nayra-bg: var(--nayra-pink);
-  --nayra-fg: var(--nayra-pink-ink);
-}
-
-.nayra-banner--sun {
-  --nayra-bg: var(--nayra-sun);
-  --nayra-fg: var(--nayra-sun-ink);
-}
-
-.nayra-banner--stage {
-  --nayra-bg: var(--nayra-stage);
-  --nayra-fg: var(--nayra-stage-ink);
-}
-
-.nayra-banner__zellige {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  color: var(--nayra-fg);
-  opacity: 0.1;
-}
-
-.nayra-banner__media {
-  position: relative;
-  width: min(74%, 22rem);
-  margin-right: 8px;
-  justify-self: end;
-}
-
-.nayra-banner__arch {
-  --arch-w: 4;
-  --arch-h: 5;
-
-  border: var(--nayra-line);
-  box-shadow: var(--nayra-pop);
-}
-
-.nayra-banner__sticker {
-  position: absolute;
-  top: 12%;
-  left: -24px;
-}
-
-.nayra-banner--pink .nayra-sticker--pink {
-  background: var(--nayra-sun);
-  color: var(--nayra-sun-ink);
-}
-
-/* Gallery */
-
-.nayra-gallery__grid {
-  display: grid;
-  gap: 30px;
-}
-
-.nayra-gallery__head .nayra-link {
-  margin-top: 10px;
-}
+/* Instagram strip */
 
 .nayra-prints {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px 16px;
-  padding: 4px 6px 34px 0;
+  grid-auto-columns: 42%;
+  grid-auto-flow: column;
+  gap: 0.5rem;
+  overflow-x: auto;
+  margin: 0;
+  padding: 0 var(--nayra-gutter);
+  overscroll-behavior-x: contain;
+  list-style: none;
+  scroll-padding-inline: var(--nayra-gutter);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
 }
 
 .nayra-print {
-  --arch-w: 4;
-  --arch-h: 5;
-
-  border: var(--nayra-line);
-  box-shadow: var(--nayra-pop);
-  rotate: -2deg;
-  transition:
-    rotate 240ms var(--nayra-out),
-    box-shadow 160ms var(--nayra-out);
+  scroll-snap-align: start;
 }
 
-.nayra-print:nth-child(even) {
-  rotate: 2.5deg;
-  translate: 0 28px;
+.nayra-print__frame {
+  aspect-ratio: 4 / 5;
 }
+
+/* Closing band: the logo as a seal on black */
+
+.nayra-close {
+  position: relative;
+  overflow: hidden;
+  margin-top: var(--nayra-gap);
+  padding-block: var(--nayra-gap);
+  background:
+    radial-gradient(48% 40% at 50% 26%, color-mix(in srgb, var(--nayra-blush) 11%, transparent), transparent 72%),
+    var(--nayra-deep);
+  text-align: center;
+}
+
+.nayra-close__inner {
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+}
+
+.nayra-close__seal {
+  position: relative;
+  width: clamp(9.5rem, 6rem + 12vw, 15rem);
+  aspect-ratio: 1;
+  margin-bottom: 0.5rem;
+}
+
+.nayra-close__logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Sits on the brightest sparkle of the logo and makes it twinkle */
+.nayra-close__glint {
+  position: absolute;
+  top: 64.7%;
+  left: 79.1%;
+  width: 9%;
+  height: 9%;
+  color: var(--nayra-ink);
+  translate: -50% -50%;
+  animation: nayra-twinkle 5.2s var(--nayra-out) 1.4s infinite;
+}
+
+.nayra-close__glint .nayra-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.nayra-close__title {
+  max-width: 14ch;
+  font-size: clamp(2.25rem, 1.5rem + 3.2vw, 4.25rem);
+}
+
+.nayra-close__lede {
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+.nayra-close .nayra-actions {
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* Hover, only where it exists */
 
 @media (hover: hover) {
-  a.nayra-print:hover {
-    rotate: 0deg;
-    box-shadow: 7px 7px 0 var(--nayra-ink);
+  .nayra-link:hover {
+    color: var(--nayra-blush);
+    text-decoration-color: currentColor;
+  }
+
+  .nayra-btn--blush:hover {
+    border-color: color-mix(in srgb, var(--nayra-blush) 76%, var(--nayra-ink));
+    background: color-mix(in srgb, var(--nayra-blush) 76%, var(--nayra-ink));
+  }
+
+  .nayra-btn--ghost:hover {
+    border-color: var(--nayra-ink);
+    background: color-mix(in srgb, var(--nayra-ink) 7%, transparent);
+  }
+
+  .nayra-btn--onyx:hover {
+    background: color-mix(in srgb, var(--nayra-blush-ink) 86%, var(--nayra-blush));
+  }
+
+  button.nayra-ring:not([aria-disabled='true']):hover,
+  a.nayra-ring:hover {
+    color: var(--nayra-blush);
+  }
+
+  .nayra-card__link:hover .nayra-frame__img,
+  .nayra-tile__link:hover .nayra-frame__img,
+  .nayra-print__frame:hover .nayra-frame__img {
+    transform: scale(1.035);
+  }
+
+  .nayra-card__link:hover .nayra-card__title {
+    text-decoration-color: currentColor;
+  }
+
+  .nayra-tile__link:hover .nayra-tile__go {
+    --ring-fill: var(--nayra-blush);
+
+    color: var(--nayra-blush-ink);
+  }
+
+  .nayra-size:not([aria-checked='true']):hover {
+    border-color: var(--nayra-ink);
+  }
+
+  .nayra-ticker__band:hover .nayra-ticker__track {
+    animation-play-state: paused;
   }
 }
 
-/* Wider screens */
+/* Phones */
+
+@media (max-width: 749px) {
+  .nayra-hero .nayra-btn,
+  .nayra-close .nayra-btn {
+    flex: 1 1 100%;
+  }
+
+  .nayra-grid--rail {
+    grid-auto-columns: 70%;
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    gap: 0.875rem;
+    overflow-x: auto;
+    margin-inline: calc(var(--nayra-gutter) * -1);
+    padding-inline: var(--nayra-gutter);
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: var(--nayra-gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .nayra-grid--rail > * {
+    scroll-snap-align: start;
+  }
+}
+
+/* Tablets and up */
 
 @media (min-width: 750px) {
-  .nayra {
-    --nayra-pad: 32px;
-
-    padding-block: 64px;
-  }
-
-  .nayra-ticker {
-    padding-block: 0;
-  }
-
-  .nayra-chips {
-    padding-block: 4px 16px;
-  }
-
-  .nayra-actions .nayra-btn {
-    flex: 0 0 auto;
-  }
-
-  .nayra-rail {
-    --look-w: min(44vw, 340px);
+  .nayra-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .nayra-prints {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-columns: 28%;
+  }
+
+  .nayra-banner__grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .nayra-story__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .nayra-story--flip .nayra-story__media {
+    order: 2;
   }
 }
 
+/* Computers */
+
 @media (min-width: 990px) {
-  .nayra {
-    --nayra-pad: 48px;
-
-    padding-block: 88px;
-  }
-
-  .nayra-ticker {
-    padding-block: 0;
-  }
-
-  .nayra-hero {
-    padding-block: 44px 80px;
-  }
-
-  main > .shopify-section:first-child .nayra-hero {
-    padding-top: calc(44px + var(--header-height, 0px) * var(--transparent-header-offset-boolean, 0));
-  }
-
-  .nayra-hero__grid {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    grid-template-rows: 1fr auto auto 1fr;
-    grid-template-areas: '. media' 'title media' 'copy media' '. media';
-    gap: 0 64px;
-  }
-
   .nayra-hero__copy {
-    padding-top: 30px;
-  }
-
-  .nayra-hero__media {
-    width: min(100%, 62svh);
-    justify-self: center;
-  }
-
-  .nayra-hero__satin {
-    --arch-w: 4;
-    --arch-h: 4.6;
-  }
-
-  .nayra-hero__banner {
-    min-height: clamp(34rem, calc(100svh - 8rem), 56rem);
-  }
-
-  .nayra-hero__overlay {
-    padding-block: 200px 64px;
-  }
-
-  .nayra-hero--banner .nayra-actions {
-    width: auto;
-  }
-
-  .nayra-hero__stickers {
-    top: calc(28px + var(--header-offset, 0px));
+    padding-bottom: clamp(3rem, 2rem + 3vw, 5.5rem);
   }
 
   .nayra-hero__pause {
-    top: calc(26px + var(--header-offset, 0px));
+    top: 1.5rem;
   }
 
-  .nayra-stage {
-    padding-block: 88px 80px;
+  .nayra-trust__list {
+    grid-template-columns: repeat(var(--count, 4), minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .nayra-trust__item {
+    padding-inline: 1.5rem;
+    border-left: 1px solid var(--nayra-line);
+  }
+
+  .nayra-trust__item:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .nayra-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.5rem 1.25rem;
+  }
+
+  .nayra-tiles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: clamp(24rem, 36vw, 36rem);
+    gap: 1.25rem;
+  }
+
+  .nayra-tile--wide {
+    grid-column: span 2;
+  }
+
+  .nayra-tile__media,
+  .nayra-tile--wide .nayra-tile__media {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .nayra-tile__label {
+    padding: 1.5rem;
   }
 
   .nayra-tbdila__stage {
-    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
     grid-template-rows: 1fr auto;
-    column-gap: 56px;
-    width: min(100% - 2 * var(--nayra-pad), 76rem);
+    column-gap: 4rem;
+    width: min(100% - 2 * var(--nayra-gutter), 84rem);
     margin-inline: auto;
   }
 
-  .nayra-rail {
-    --look-w: min(18vw, 250px);
+  .nayra-tbdila__floor {
+    grid-area: 1 / 1 / 3 / 2;
+    width: 100%;
+    height: 8rem;
+  }
 
-    grid-row: 1 / span 2;
-    grid-column: 1;
+  .nayra-rail {
+    --look-w: min(19vw, 17rem);
+
+    grid-area: 1 / 1 / 3 / 2;
     align-self: center;
     mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
   }
@@ -1595,133 +1671,75 @@ main > .shopify-section:first-child .nayra-hero {
     grid-row: 2;
     grid-column: 2;
     justify-content: flex-start;
-    gap: 14px;
-    padding: 22px 0 0;
+    padding-top: 1.5rem;
+  }
+
+  .nayra-banner__grid {
+    gap: 5rem;
+  }
+
+  .nayra-story__grid {
+    gap: 5rem;
   }
 
   .nayra-steps__grid {
-    gap: 48px;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.7fr);
+    align-items: start;
+    gap: 4rem;
+  }
+
+  .nayra-steps__head {
+    margin-bottom: 0;
   }
 
   .nayra-path {
-    grid-auto-columns: minmax(0, 1fr);
-    grid-auto-flow: column;
-    gap: 40px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem;
   }
 
   .nayra-path__step {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 18px;
-    view-timeline: --nayra-step inline;
+    padding-bottom: 0;
   }
 
   .nayra-path__num {
     grid-row: auto;
+    margin-bottom: 1.25rem;
   }
 
-  .nayra-path__step:not(:last-child)::after {
-    top: 30px;
-    right: -34px;
+  .nayra-path__step:not(:last-child)::before {
+    top: 1.5rem;
+    right: -1.75rem;
     bottom: auto;
-    left: 82px;
-    border-top: 3px dotted var(--nayra-pink);
+    left: 4rem;
+    border-top: 1px dashed color-mix(in srgb, var(--nayra-silver) 50%, transparent);
     border-left: 0;
-    transform-origin: left;
   }
 
-  .nayra-path__title {
-    padding-top: 0;
-  }
-
-  .nayra-path__text {
-    grid-column: auto;
-  }
-
-  .nayra-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 44px 26px;
-  }
-
-  .nayra-banner {
-    padding-block: 40px 88px;
-  }
-
-  .nayra-banner__card {
-    padding: 72px 64px;
-  }
-
-  .nayra-banner__card--image {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    align-items: center;
-    gap: 64px;
-  }
-
-  .nayra-banner__media {
-    width: min(100%, 24rem);
-    justify-self: center;
-  }
-
-  .nayra-gallery__grid {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr);
-    align-items: center;
-    gap: 56px;
+  .nayra-prints {
+    grid-auto-columns: minmax(0, 1fr);
+    width: min(100% - 2 * var(--nayra-gutter), 84rem);
+    overflow: visible;
+    margin-inline: auto;
+    padding: 0;
   }
 }
 
-@supports (animation-timeline: view()) {
-  @media (min-width: 990px) and (prefers-reduced-motion: no-preference) {
-    .nayra-path__step:not(:last-child)::after {
-      animation-name: nayra-draw-across;
-    }
-  }
-}
-
-@keyframes nayra-draw-across {
-  from {
-    scale: 0 1;
-  }
-
-  to {
-    scale: 1 1;
-  }
-}
+/* Reduced motion: everything stays put and fully visible */
 
 @media (prefers-reduced-motion: reduce) {
-  .nayra-js .nayra-sticker:not(.is-in),
-  .nayra-sticker.is-in {
-    opacity: 1;
+  .nayra-ticker__track,
+  .nayra-hero__title em::after,
+  .nayra-close__glint {
     animation: none;
-  }
-
-  .nayra-ticker__track {
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 0;
-    padding-left: 26px;
-    animation: none;
-  }
-
-  .nayra-ticker__track[aria-hidden='true'],
-  .nayra-ticker__toggle {
-    display: none;
   }
 
   .nayra-look,
-  .nayra-thread path,
-  .nayra-thread circle,
-  .nayra-btn,
-  .nayra-chip,
-  .nayra-plus,
-  .nayra-size,
-  .nayra-card__arch,
-  .nayra-print,
-  .nayra-link .nayra-icon,
-  .nayra-satin__canvas,
-  .nayra-hero__video {
+  .nayra-thread,
+  .nayra-thread__glint,
+  .nayra-frame__img,
+  .nayra-hero__video,
+  .nayra-satin__canvas {
     transition: none;
-  }
-
-  .nayra-rail {
-    scroll-behavior: auto;
   }
 }

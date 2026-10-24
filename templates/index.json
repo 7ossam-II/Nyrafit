@@ -13,50 +13,6 @@
       "type": "nayra-hero",
       "settings": {}
     },
-    "nayra_categories": {
-      "type": "nayra-chips",
-      "blocks": {
-        "chip_1": {
-          "type": "chip",
-          "settings": {
-            "label": "Sets"
-          }
-        },
-        "chip_2": {
-          "type": "chip",
-          "settings": {
-            "label": "Leggings"
-          }
-        },
-        "chip_3": {
-          "type": "chip",
-          "settings": {
-            "label": "Combis"
-          }
-        },
-        "chip_4": {
-          "type": "chip",
-          "settings": {
-            "label": "Tops"
-          }
-        },
-        "chip_5": {
-          "type": "chip",
-          "settings": {
-            "label": "Modeste",
-            "badge": "bientôt"
-          }
-        }
-      },
-      "block_order": [
-        "chip_1",
-        "chip_2",
-        "chip_3",
-        "chip_4",
-        "chip_5"
-      ],
-      "settings": {}
-    },
     "nayra_tbdila": {
       "type": "nayra-tbdila",
       "settings": {}
@@ -119,113 +75,134 @@
         "photo_4": {
           "type": "image",
           "settings": {}
+        },
+        "photo_5": {
+          "type": "image",
+          "settings": {}
+        },
+        "photo_6": {
+          "type": "image",
+          "settings": {}
         }
       },
       "block_order": [
         "photo_1",
         "photo_2",
         "photo_3",
-        "photo_4"
+        "photo_4",
+        "photo_5",
+        "photo_6"
       ],
       "settings": {}
     },
-    "nayra_ticker_top": {
-      "type": "nayra-ticker",
+    "nayra_trust": {
+      "type": "nayra-trust",
       "blocks": {
-        "message_1": {
-          "type": "message",
+        "promise_1": {
+          "type": "item",
           "settings": {
-            "text": "Nouvelle drop"
+            "icon": "cash",
+            "title": "Paiement à la livraison",
+            "text": "Tu paies en espèces quand ton colis arrive."
           }
         },
-        "message_2": {
-          "type": "message",
+        "promise_2": {
+          "type": "item",
           "settings": {
-            "text": "Paiement à la livraison"
+            "icon": "whatsapp",
+            "title": "Confirmation WhatsApp",
+            "text": "On valide ta taille et ton adresse avant l'envoi."
           }
         },
-        "message_3": {
-          "type": "message",
+        "promise_3": {
+          "type": "item",
           "settings": {
-            "text": "Confirmation sur WhatsApp"
+            "icon": "truck",
+            "title": "Livré chez toi",
+            "text": "Un livreur t'apporte ta commande."
           }
         },
-        "message_4": {
-          "type": "message",
+        "promise_4": {
+          "type": "item",
           "settings": {
-            "text": "Lebsa l'salle"
+            "icon": "sparkle",
+            "title": "Pièces NAYRA",
+            "text": "Notre propre marque, pensée pour la salle."
           }
         }
       },
       "block_order": [
-        "message_1",
-        "message_2",
-        "message_3",
-        "message_4"
+        "promise_1",
+        "promise_2",
+        "promise_3",
+        "promise_4"
       ],
-      "settings": {
-        "color": "pink",
-        "reverse": false,
-        "speed": 26
-      }
+      "settings": {}
     },
-    "nayra_ticker_mid": {
-      "type": "nayra-ticker",
+    "nayra_collections": {
+      "type": "nayra-collections",
       "blocks": {
-        "message_1": {
-          "type": "message",
+        "tile_1": {
+          "type": "tile",
           "settings": {
-            "text": "Sets"
+            "label": "Ensembles"
           }
         },
-        "message_2": {
-          "type": "message",
+        "tile_2": {
+          "type": "tile",
           "settings": {
-            "text": "Leggings"
+            "label": "Leggings"
           }
         },
-        "message_3": {
-          "type": "message",
+        "tile_3": {
+          "type": "tile",
           "settings": {
-            "text": "Combis"
+            "label": "Brassières & tops"
           }
         },
-        "message_4": {
-          "type": "message",
+        "tile_4": {
+          "type": "tile",
           "settings": {
-            "text": "Tops"
+            "label": "Combis"
           }
         },
-        "message_5": {
-          "type": "message",
+        "tile_5": {
+          "type": "tile",
           "settings": {
-            "text": "Modeste bientôt"
+            "label": "Modeste",
+            "badge": "Bientôt",
+            "wide": true
           }
         }
       },
       "block_order": [
-        "message_1",
-        "message_2",
-        "message_3",
-        "message_4",
-        "message_5"
+        "tile_1",
+        "tile_2",
+        "tile_3",
+        "tile_4",
+        "tile_5"
       ],
-      "settings": {
-        "color": "sun",
-        "reverse": true,
-        "speed": 26
-      }
+      "settings": {}
+    },
+    "nayra_story": {
+      "type": "nayra-story",
+      "settings": {}
+    },
+    "nayra_close": {
+      "type": "nayra-close",
+      "settings": {}
     }
   },
   "order": [
-    "nayra_ticker_top",
     "nayra_hero",
-    "nayra_categories",
-    "nayra_tbdila",
-    "nayra_ticker_mid",
+    "nayra_trust",
     "nayra_favorites",
-    "nayra_steps",
+    "nayra_collections",
+    "nayra_tbdila",
     "nayra_banner",
-    "nayra_gallery"
+    "nayra_story",
+    "nayra_steps",
+    "nayra_gallery",
+    "nayra_close"
   ]
 }

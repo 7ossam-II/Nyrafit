@@ -39,7 +39,8 @@
         "padding-block-start": 15,
         "padding-block-end": 15,
         "divider_color": "{{ settings.color_palette.color3 }}"
-      }
+      },
+      "disabled": true
     },
     "header_section": {
       "type": "header",
@@ -76,7 +77,7 @@
         }
       },
       "settings": {
-        "logo_position": "left",
+        "logo_position": "center",
         "menu_position": "left",
         "menu_row": "top",
         "show_search": true,
@@ -99,9 +100,50 @@
         "enable_transparent_header_product": false,
         "enable_transparent_header_collection": false
       }
+    },
+    "nayra_ticker": {
+      "type": "nayra-ticker",
+      "blocks": {
+        "message_1": {
+          "type": "message",
+          "settings": {
+            "text": "Paiement à la livraison"
+          }
+        },
+        "message_2": {
+          "type": "message",
+          "settings": {
+            "text": "Confirmation sur WhatsApp"
+          }
+        },
+        "message_3": {
+          "type": "message",
+          "settings": {
+            "text": "Nouvelle drop"
+          }
+        },
+        "message_4": {
+          "type": "message",
+          "settings": {
+            "text": "Pièces NAYRA"
+          }
+        }
+      },
+      "block_order": [
+        "message_1",
+        "message_2",
+        "message_3",
+        "message_4"
+      ],
+      "settings": {
+        "color": "raised",
+        "speed": 40,
+        "reverse": false
+      }
     }
   },
   "order": [
+    "nayra_ticker",
     "header_announcements_9jGBFp",
     "header_section"
   ]

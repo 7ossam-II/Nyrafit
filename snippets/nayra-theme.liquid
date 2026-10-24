@@ -1,58 +1,45 @@
 {% doc %}
-  Loads the Nayra heading face, the brand tokens, and the Nayra stylesheet and script.
-  The page background and ink come from the theme's color palette; the accents come from the "Nayra style" settings.
+  Loads the Nayra brand tokens, stylesheet and script.
+  Page background and text come from the theme's color palette, fonts from Typography,
+  and the accents from the "Nayra style" settings.
 
   @example
   {% render 'nayra-theme' %}
 {% enddoc %}
 
-{{ 'el-messiri-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+{%- liquid
+  assign scheme = 'light'
+  assign ground_brightness = settings.color_palette.background | color_brightness
+  if ground_brightness < 128
+    assign scheme = 'dark'
+  endif
+-%}
 
 {% style %}
-  @font-face {
-    font-family: "El Messiri";
-    src: url("{{ 'el-messiri-latin.woff2' | asset_url }}") format("woff2");
-    font-weight: 400 700;
-    font-style: normal;
-    font-display: swap;
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
-
-  {{ settings.nayra_mono_font | font_face: font_display: 'swap' }}
-  {%- assign nayra_mono_bold = settings.nayra_mono_font | font_modify: 'weight', 'bold' -%}
-  {%- if nayra_mono_bold %}
-    {{ nayra_mono_bold | font_face: font_display: 'swap' }}
-  {%- endif %}
-
   :root {
     --nayra-ink: var(--color-foreground);
     --nayra-ground: var(--color-background);
-    --nayra-pink: {{ settings.nayra_pink }};
-    --nayra-pink-ink: {{ settings.nayra_pink_ink }};
-    --nayra-sun: {{ settings.nayra_sun }};
-    --nayra-sun-ink: {{ settings.nayra_sun_ink }};
-    --nayra-field: {{ settings.nayra_field }};
-    --nayra-field-ink: {{ settings.nayra_field_ink }};
-    --nayra-stage: {{ settings.nayra_stage }};
-    --nayra-stage-ink: {{ settings.nayra_stage_ink }};
-    --nayra-gold: {{ settings.nayra_gold }};
-    --nayra-display: "El Messiri", Georgia, serif;
-    --nayra-mono: {{ settings.nayra_mono_font.family }}, {{ settings.nayra_mono_font.fallback_families }};
+    --nayra-blush: {{ settings.nayra_blush }};
+    --nayra-blush-ink: {{ settings.nayra_blush_ink }};
+    --nayra-rose: {{ settings.nayra_rose }};
+    --nayra-silver: {{ settings.nayra_silver }};
+    --nayra-raised: {{ settings.nayra_raised }};
+    --nayra-deep: {{ settings.nayra_deep }};
+    --nayra-display: var(--font-heading--family);
+    --nayra-text: var(--font-body--family);
     --nayra-out: cubic-bezier(0.16, 1, 0.3, 1);
-    {%- if settings.nayra_heading_font %}
-      --font-heading--family: "El Messiri", Georgia, serif;
-    {%- endif %}
+    color-scheme: {{ scheme }};
   }
 
   ::selection {
-    background: var(--nayra-sun);
-    color: var(--nayra-sun-ink);
+    background: var(--nayra-blush);
+    color: var(--nayra-blush-ink);
   }
 
   html {
-    accent-color: var(--nayra-pink);
-    caret-color: var(--nayra-pink);
-    scrollbar-color: var(--nayra-pink) var(--color-background);
+    accent-color: var(--nayra-blush);
+    caret-color: var(--nayra-blush);
+    scrollbar-color: var(--nayra-silver) var(--color-background);
   }
 {% endstyle %}
 

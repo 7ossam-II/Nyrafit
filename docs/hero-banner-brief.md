@@ -1,6 +1,6 @@
 # Hero banner brief (Higgsfield)
 
-The homepage hero is a full-width banner. It shows a looping video, with a photo of the same scene shown first and whenever visitors turn motion off. The headline, text, buttons and stickers are live text drawn by the theme on top, so the banner itself must contain **no text**.
+The homepage hero is a full-width banner. It shows a looping video, with a photo of the same scene shown first and whenever visitors turn motion off. The headline, text and buttons are live text drawn by the theme on top, so the banner itself must contain **no text**.
 
 ## What to make
 
@@ -17,10 +17,10 @@ Using the first frame as the photo means there is no jump when the video starts.
 
 The theme draws on top of the banner, so keep these parts of the frame simple and evenly lit, with no faces or busy detail:
 
-- **Phone (9:16):** the bottom 45% (headline, text and two buttons, full width) and the top-left and top-right corners (stickers and the pause button). Put the model's face and upper body in the middle third.
-- **Desktop (16:9):** the left 45% of the frame, bottom two thirds (headline and buttons), and the top corners. Put the model in the right half.
+- **Phone (9:16):** the bottom 45% (headline, text and two buttons, full width) and the top-right corner (the pause button). Put the model's face and upper body in the middle third.
+- **Desktop (16:9):** the left 45% of the frame, bottom two thirds (headline and buttons), and the top-right corner. Put the model in the right half.
 
-The theme also darkens the bottom of the banner behind the text ("Darken behind the text" in the hero settings), so a calm, mid-tone area is enough.
+The theme also darkens the bottom of the banner behind the text ("Darken behind the text" in the hero settings), so a calm, dark area is enough.
 
 ## Keep the clothes truthful
 
@@ -39,67 +39,69 @@ Customers will expect exactly what they see. Don't let the AI invent the outfit:
 
 ## Look
 
-- **Palette:** hot pink `#d1186a`, deep plum `#2a0f24`, sun yellow `#ffd23f`, emerald `#0f4d3a`, rose white `#fff6f9`.
-- **Light:** warm, late-afternoon sun or a warm studio key light.
-- **Mood:** confident, joyful and playful, like the Instagram account. Real skin texture and natural bodies, respectful poses.
-- **Setting cues:** plaster arches, zellige tiles, lime-plaster walls. Use them as setting only; no flags, symbols or other brands.
+The site is **Onyx night**, taken from the logo, so the banner should feel like the logo come to life.
 
-## Concept 1: Studio arch (recommended)
+- **Palette:** onyx black `#121112` (the logo's own black), blush pink `#e3a3b7`, rose `#e481a4`, silver, pearl white `#f6f1f3`.
+- **Light:** low-key night light. A soft blush key light on the model and a cool silver rim light that outlines her against the dark; deep, clean shadows.
+- **Mood:** confident and glamorous, still playful like the Instagram account. Real skin texture and natural bodies, respectful poses.
+- **Setting cues:** black satin, polished dark plaster, a ring of soft light like the logo's ring. Use them as setting only; no flags, symbols or other brands.
+
+## Concept 1: Night studio (recommended)
 
 The closest match to the site, and the easiest to keep product-accurate.
 
 **Still (9:16; for 16:9 swap the first sentence):**
 
 ```
-Vertical 9:16 sportswear campaign photo. A Moroccan woman in her twenties wearing a fitted hot pink sports bra and high-waisted leggings, standing in a confident athletic pose and tightening her ponytail, framed by a tall plaster arch painted deep plum. Behind her, a smooth hot pink wall with a soft satin sheen. Warm key light from the upper right, soft fill, a gentle shadow on a warm rose-white floor. Her face and upper body sit in the middle third of the frame; the bottom 45% of the frame is calm, plain floor and wall. Real skin texture, natural proportions, sharp fabric detail, 50mm lens, editorial look, subtle film grain. No text, no logos, no watermark.
+Vertical 9:16 sportswear campaign photo. A Moroccan woman in her twenties wearing a fitted blush pink sports bra and high-waisted leggings, standing in a confident athletic pose and tightening her ponytail, in a dark studio. Behind her, heavy black satin drapes with soft pink highlights in the folds, and a large thin ring of soft pearl light glowing behind her shoulders. A soft blush key light from the upper right and a cool silver rim light outline her figure; a glossy black floor shows a faint reflection. Her face and upper body sit in the middle third of the frame; the bottom 45% of the frame is calm, dark floor. Real skin texture, natural proportions, sharp fabric detail, 50mm lens, editorial look, subtle film grain. No text, no logos, no watermark.
 ```
 
-For desktop, start with: `Horizontal 16:9 sportswear campaign photo.` and replace the framing sentence with: `She stands in the right half of the frame; the left half is calm plain wall.`
+For desktop, start with: `Horizontal 16:9 sportswear campaign photo.` and replace the framing sentence with: `She stands in the right half of the frame; the left half is calm dark satin.`
 
 **Motion (image-to-video, 8 seconds):**
 
 ```
-Slow, smooth camera push-in toward her over 8 seconds. She breathes, shifts her weight and finishes tightening her ponytail, then holds a confident look just past the camera. Hair and fabric move naturally. Lighting stays constant. No cuts, no zoom jumps, no camera shake. The last frame stays close to the first so the clip can loop.
+Slow, smooth camera push-in toward her over 8 seconds. She breathes, shifts her weight and finishes tightening her ponytail, then holds a confident look just past the camera. The black satin behind her ripples slowly and its pink highlights travel along the folds. Lighting stays constant. No cuts, no zoom jumps, no camera shake. The last frame stays close to the first so the clip can loop.
 ```
 
-## Concept 2: Riad courtyard warm-up
+## Concept 2: Riad at night
 
 **Still (9:16):**
 
 ```
-Vertical 9:16 sportswear campaign photo in the courtyard of a Moroccan riad. Emerald and white zellige tiles on the lower walls, a carved plaster arch behind, a potted orange tree, warm late-afternoon sunlight. A Moroccan woman in a deep plum long-sleeve crop top and matching leggings holds a deep lunge stretch on a rose-colored mat. Her face and upper body sit in the middle third; the bottom 45% of the frame is calm tiled floor. Real skin texture, natural proportions, sharp fabric detail, 35mm lens, editorial look, subtle film grain. No text, no logos, no watermark.
+Vertical 9:16 sportswear campaign photo in the courtyard of a Moroccan riad at night. Dark polished plaster walls, a carved arch in shadow, and pierced metal lanterns casting soft star-shaped patterns of warm light on the walls. A Moroccan woman in a black long-sleeve crop top and matching leggings with blush details holds a deep lunge stretch on a dark mat. A soft blush light falls on her from the side, a silver rim light outlines her from behind. Her face and upper body sit in the middle third; the bottom 45% of the frame is calm dark tiled floor. Real skin texture, natural proportions, sharp fabric detail, 35mm lens, editorial look, subtle film grain. No text, no logos, no watermark.
 ```
 
 **Motion (8 seconds):**
 
 ```
-Slow sideways camera glide from left to right over 8 seconds. She rises from the lunge into a standing stretch with her arms overhead, then lowers them. Leaves of the orange tree move slightly in the breeze. Warm light stays constant. No cuts, no camera shake. Ends close to the first frame so it loops.
+Slow sideways camera glide from left to right over 8 seconds. She rises from the lunge into a standing stretch with her arms overhead, then lowers them. The lantern light patterns on the walls shimmer gently. Lighting stays constant. No cuts, no camera shake. Ends close to the first frame so it loops.
 ```
 
-## Concept 3: Rooftop friends (with the modest line)
+## Concept 3: Rooftop at dusk (with the modest line)
 
 **Still (9:16):**
 
 ```
-Vertical 9:16 sportswear campaign photo of two Moroccan friends laughing mid-workout on a sunny rooftop terrace with pale rose lime-plaster walls and a clear blue sky, late afternoon. One wears a hot pink sports bra and leggings set. The other wears modest activewear: a loose long-sleeve top, full-length leggings and a matching sports hijab in deep plum. Their faces sit in the middle third of the frame; the bottom 45% is calm terrace floor. Real skin texture, natural proportions, sharp fabric detail, 35mm lens, editorial look, subtle film grain. No text, no logos, no watermark.
+Vertical 9:16 sportswear campaign photo of two Moroccan friends laughing mid-workout on a rooftop terrace just after sunset, deep blue-black sky with the last pink glow on the horizon and soft city lights below. One wears a blush pink sports bra and leggings set. The other wears modest activewear: a loose long-sleeve top, full-length leggings and a matching sports hijab in black with blush details. A soft warm light from a terrace lamp falls on their faces. Their faces sit in the middle third of the frame; the bottom 45% is calm dark terrace floor. Real skin texture, natural proportions, sharp fabric detail, 35mm lens, editorial look, subtle film grain. No text, no logos, no watermark.
 ```
 
 **Motion (8 seconds):**
 
 ```
-Slow, gentle camera orbit around the two friends over 8 seconds. One playfully bumps the other's shoulder and they both laugh, then return to their stretch. Fabric and the hijab move naturally in a light breeze. Lighting stays constant. No cuts, no camera shake. Ends close to the first frame so it loops.
+Slow, gentle camera orbit around the two friends over 8 seconds. One playfully bumps the other's shoulder and they both laugh, then return to their stretch. Fabric and the hijab move naturally in a light breeze; the city lights twinkle softly. Lighting stays constant. No cuts, no camera shake. Ends close to the first frame so it loops.
 ```
 
 ## If the tool has a negative prompt field
 
 ```
-text, letters, captions, logo, watermark, brand names, extra fingers, distorted hands, deformed face, plastic skin, oversaturated colors, cartoon, 3D render, blurry, low resolution, sexualized pose
+text, letters, captions, logo, watermark, brand names, neon colors, harsh glow, extra fingers, distorted hands, deformed face, plastic skin, oversaturated colors, cartoon, 3D render, blurry, low resolution, sexualized pose
 ```
 
 ## Put it on the store
 
 1. In Shopify, open **Online Store → Themes**, then **Customize** on the Nyrafit theme.
-2. Click the **Nayra hero** section. Set **Layout** to **Full-width banner**.
+2. Click the **Nayra hero** section.
 3. Upload the files: **Video**, **Video for phones**, **Photo**, **Photo for phones**.
 4. Adjust **Darken behind the text** until the headline is easy to read on your phone.
 5. Click **Save**. The theme editor saves the change to the GitHub repository by itself.

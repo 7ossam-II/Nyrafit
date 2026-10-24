@@ -1,97 +1,123 @@
 {% doc %}
-  Renders a Nayra product card: arch photo, sticker, name, price, color dots and a quick add button.
+  Renders a Nayra product card: tall photo, badge, name, price, color dots and a quick add button.
+  The badge shows, in order: sold out, the sale discount, or "Nouveau" for products tagged nouveau or new.
 
   @param {product} [product] - The product to show; leave empty to show a placeholder card
-  @param {number} index - Position in the grid, used to vary the placeholder image
-  @param {boolean} [show_tag] - Whether to show the product type as a sticker
+  @param {number} index - Position in the list, used to vary the placeholder swatch
+  @param {boolean} [eager] - Whether the photo loads right away (first cards above the fold)
 
   @example
-  {% render 'nayra-card', product: product, index: forloop.index, show_tag: true %}
+  {% render 'nayra-card', product: product, index: forloop.index %}
 {% enddoc %}
 
 {%- liquid
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+
   if product != blank
     assign media_alt = product.featured_media.alt | default: product.title | escape
     assign price = product.price | money | strip_html
-    assign tag = ''
-    assign tag_tone = 'sun'
+    assign badge = ''
+    assign badge_tone = 'pearl'
+    assign tags = product.tags | join: ',' | downcase | split: ','
     if product.available == false
-      assign tag = 'content.nayra.sold_out' | t
-      assign tag_tone = 'ink'
+      assign badge = 'content.nayra.sold_out' | t
+      assign badge_tone = 'smoke'
     elsif product.compare_at_price > product.price
-      assign tag = 'content.nayra.sale' | t
-      assign tag_tone = 'pink'
-    elsif show_tag
-      assign tag = product.type
+      assign saved = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round
+      if saved > 0
+        assign badge = 'content.nayra.sale_percent' | t: percent: saved
+      else
+        assign badge = 'content.nayra.sale' | t
+      endif
+      assign badge_tone = 'rose'
+    elsif tags contains 'nouveau' or tags contains 'new'
+      assign badge = 'content.nayra.new' | t
     endif
 
+    assign dot_count = 0
+    assign dot_total = 0
     capture dots
       for option in product.options_with_values
         assign option_name = option.name | downcase
         if option_name == 'couleur' or option_name == 'color' or option_name == 'colour'
-          for value in option.values limit: 5
+          for value in option.values
             if value.swatch.color != blank
-              assign swatch_name = value.name | escape
-              echo '<span class="nayra-dot" style="--dot: ' | append: value.swatch.color | append: '" title="' | append: swatch_name | append: '"></span>'
+              assign dot_total = dot_total | plus: 1
+              if dot_count < 4
+                assign dot_count = dot_count | plus: 1
+                assign swatch_name = value.name | escape
+                echo '<span class="nayra-dot" style="--dot: ' | append: value.swatch.color | append: '" title="' | append: swatch_name | append: '"></span>'
+              endif
             endif
           endfor
         endif
       endfor
     endcapture
+    assign dots_more = dot_total | minus: dot_count
   endif
 -%}
 
 <article class="nayra-card">
   {%- if product != blank -%}
     <a class="nayra-card__link" href="{{ product.url }}">
-      <span class="nayra-arch nayra-card__arch">
+      <span class="nayra-frame nayra-card__media">
         {%- if product.featured_media -%}
-          {{ product.featured_media | image_url: width: 720 | image_tag: widths: '240, 360, 480, 600, 720', sizes: '(min-width: 750px) 22vw, 46vw', loading: 'lazy', class: 'nayra-arch__img', alt: media_alt }}
+          {{ product.featured_media | image_url: width: 900 | image_tag: widths: '300, 450, 600, 750, 900', sizes: '(min-width: 990px) 23vw, (min-width: 750px) 45vw, 70vw', loading: loading, class: 'nayra-frame__img', alt: media_alt }}
         {%- else -%}
           {% render 'nayra-placeholder', tone: index %}
         {%- endif -%}
       </span>
       <span class="nayra-card__title">{{ product.title }}</span>
     </a>
-    {%- if tag != blank -%}
-      <span class="nayra-sticker nayra-sticker--{{ tag_tone }} nayra-card__tag">{{ tag }}</span>
+    {%- if badge != blank -%}
+      <span class="nayra-badge nayra-badge--{{ badge_tone }} nayra-card__badge">
+        {%- if badge_tone == 'pearl' -%}{% render 'nayra-icon', icon: 'sparkle' %}{%- endif -%}
+        {{- badge -}}
+      </span>
     {%- endif -%}
     <div class="nayra-card__meta">
-      <p class="nayra-card__price nayra-mono">
-        <span>
-          {%- if product.price_varies -%}
-            {{ 'content.nayra.from_price' | t: price: price }}
-          {%- else -%}
-            {{ price }}
+      <div class="nayra-card__facts">
+        <p class="nayra-price{% if product.compare_at_price > product.price %} nayra-price--sale{% endif %}">
+          <span>
+            {%- if product.price_varies -%}
+              {{ 'content.nayra.from_price' | t: price: price }}
+            {%- else -%}
+              {{ price }}
+            {%- endif -%}
+          </span>
+          {%- if product.compare_at_price > product.price -%}
+            <s>{{ product.compare_at_price | money | strip_html }}</s>
           {%- endif -%}
-        </span>
-        {%- if product.compare_at_price > product.price -%}
-          <s>{{ product.compare_at_price | money | strip_html }}</s>
+        </p>
+        {%- if dot_count > 0 -%}
+          <p class="nayra-card__dots">
+            {{- dots -}}
+            {%- if dots_more > 0 -%}<span class="nayra-card__more">+{{ dots_more }}</span>{%- endif -%}
+          </p>
         {%- endif -%}
-      </p>
+      </div>
       {%- if product.variants.size == 1 and product.available -%}
         <form class="nayra-card__quick" method="post" action="{{ routes.cart_add_url }}">
           <input type="hidden" name="id" value="{{ product.variants.first.id }}">
           <input type="hidden" name="quantity" value="1">
-          <button class="nayra-plus" type="submit" aria-label="{{ 'content.nayra.quick_add' | t: title: product.title | escape }}">{% render 'nayra-icon', icon: 'plus' %}</button>
+          <button class="nayra-ring nayra-card__plus" type="submit" aria-label="{{ 'content.nayra.quick_add' | t: title: product.title | escape }}">{% render 'nayra-icon', icon: 'plus' %}</button>
         </form>
-      {%- else -%}
-        <a class="nayra-plus" href="{{ product.url }}" aria-label="{{ 'content.nayra.choose_options' | t: title: product.title | escape }}">{% render 'nayra-icon', icon: 'plus' %}</a>
+      {%- elsif product.available -%}
+        <a class="nayra-ring nayra-card__plus" href="{{ product.url }}" aria-label="{{ 'content.nayra.choose_options' | t: title: product.title | escape }}">{% render 'nayra-icon', icon: 'plus' %}</a>
       {%- endif -%}
     </div>
-    {%- if dots != blank -%}
-      <div class="nayra-card__dots">{{ dots }}</div>
-    {%- endif -%}
   {%- else -%}
     <a class="nayra-card__link" href="{{ routes.all_products_collection_url }}">
-      <span class="nayra-arch nayra-card__arch">
+      <span class="nayra-frame nayra-card__media">
         {% render 'nayra-placeholder', tone: index %}
       </span>
       <span class="nayra-card__title">{{ 'content.nayra.placeholder_product' | t }}</span>
     </a>
     <div class="nayra-card__meta">
-      <p class="nayra-card__price nayra-mono">{{ 'content.nayra.placeholder_price' | t }}</p>
-      <a class="nayra-plus" href="{{ routes.all_products_collection_url }}" aria-label="{{ 'content.nayra.placeholder_product' | t }}">{% render 'nayra-icon', icon: 'plus' %}</a>
+      <p class="nayra-price">{{ 'content.nayra.placeholder_price' | t }}</p>
     </div>
   {%- endif -%}
 </article>

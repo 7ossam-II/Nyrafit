@@ -74,73 +74,43 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Page background and text colors come from Colors. These accents are used by the Nayra sections."
+        "content": "Page background and text come from Colors, fonts from Typography. These accents are used by the Nayra sections."
       },
       {
         "type": "color",
-        "id": "nayra_pink",
-        "label": "Pink: main buttons and stickers",
-        "default": "#d1186a"
+        "id": "nayra_blush",
+        "label": "Blush: main buttons and highlighted words",
+        "default": "#e3a3b7"
       },
       {
         "type": "color",
-        "id": "nayra_pink_ink",
-        "label": "Text on pink",
-        "default": "#ffffff"
+        "id": "nayra_blush_ink",
+        "label": "Text on blush",
+        "default": "#121112"
       },
       {
         "type": "color",
-        "id": "nayra_sun",
-        "label": "Yellow: stickers and highlights",
-        "default": "#ffd23f"
+        "id": "nayra_rose",
+        "label": "Rose: sale prices and badges",
+        "default": "#e481a4"
       },
       {
         "type": "color",
-        "id": "nayra_sun_ink",
-        "label": "Text on yellow",
-        "default": "#2a0f24"
+        "id": "nayra_silver",
+        "label": "Silver: thin lines, rings and icons",
+        "default": "#a2a0a1"
       },
       {
         "type": "color",
-        "id": "nayra_field",
-        "label": "Banner background",
-        "default": "#0f4d3a"
+        "id": "nayra_raised",
+        "label": "Raised surfaces: order ticket and panels",
+        "default": "#1b191b"
       },
       {
         "type": "color",
-        "id": "nayra_field_ink",
-        "label": "Text on banner",
-        "default": "#fff6f9"
-      },
-      {
-        "type": "color",
-        "id": "nayra_stage",
-        "label": "Outfit stage background",
-        "default": "#2a0f24"
-      },
-      {
-        "type": "color",
-        "id": "nayra_stage_ink",
-        "label": "Text on outfit stage",
-        "default": "#f7e8ee"
-      },
-      {
-        "type": "color",
-        "id": "nayra_gold",
-        "label": "Gold: the thread around the selected outfit",
-        "default": "#d9a441"
-      },
-      {
-        "type": "font_picker",
-        "id": "nayra_mono_font",
-        "label": "Label, ticker and price font",
-        "default": "ibm_plex_mono_n5"
-      },
-      {
-        "type": "checkbox",
-        "id": "nayra_heading_font",
-        "label": "Use El Messiri for all headings",
-        "default": true
+        "id": "nayra_deep",
+        "label": "Deep background: outfit stage and closing band",
+        "default": "#0b0a0b"
       }
     ]
   },

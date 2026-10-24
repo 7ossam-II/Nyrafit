@@ -1,5 +1,5 @@
 {% doc %}
-  Renders one outfit in the Nayra tbdila rail: the arch photo, the gold thread and the data the order ticket reads.
+  Renders one outfit on the Nayra stage: the photo, the silver frame drawn around the selected one, and the data the order ticket reads.
 
   @param {product} [product] - The product to show; leave empty to show a placeholder
   @param {string} [size_name] - Lowercase name of the option shown as size buttons
@@ -28,15 +28,15 @@
 <figure class="nayra-look{% if first %} is-on{% endif %}" data-look>
   <div class="nayra-look__turn">
     {%- if product != blank -%}
-      <a class="nayra-arch nayra-look__arch" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      <a class="nayra-frame nayra-look__frame" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
         {%- if product.featured_media -%}
-          {{ product.featured_media | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: '(min-width: 750px) 28vw, 76vw', loading: 'lazy', class: 'nayra-arch__img', alt: media_alt }}
+          {{ product.featured_media | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: '(min-width: 990px) 20vw, 66vw', loading: 'lazy', class: 'nayra-frame__img', alt: media_alt }}
         {%- else -%}
           {% render 'nayra-placeholder', tone: index %}
         {%- endif -%}
       </a>
     {%- else -%}
-      <div class="nayra-arch nayra-look__arch">
+      <div class="nayra-frame nayra-look__frame">
         {% render 'nayra-placeholder', tone: index %}
       </div>
     {%- endif -%}

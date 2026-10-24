@@ -1,16 +1,18 @@
-<div class="nayra nayra-steps">
+<div class="nayra nayra-block nayra-steps">
   <div class="nayra-wrap nayra-steps__grid">
-    <div class="nayra-steps__head">
-      <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
-      {%- if section.settings.text != blank -%}
-        <p class="nayra-lede">{{ section.settings.text }}</p>
-      {%- endif -%}
+    <div class="nayra-head nayra-steps__head">
+      <div class="nayra-head__copy">
+        <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p class="nayra-lede">{{ section.settings.text }}</p>
+        {%- endif -%}
+      </div>
     </div>
-    <ol class="nayra-path">
+    <ol class="nayra-path" role="list">
       {%- for block in section.blocks -%}
         <li class="nayra-path__step" {{ block.shopify_attributes }}>
-          <span class="nayra-path__num" aria-hidden="true">{{ forloop.index }}</span>
-          <h3 class="nayra-display nayra-path__title">{{ block.settings.title }}</h3>
+          <span class="nayra-ring nayra-path__num" aria-hidden="true">{{ forloop.index }}</span>
+          <h3 class="nayra-path__title">{{ block.settings.title }}</h3>
           {%- if block.settings.text != blank -%}
             <p class="nayra-path__text">{{ block.settings.text }}</p>
           {%- endif -%}
@@ -27,7 +29,7 @@
   "class": "nayra-section",
   "settings": [
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
       "default": "Kifach tcommandi"

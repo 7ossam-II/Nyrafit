@@ -31,23 +31,29 @@ The theme then appears in the Theme library, unpublished. Open its menu and choo
 
 ## Homepage sections
 
-The homepage is built from eight Nayra sections. Their look stays the same from drop to drop. What they show (products, photos, prices, sizes, stock and texts) comes from the Shopify admin. Until you add a photo, its spot shows a colored fabric swatch.
+The look is **Onyx night**, built from the logo: the logo's own black, pearl-white text, blush pink for buttons, silver rings and lines, and the logo's sparkle. Headlines use Bodoni Moda, everything else Jost.
+
+The homepage is built from eleven Nayra sections. Their look stays the same from drop to drop. What they show (products, photos, prices, sizes, stock and texts) comes from the Shopify admin. Until you add a photo, its spot shows a dark satin swatch.
 
 | Section | What it shows | Where to fill it |
 |---|---|---|
-| Nayra ticker | A moving band of short messages, with a pause button | Theme editor: edit or add messages, pick the color and speed |
-| Nayra hero | A full-width banner (your video or photo, or the live satin until you add one) with the headline, two stickers, shop and WhatsApp buttons; or the satin arch layout | Theme editor: upload the banner video and photo, edit the texts. How to make the banner in Higgsfield: [`docs/hero-banner-brief.md`](docs/hero-banner-brief.md) |
-| Nayra categories | Category buttons | Theme editor: pick a collection for each button |
-| Nayra tbdila | The outfit stage: outfits turn in 3D as you swipe, and the order ticket beside them follows with sizes, price, add to cart and a WhatsApp order | Theme editor: pick the collection of the latest drop |
-| Nayra product grid | Product cards with stickers, price, color dots and quick add | Theme editor: pick a collection |
-| Nayra steps | How ordering works, along a henna path | Theme editor |
-| Nayra banner | An announcement on a colored card, such as the modest collection | Theme editor |
+| Nayra ticker | A thin moving band of short messages above the header, on every page, with a pause button | Theme editor → Header: edit or add messages, pick the color and speed |
+| Nayra hero | A full-width banner: your video or photo (or live black satin until you add one), the headline, a shop button and a WhatsApp button | Theme editor: upload the banner video and photo, edit the texts. How to make the banner in Higgsfield: [`docs/hero-banner-brief.md`](docs/hero-banner-brief.md) |
+| Nayra trust strip | Four short promises: cash on delivery, WhatsApp confirmation, delivery, NAYRA pieces | Theme editor: keep only promises that are true today |
+| Nayra product grid | Tall product cards with a badge, price, color dots and quick add; one row to swipe on phones | Theme editor: pick a collection. Tag a product `nouveau` in the admin to show a "Nouveau" badge; sale and sold-out badges show by themselves |
+| Nayra collections | A photo tile for each collection, with a wide tile for the modest line | Theme editor: pick a collection per tile; the tile uses the collection's image unless you upload one |
+| Nayra tbdila | The outfit stage: outfits turn on a silver ring as you swipe, and the order ticket beside them follows with sizes, price, add to cart and a WhatsApp order | Theme editor: pick the collection of the latest drop |
+| Nayra banner | The modest collection on a blush band | Theme editor |
+| Nayra story | A brand photo and a few lines about Nayra | Theme editor |
+| Nayra steps | How ordering works, in three steps | Theme editor |
 | Nayra gallery | Instagram photos | Theme editor: upload the photos, set the account |
+| Nayra closing band | The logo, a last line, and the shop and WhatsApp buttons | Theme editor |
 
-- Colors: page background and text in **Theme settings → Colors**; pink, yellow, banner, stage and gold in **Theme settings → Nayra style**.
+- **Logo:** upload [`docs/brand/nayra-logo.png`](docs/brand/nayra-logo.png) in **Theme settings → Logo**, and [`docs/brand/nayra-favicon.png`](docs/brand/nayra-favicon.png) as the **Favicon**. The logo file has a transparent background, so its glow sits on the dark site exactly as on black. Until you upload it, the header shows the shop name.
+- **Colors:** page background and text in **Theme settings → Colors**; blush, rose, silver and the two darker blacks in **Theme settings → Nayra style**. **Fonts:** **Theme settings → Typography**. Product, collection and cart pages follow the same colors and fonts.
 - Words inside the ticket and the cards, such as "Ajouter au panier": **Online Store → Themes → ⋯ → Edit default theme content**.
 - Size buttons read the product option named *Taille* or *Size*. Color dots appear when the product's color option has swatches.
-- Motion respects the phone's "reduce motion" setting: the satin, ticker and 3D swiper then stay still.
+- Motion respects the phone's "reduce motion" setting: the satin, ticker, sparkles and 3D stage then stay still.
 
 ## Base theme
 

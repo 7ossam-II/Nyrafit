@@ -180,6 +180,8 @@
       "placeholder_price": "—",
       "swipe_hint": "Swipe to change outfit",
       "sale": "Sale",
+      "sale_percent": "−{{ percent }}%",
+      "new": "New",
       "from_price": "From {{ price }}",
       "quick_add": "Add {{ title }} to cart",
       "choose_options": "Choose options for {{ title }}",

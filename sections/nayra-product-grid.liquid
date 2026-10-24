@@ -10,18 +10,23 @@
   assign view_all_url = source.url | default: routes.all_products_collection_url
 -%}
 
-<div class="nayra nayra-products">
+<div class="nayra nayra-block nayra-products">
   <div class="nayra-wrap">
-    <div class="nayra-head-row">
-      <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
+    <div class="nayra-head">
+      <div class="nayra-head__copy">
+        <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p class="nayra-lede">{{ section.settings.text }}</p>
+        {%- endif -%}
+      </div>
       {%- if section.settings.link_label != blank -%}
         <a class="nayra-link" href="{{ view_all_url }}">{{ section.settings.link_label }}{% render 'nayra-icon', icon: 'arrow' %}</a>
       {%- endif -%}
     </div>
-    <div class="nayra-grid">
+    <div class="nayra-grid nayra-grid--{{ section.settings.layout }}">
       {%- if has_products -%}
         {%- for product in source.products limit: limit -%}
-          {% render 'nayra-card', product: product, index: forloop.index, show_tag: section.settings.show_tag %}
+          {% render 'nayra-card', product: product, index: forloop.index %}
         {%- endfor -%}
       {%- else -%}
         {%- for i in (1..limit) -%}
@@ -42,7 +47,13 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Les favoris de la salle"
+      "default": "Jdid f'Nayra"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Les dernières pièces de la drop."
     },
     {
       "type": "collection",
@@ -55,8 +66,18 @@
       "label": "Number of products",
       "min": 2,
       "max": 12,
-      "step": 2,
+      "step": 1,
       "default": 4
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "On phones",
+      "options": [
+        { "value": "rail", "label": "One row to swipe" },
+        { "value": "grid", "label": "Two columns" }
+      ],
+      "default": "rail"
     },
     {
       "type": "text",
@@ -65,11 +86,8 @@
       "default": "Tout voir"
     },
     {
-      "type": "checkbox",
-      "id": "show_tag",
-      "label": "Show product type as a sticker",
-      "default": true,
-      "info": "Products on sale always show a sale sticker."
+      "type": "paragraph",
+      "content": "Badges: sold out and sale show by themselves. Tag a product \"nouveau\" in the admin to show a \"Nouveau\" badge."
     }
   ],
   "presets": [

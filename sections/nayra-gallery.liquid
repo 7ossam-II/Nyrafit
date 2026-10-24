@@ -6,39 +6,43 @@
   endif
 -%}
 
-<div class="nayra nayra-gallery">
-  <div class="nayra-wrap nayra-gallery__grid">
-    <div class="nayra-gallery__head">
-      <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
-      {%- if section.settings.text != blank -%}
-        <p class="nayra-lede">{{ section.settings.text }}</p>
-      {%- endif -%}
-      {%- if profile_url != blank -%}
-        <a class="nayra-link" href="{{ profile_url }}" target="_blank" rel="noopener">@{{ handle }}{% render 'nayra-icon', icon: 'arrow' %}</a>
-      {%- endif -%}
-    </div>
-    <div class="nayra-prints">
-      {%- for block in section.blocks -%}
-        {%- liquid
-          assign print_url = block.settings.link | default: profile_url
-          assign print_image = block.settings.image
-          assign print_alt = print_image.alt | default: section.settings.heading | escape
-        -%}
-        {%- capture print -%}
-          {%- if print_image != blank -%}
-            {{ print_image | image_url: width: 720 | image_tag: widths: '240, 360, 480, 720', sizes: '(min-width: 750px) 18vw, 44vw', loading: 'lazy', class: 'nayra-arch__img', alt: print_alt }}
-          {%- else -%}
-            {% render 'nayra-placeholder', tone: forloop.index %}
-          {%- endif -%}
-        {%- endcapture -%}
-        {%- if print_url != blank -%}
-          <a class="nayra-arch nayra-print" href="{{ print_url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>{{ print }}</a>
-        {%- else -%}
-          <div class="nayra-arch nayra-print" {{ block.shopify_attributes }}>{{ print }}</div>
+<div class="nayra nayra-block nayra-gallery">
+  <div class="nayra-wrap">
+    <div class="nayra-head">
+      <div class="nayra-head__copy">
+        <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p class="nayra-lede">{{ section.settings.text }}</p>
         {%- endif -%}
-      {%- endfor -%}
+      </div>
+      {%- if profile_url != blank -%}
+        <a class="nayra-link" href="{{ profile_url }}" target="_blank" rel="noopener">{% render 'nayra-icon', icon: 'instagram' %}@{{ handle }}</a>
+      {%- endif -%}
     </div>
   </div>
+  <ul class="nayra-prints" role="list">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign print_url = block.settings.link | default: profile_url
+        assign print_image = block.settings.image
+        assign print_alt = print_image.alt | default: section.settings.heading | strip_html | escape
+      -%}
+      {%- capture print -%}
+        {%- if print_image != blank -%}
+          {{ print_image | image_url: width: 720 | image_tag: widths: '240, 360, 480, 720', sizes: '(min-width: 990px) 16vw, 42vw', loading: 'lazy', class: 'nayra-frame__img', alt: print_alt }}
+        {%- else -%}
+          {% render 'nayra-placeholder', tone: forloop.index %}
+        {%- endif -%}
+      {%- endcapture -%}
+      <li class="nayra-print" {{ block.shopify_attributes }}>
+        {%- if print_url != blank -%}
+          <a class="nayra-frame nayra-print__frame" href="{{ print_url }}" target="_blank" rel="noopener">{{ print }}</a>
+        {%- else -%}
+          <div class="nayra-frame nayra-print__frame">{{ print }}</div>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
 </div>
 
 {% schema %}
@@ -48,10 +52,10 @@
   "class": "nayra-section",
   "settings": [
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "La communauté Nayra"
+      "default": "Lebsi w tagui-na."
     },
     {
       "type": "inline_richtext",
@@ -86,11 +90,13 @@
       ]
     }
   ],
-  "max_blocks": 8,
+  "max_blocks": 10,
   "presets": [
     {
       "name": "Nayra gallery",
       "blocks": [
+        { "type": "image" },
+        { "type": "image" },
         { "type": "image" },
         { "type": "image" },
         { "type": "image" },

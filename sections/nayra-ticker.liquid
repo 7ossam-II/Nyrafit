@@ -5,8 +5,12 @@
         <ul class="nayra-ticker__track"{% if forloop.last %} aria-hidden="true"{% endif %}>
           {%- for block in section.blocks -%}
             <li class="nayra-ticker__item" {% if forloop.parentloop.first %}{{ block.shopify_attributes }}{% endif %}>
-              {{- block.settings.text -}}
-              {%- render 'nayra-icon', icon: 'star' -%}
+              {%- if block.settings.link != blank and forloop.parentloop.first -%}
+                <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+              {%- else -%}
+                {{- block.settings.text -}}
+              {%- endif -%}
+              {%- render 'nayra-icon', icon: 'sparkle' -%}
             </li>
           {%- endfor -%}
         </ul>
@@ -23,28 +27,27 @@
 {
   "name": "Nayra ticker",
   "tag": "section",
-  "class": "nayra-section",
+  "class": "nayra-section nayra-section--ticker",
   "settings": [
     {
       "type": "select",
       "id": "color",
       "label": "Color",
       "options": [
-        { "value": "pink", "label": "Pink" },
-        { "value": "sun", "label": "Yellow" },
-        { "value": "ink", "label": "Plum" },
-        { "value": "field", "label": "Banner background" }
+        { "value": "raised", "label": "Onyx" },
+        { "value": "deep", "label": "Black" },
+        { "value": "blush", "label": "Blush" }
       ],
-      "default": "pink"
+      "default": "raised"
     },
     {
       "type": "range",
       "id": "speed",
       "label": "Seconds per loop",
       "min": 10,
-      "max": 60,
+      "max": 80,
       "step": 2,
-      "default": 26,
+      "default": 40,
       "info": "Lower is faster."
     },
     {
@@ -64,6 +67,11 @@
           "id": "text",
           "label": "Text",
           "default": "Nouvelle drop"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
         }
       ]
     }
@@ -73,10 +81,10 @@
     {
       "name": "Nayra ticker",
       "blocks": [
-        { "type": "message", "settings": { "text": "Nouvelle drop" } },
         { "type": "message", "settings": { "text": "Paiement à la livraison" } },
         { "type": "message", "settings": { "text": "Confirmation sur WhatsApp" } },
-        { "type": "message", "settings": { "text": "Lebsa l'salle" } }
+        { "type": "message", "settings": { "text": "Nouvelle drop" } },
+        { "type": "message", "settings": { "text": "Pièces NAYRA" } }
       ]
     }
   ]

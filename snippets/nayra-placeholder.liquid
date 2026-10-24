@@ -1,8 +1,8 @@
 {% doc %}
-  Renders a branded fabric swatch that fills a Nayra frame until a photo is added in the Shopify admin.
+  Renders a satin swatch that fills a Nayra frame until a photo is added in the Shopify admin.
   In the theme editor it also says where the photo goes.
 
-  @param {number} tone - Position in a list, used to rotate the swatch colors
+  @param {number} tone - Position in a list, used to rotate the swatch tones
 
   @example
   {% render 'nayra-placeholder', tone: forloop.index %}
@@ -10,7 +10,7 @@
 
 {%- liquid
   assign tone_index = tone | default: 1 | minus: 1 | modulo: 5
-  assign tones = 'pink,sun,field,stage,blush' | split: ','
+  assign tones = 'satin,rose,smoke,dusk,pearl' | split: ','
   assign tone_name = tones[tone_index]
 -%}
 

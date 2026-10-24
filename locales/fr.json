@@ -140,6 +140,8 @@
       "placeholder_price": "—",
       "swipe_hint": "Glisse pour changer de tenue",
       "sale": "Promo",
+      "sale_percent": "−{{ percent }} %",
+      "new": "Nouveau",
       "from_price": "Dès {{ price }}",
       "quick_add": "Ajouter {{ title }} au panier",
       "choose_options": "Choisir la taille de {{ title }}",

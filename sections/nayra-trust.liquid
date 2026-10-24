@@ -1,0 +1,85 @@
+<div class="nayra nayra-trust">
+  <ul class="nayra-wrap nayra-trust__list" role="list" aria-label="{{ section.settings.label | escape }}" style="--count: {{ section.blocks.size }};">
+    {%- for block in section.blocks -%}
+      <li class="nayra-trust__item" {{ block.shopify_attributes }}>
+        <span class="nayra-ring nayra-trust__icon">
+          {%- if block.settings.icon == 'whatsapp' -%}
+            {{- 'icon-whatsapp.svg' | inline_asset_content -}}
+          {%- else -%}
+            {%- render 'nayra-icon', icon: block.settings.icon -%}
+          {%- endif -%}
+        </span>
+        <span class="nayra-trust__title">{{ block.settings.title }}</span>
+        {%- if block.settings.text != blank -%}
+          <span class="nayra-trust__text">{{ block.settings.text }}</span>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Nayra trust strip",
+  "tag": "section",
+  "class": "nayra-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Only promise what is true today: payment, confirmation and delivery as they really work."
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Name for screen readers",
+      "default": "Comment ça marche"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Promise",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "cash", "label": "Cash" },
+            { "value": "whatsapp", "label": "WhatsApp" },
+            { "value": "chat", "label": "Message" },
+            { "value": "truck", "label": "Delivery" },
+            { "value": "sparkle", "label": "Sparkle" },
+            { "value": "hanger", "label": "Hanger" },
+            { "value": "heart", "label": "Heart" }
+          ],
+          "default": "sparkle"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Une promesse"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Nayra trust strip",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "cash", "title": "Paiement à la livraison", "text": "Tu paies en espèces quand ton colis arrive." } },
+        { "type": "item", "settings": { "icon": "whatsapp", "title": "Confirmation WhatsApp", "text": "On valide ta taille et ton adresse avant l'envoi." } },
+        { "type": "item", "settings": { "icon": "truck", "title": "Livré chez toi", "text": "Un livreur t'apporte ta commande." } },
+        { "type": "item", "settings": { "icon": "sparkle", "title": "Pièces NAYRA", "text": "Notre propre marque, pensée pour la salle." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
