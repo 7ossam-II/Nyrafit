@@ -21,17 +21,6 @@
 -%}
 
 <div class="nayra nayra-banner nayra-banner--{{ section.settings.color }}{% if section.settings.show_image %} nayra-banner--image{% endif %}">
-  <svg class="nayra-banner__zellige" aria-hidden="true" focusable="false">
-    <defs>
-      <pattern id="NayraZellige-{{ section.id }}" width="64" height="64" patternUnits="userSpaceOnUse">
-        <path d="M32 6l7.6 18.4L58 32l-18.4 7.6L32 58l-7.6-18.4L6 32l18.4-7.6z" fill="none" stroke="currentColor" stroke-width="1"/>
-        <path d="M14 14h36v36H14z" fill="none" stroke="currentColor" stroke-width="1" transform="rotate(45 32 32)"/>
-        <circle cx="32" cy="32" r="4" fill="none" stroke="currentColor" stroke-width="1"/>
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#NayraZellige-{{ section.id }})"/>
-  </svg>
-
   <div class="nayra-wrap nayra-banner__grid">
     <div class="nayra-banner__copy">
       <h2 class="nayra-display nayra-section-title">{{ section.settings.heading }}</h2>
@@ -64,8 +53,9 @@
           {%- endif -%}
         </div>
         {%- if section.settings.badge != blank -%}
-          <span class="nayra-badge nayra-badge--onyx nayra-banner__badge">{% render 'nayra-icon', icon: 'sparkle' %}{{ section.settings.badge }}</span>
+          <span class="nayra-badge nayra-badge--pearl nayra-banner__badge">{% render 'nayra-icon', icon: 'sparkle' %}{{ section.settings.badge }}</span>
         {%- endif -%}
+        <span class="nayra-banner__glint" aria-hidden="true">{%- render 'nayra-icon', icon: 'sparkle' -%}</span>
       </div>
     {%- endif -%}
   </div>
@@ -82,11 +72,11 @@
       "id": "color",
       "label": "Color",
       "options": [
-        { "value": "blush", "label": "Blush" },
         { "value": "raised", "label": "Onyx" },
-        { "value": "deep", "label": "Black" }
+        { "value": "deep", "label": "Black" },
+        { "value": "blush", "label": "Blush" }
       ],
-      "default": "blush",
+      "default": "raised",
       "info": "Colors come from Theme settings > Nayra style."
     },
     {
