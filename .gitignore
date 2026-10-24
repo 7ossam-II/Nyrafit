@@ -8,6 +8,7 @@ node_modules/
 .impeccable/live/codex-worker.json
 .impeccable/live/codex-worker.log
 .impeccable/live/sessions/
+.impeccable/review/
 .impeccable/live/previews/
 .impeccable/live/annotations/
 .impeccable/live/artifacts/
