@@ -532,6 +532,14 @@ nayra-ticker.is-offscreen .nayra-ticker__track {
   object-fit: cover;
 }
 
+/* Phones often show less height than a 9:16 photo: keep its top (faces) and crop the bottom.
+   A focal point set in Shopify Files overrides this. */
+@media (max-width: 749px) {
+  .nayra-hero__still {
+    object-position: 50% 0%;
+  }
+}
+
 .nayra-hero__video {
   object-fit: cover;
   object-position: center var(--media-y, 50%);
