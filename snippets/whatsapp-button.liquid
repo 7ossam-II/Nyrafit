@@ -1,6 +1,8 @@
 {% doc %}
   Renders the floating WhatsApp button configured in the theme settings.
   On product pages the pre-filled message names the product and the options the shopper picked.
+  It steps aside while an element marked data-whatsapp-float-yield (such as a section's own WhatsApp
+  or shop buttons) is on screen, so it never covers them.
 
   @example
   {% render 'whatsapp-button' %}
@@ -83,6 +85,8 @@
 {% javascript %}
   class WhatsappButton extends HTMLElement {
     connectedCallback() {
+      this.yieldToButtons();
+
       const data = this.querySelector('[data-whatsapp-product]');
       const link = this.querySelector('a');
       if (!data || !link || !this.dataset.baseUrl) return;
@@ -99,6 +103,31 @@
 
         link.href = `${this.dataset.baseUrl}?text=${encodeURIComponent(message)}`;
       });
+    }
+
+    disconnectedCallback() {
+      this.yieldObserver?.disconnect();
+      document.removeEventListener('shopify:section:load', this.onSectionLoad);
+    }
+
+    /** Hides the button while buttons it would cover are on screen. */
+    yieldToButtons() {
+      if (!('IntersectionObserver' in window) || this.yieldObserver) return;
+
+      const onScreen = new Set();
+      this.yieldObserver = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) onScreen.add(entry.target);
+          else onScreen.delete(entry.target);
+        }
+        this.toggleAttribute('data-yield', onScreen.size > 0);
+      });
+      const watch = (root) => root.querySelectorAll('[data-whatsapp-float-yield]').forEach((element) => this.yieldObserver.observe(element));
+      watch(document);
+
+      // Sections re-rendered in the theme editor bring new buttons to watch.
+      this.onSectionLoad = (event) => watch(event.target);
+      document.addEventListener('shopify:section:load', this.onSectionLoad);
     }
   }
 
@@ -146,9 +175,15 @@
     translate: 0 calc(-1 * (var(--height-buy-buttons) + var(--padding-sm) * 2 + 1rem));
   }
 
+  .whatsapp-float[data-yield] {
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 1rem;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     .whatsapp-float {
-      transition-property: translate, inset-inline-end;
+      transition-property: translate, inset-inline-end, opacity, visibility;
       transition-duration: 0.3s;
       transition-timing-function: var(--ease-out-quad);
     }

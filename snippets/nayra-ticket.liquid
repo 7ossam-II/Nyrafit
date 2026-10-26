@@ -96,7 +96,7 @@
     <a class="nayra-btn nayra-btn--blush" href="{{ routes.all_products_collection_url }}">{{ 'content.nayra.view_collection' | t }}</a>
   {%- endif -%}
   {%- if whatsapp_href != blank -%}
-    <a class="nayra-btn nayra-btn--ghost" href="{{ whatsapp_href }}" target="_blank" rel="noopener" data-ticket-whatsapp>
+    <a class="nayra-btn nayra-btn--ghost" href="{{ whatsapp_href }}" target="_blank" rel="noopener" data-ticket-whatsapp data-whatsapp-float-yield>
       {{- 'icon-whatsapp.svg' | inline_asset_content -}}
       {{ 'content.nayra.order_whatsapp' | t }}
     </a>

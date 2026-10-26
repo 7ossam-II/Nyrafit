@@ -28,7 +28,7 @@
         <p class="nayra-lede">{{ section.settings.text }}</p>
       {%- endif -%}
       {%- if section.settings.button_label != blank and button_url != blank -%}
-        <div class="nayra-actions">
+        <div class="nayra-actions" data-whatsapp-float-yield>
           <a
             class="nayra-btn {{ button_class }}"
             href="{{ button_url }}"
