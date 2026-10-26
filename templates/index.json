@@ -11,89 +11,19 @@
   "sections": {
     "nayra_hero": {
       "type": "nayra-hero",
-      "settings": {}
-    },
-    "nayra_tbdila": {
-      "type": "nayra-tbdila",
-      "settings": {}
-    },
-    "nayra_favorites": {
-      "type": "nayra-product-grid",
-      "settings": {}
-    },
-    "nayra_steps": {
-      "type": "nayra-steps",
-      "blocks": {
-        "step_1": {
-          "type": "step",
-          "settings": {
-            "title": "Tu choisis ta lebsa",
-            "text": "Ta tenue, ta couleur et ta taille, depuis ton téléphone."
-          }
-        },
-        "step_2": {
-          "type": "step",
-          "settings": {
-            "title": "On confirme sur WhatsApp",
-            "text": "On vérifie la taille et l'adresse avant d'envoyer."
-          }
-        },
-        "step_3": {
-          "type": "step",
-          "settings": {
-            "title": "Tu paies à la porte",
-            "text": "En espèces, quand le colis arrive chez toi."
-          }
-        }
-      },
-      "block_order": [
-        "step_1",
-        "step_2",
-        "step_3"
-      ],
-      "settings": {}
-    },
-    "nayra_banner": {
-      "type": "nayra-banner",
-      "settings": {}
-    },
-    "nayra_gallery": {
-      "type": "nayra-gallery",
-      "blocks": {
-        "photo_1": {
-          "type": "image",
-          "settings": {}
-        },
-        "photo_2": {
-          "type": "image",
-          "settings": {}
-        },
-        "photo_3": {
-          "type": "image",
-          "settings": {}
-        },
-        "photo_4": {
-          "type": "image",
-          "settings": {}
-        },
-        "photo_5": {
-          "type": "image",
-          "settings": {}
-        },
-        "photo_6": {
-          "type": "image",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "photo_1",
-        "photo_2",
-        "photo_3",
-        "photo_4",
-        "photo_5",
-        "photo_6"
-      ],
-      "settings": {}
+      "settings": {
+        "heading": "L'outfit li <em>tstahli</em>.",
+        "text": "Ensembles, leggings et pièces modestes pour t'entraîner avec style. Paiement à la livraison.",
+        "button_label": "Voir la collection",
+        "button_link": "shopify://collections/all",
+        "whatsapp_label": "Commander sur WhatsApp",
+        "whatsapp_message": "Salam, je veux commander.",
+        "image": "shopify://shop_images/b_can_u_change_the_log_1.webp",
+        "image_mobile": "shopify://shop_images/b_ADD_THE_LOGO_IN_THE.webp",
+        "media_position": "50%",
+        "overlay": 60,
+        "animate": true
+      }
     },
     "nayra_trust": {
       "type": "nayra-trust",
@@ -137,7 +67,20 @@
         "promise_3",
         "promise_4"
       ],
-      "settings": {}
+      "settings": {
+        "label": "Comment ça marche"
+      }
+    },
+    "nayra_favorites": {
+      "type": "nayra-product-grid",
+      "settings": {
+        "heading": "NEW MODELS",
+        "text": "Les dernières pièces de la drop.",
+        "collection": "",
+        "products_to_show": 4,
+        "layout": "rail",
+        "link_label": "Tout voir"
+      }
     },
     "nayra_collections": {
       "type": "nayra-collections",
@@ -145,30 +88,43 @@
         "tile_1": {
           "type": "tile",
           "settings": {
-            "label": "Ensembles"
+            "collection": "",
+            "label": "Ensembles",
+            "badge": "",
+            "wide": false
           }
         },
         "tile_2": {
           "type": "tile",
           "settings": {
-            "label": "Leggings"
+            "collection": "",
+            "label": "Leggings",
+            "badge": "",
+            "wide": false
           }
         },
         "tile_3": {
           "type": "tile",
           "settings": {
-            "label": "Brassières & tops"
+            "collection": "",
+            "label": "Brassières & tops",
+            "badge": "",
+            "wide": false
           }
         },
         "tile_4": {
           "type": "tile",
           "settings": {
-            "label": "Combis"
+            "collection": "",
+            "label": "Combis",
+            "badge": "",
+            "wide": false
           }
         },
         "tile_5": {
           "type": "tile",
           "settings": {
+            "collection": "",
             "label": "Modeste",
             "badge": "Bientôt",
             "wide": true
@@ -182,15 +138,144 @@
         "tile_4",
         "tile_5"
       ],
-      "settings": {}
+      "settings": {
+        "heading": "Khtari style dyalek",
+        "text": ""
+      }
+    },
+    "nayra_tbdila": {
+      "type": "nayra-tbdila",
+      "settings": {
+        "heading": "Hadi hiya l'outfit",
+        "text": "Glisse pour voir chaque tenue, choisis ta taille et commande.",
+        "collection": "",
+        "products_to_show": 6,
+        "size_option": "Taille",
+        "show_whatsapp": true
+      }
+    },
+    "nayra_banner": {
+      "type": "nayra-banner",
+      "settings": {
+        "color": "raised",
+        "heading": "Mestoura w zwina.",
+        "text": "La collection modeste arrive&nbsp;: burkinis et pièces couvrantes pour t'entraîner et nager à l'aise.",
+        "button_label": "Me prévenir sur WhatsApp",
+        "button_link": "",
+        "whatsapp_message": "Salam, préviens-moi pour la collection modeste.",
+        "show_image": true,
+        "badge": "Bientôt"
+      }
     },
     "nayra_story": {
       "type": "nayra-story",
-      "settings": {}
+      "settings": {
+        "image_side": "left",
+        "heading": "Nayra, dyalek.",
+        "text": "<p>Nayra est une marque marocaine de vêtements de sport pour femmes. Des pièces NAYRA pour bouger à l'aise, une collection modeste pour celles qui se couvrent, et des prix pensés pour toutes les gymgirls.</p>",
+        "link_label": "Notre histoire",
+        "link": ""
+      }
+    },
+    "nayra_steps": {
+      "type": "nayra-steps",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Tu choisis ta lebsa",
+            "text": "Ta tenue, ta couleur et ta taille, depuis ton téléphone."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "On confirme sur WhatsApp",
+            "text": "On vérifie la taille et l'adresse avant d'envoyer."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Tu paies à la porte",
+            "text": "En espèces, quand le colis arrive chez toi."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "heading": "Kifach tcommandi",
+        "text": ""
+      }
+    },
+    "nayra_gallery": {
+      "type": "nayra-gallery",
+      "blocks": {
+        "photo_1": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "photo_2": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "photo_3": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "photo_4": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "photo_5": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "photo_6": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2",
+        "photo_3",
+        "photo_4",
+        "photo_5",
+        "photo_6"
+      ],
+      "settings": {
+        "heading": "Lebsi w tagui-na.",
+        "text": "Suis-nous sur Instagram pour les nouvelles drops.",
+        "instagram_handle": "nayra.fitwear"
+      }
     },
     "nayra_close": {
       "type": "nayra-close",
-      "settings": {}
+      "settings": {
+        "heading": "Yallah, l'salle katsennak.",
+        "text": "Choisis ta tenue, on confirme sur WhatsApp, tu paies à la livraison.",
+        "button_label": "Voir la collection",
+        "button_link": "shopify://collections/all",
+        "whatsapp_label": "Une question ? WhatsApp",
+        "whatsapp_message": "Salam, j'ai une question."
+      }
     }
   },
   "order": [

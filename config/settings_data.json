@@ -68,6 +68,7 @@
     "cart_price_font": "subheading",
     "show_cart_note": false,
     "show_add_discount_code": true,
+    "whatsapp_number": "212727040002",
     "drawer_border_color": "{{ settings.color_palette.color3 }}",
     "icon_stroke": "default",
     "palette_input_border": "{{ settings.color_palette.color3 }}",
